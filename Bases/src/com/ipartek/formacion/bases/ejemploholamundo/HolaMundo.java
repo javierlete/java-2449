@@ -16,7 +16,7 @@ public class HolaMundo {
 	 */
 	public static void main(String[] argumentosDeEntrada) {
 		/*
-		 * Ejemplo de programa básico Uso de variables etc.
+		 * Ejemplo de programa básico. Uso de variables etc.
 		 */
 
 		// Esta línea muestra el texto por consola
@@ -42,6 +42,21 @@ public class HolaMundo {
 		double a = 0.1, b = 0.2;
 		double total = a + b;
 
+		long l = 2148000000l;
+		long milong = 1;
+		Long miLong = 1l;
+		
+		byte mibyte = 5;
+		Byte miByte = mibyte;
+		Byte nulo = null;
+		byte convertido = miByte;
+
+		System.out.println(l+milong+miLong+miByte+convertido);
+		System.out.println(nulo);
+		
+		@SuppressWarnings("unused")
+		float mifloat = 5.0f;
+		
 		System.out.println(total);
 
 		BigDecimal bda, bdb;
@@ -78,6 +93,13 @@ public class HolaMundo {
 
 		System.out.println(booleano ? "VERDADERO" : "FALSO");
 
+		String juan = new String("Prueba");
+		String pedro = new String("Prueba");
+		
+		System.out.println("Son EL MISMO? " + (juan == pedro));
+		System.out.println("Son iguales? " + (juan.equals(pedro)));
+		
+		// SENTENCIAS DE CONTROL
 		if (booleano) {
 			System.out.println("VERDADERO");
 		} else {
@@ -129,7 +151,32 @@ public class HolaMundo {
 		default:
 			dias = 31;
 		}
-		
+
 		System.out.println("El mes " + mes + " tiene " + dias + " días");
+		
+		int contador = 1;
+		
+		while(contador <= 5) {
+			System.out.println(contador++);
+		}
+		
+		contador = 1;
+		
+		do {
+			System.out.println(contador++);
+		} while(contador <= 5);
+		
+		// (inicialización; condición de permanencia; "postmodificación")
+		for(int cont = 1; cont <= 5; cont++) {
+			System.out.println(cont);
+		}
+		
+//		int cont = 1;
+//		
+//		while(cont <= 5) {
+//			System.out.println(cont);
+//			cont++;
+//		}
+		
 	}
 }
