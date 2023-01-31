@@ -16,15 +16,39 @@ public class Consola {
 	public static final String FECHA_ESPANOL_LONGITUD_FIJA = "dd/MM/yyyy";
 	public static final String FECHA_EUSKERA_LONGITUD_FIJA = "MM/dd/yyyy";
 	
-	public static int pedirEntero() {
-		return pedirEntero("Introduce un número entero");
+	public static void p(String mensaje) {
+		System.out.print(mensaje + ": ");
 	}
 	
+	public static void pl(String mensaje, boolean esError) {
+		if(esError) {
+			System.err.println(mensaje);
+		} else {
+			pl(mensaje);
+		}
+	}
+
+	public static void pl(Object mensaje) {
+		System.out.println(mensaje);
+	}
+
+	public static void pl(LocalDate fecha) {
+		pl(fecha, FECHA_ESPANOL_LONGITUD_FIJA);
+	}
+
+	public static void pl(LocalDate fecha, String formato) {
+		pl(fecha.format(DateTimeFormatter.ofPattern(formato)));
+	}
+
 	public static String pedirTexto(String mensaje) {
 		p(mensaje);
 		return sc.nextLine();
 	}
 	
+	public static int pedirEntero() {
+		return pedirEntero("Introduce un número entero");
+	}
+
 	public static int pedirEntero(String mensaje) {
 		boolean hayError = true;
 		
@@ -67,6 +91,14 @@ public class Consola {
 		return numero;
 	}
 	
+	public static LocalDate pedirFecha() {
+		return pedirFecha("Introduce una fecha");
+	}
+
+	public static LocalDate pedirFecha(String mensaje) {
+		return pedirFecha(mensaje, FECHA_ESPANOL_LONGITUD_FIJA);
+	}
+
 	public static LocalDate pedirFecha(String mensaje, String formato) {
 		boolean hayError = true;
 		
@@ -86,39 +118,5 @@ public class Consola {
 		} while (hayError);
 		
 		return fecha;
-	}
-
-	public static LocalDate pedirFecha(String mensaje) {
-		return pedirFecha(mensaje, FECHA_ESPANOL_LONGITUD_FIJA);
-	}
-	
-	public static LocalDate pedirFecha() {
-		return pedirFecha("Introduce una fecha");
-	}
-	
-	public static void p(String mensaje) {
-		System.out.print(mensaje + ": ");
-	}
-	
-	public static void pl(Object mensaje) {
-		System.out.println(mensaje);
-	}
-	
-	public static void pl(LocalDate fecha, String formato) {
-		pl(fecha.format(DateTimeFormatter.ofPattern(formato)));
-	}
-	
-	public static void pl(LocalDate fecha) {
-		pl(fecha, FECHA_ESPANOL_LONGITUD_FIJA);
-	}
-	
-	// DRY: Don't Repeat Yourself
-	
-	public static void pl(String mensaje, boolean esError) {
-		if(esError) {
-			System.err.println(mensaje);
-		} else {
-			pl(mensaje);
-		}
 	}
 }

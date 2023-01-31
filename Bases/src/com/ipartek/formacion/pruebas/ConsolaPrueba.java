@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class ConsolaPrueba {
 	public static void main(String[] args) {
-		int numero = pedirEntero("Dime un número");
+		int numero = pedirEntero();
 		pl(numero);
 		
 		String nombre = pedirTexto("Dime tu nombre");
