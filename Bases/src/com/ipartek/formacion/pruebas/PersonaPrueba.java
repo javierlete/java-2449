@@ -22,6 +22,9 @@ public class PersonaPrueba {
 		System.out.println(p.getNombre());
 		
 		System.out.println(p.toString());
+		System.out.println(p);
+		
+		System.out.println("Los datos de p son " + p);
 		
 		Persona p2 = new Persona(1L, "  Pepe  ", "87654321Z", LocalDate.of(2003, 1, 31));
 		
@@ -30,7 +33,7 @@ public class PersonaPrueba {
 		
 		System.out.println(p2);
 		
-		System.out.println(p2.obtenerEdad());
+		System.out.println(p2.getEdad());
 		System.out.println(p2.isMayorDeEdad());
 		
 		Persona copia = p2; // (Copia de "tarjeta de visita"/dirección de memoria) 

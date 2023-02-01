@@ -69,12 +69,16 @@ public class Persona {
 	}
 
 	// Métodos de instancia
-	public int obtenerEdad() {
+	public int getEdad() {
+		if(fechaNacimiento == null) {
+			throw new IllegalArgumentException("No podemos calcular la edad porque no tenemos fecha de nacimiento");
+		}
+		
 		return fechaNacimiento.until(LocalDate.now()).getYears();
 	}
 	
 	public boolean isMayorDeEdad() {
-		return obtenerEdad() >= 18;
+		return getEdad() >= 18;
 	}
 	
 	// ToString: resumen de la información del objeto en una línea
