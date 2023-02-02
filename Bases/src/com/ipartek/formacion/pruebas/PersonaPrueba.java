@@ -6,6 +6,7 @@ import com.ipartek.formacion.poo.Persona;
 
 public class PersonaPrueba {
 
+	// PersonaPrueba.main(new String[] { "primero", "segundo" })
 	public static void main(String[] args) {
 		Persona p; // Crea una referencia a un objeto de tipo Persona
 		// Por defecto vale null
@@ -43,6 +44,15 @@ public class PersonaPrueba {
 		
 		System.out.println(copia);
 		System.out.println(p2);
+		
+		System.out.println(p2.getEdad());
+		System.out.println(p2.isMayorDeEdad());
+		
+		Persona.setMayoriaDeEdad(21);
+
+		System.out.println(p2.getEdad());
+		System.out.println(p2.isMayorDeEdad());
+
 	}
 
 }
