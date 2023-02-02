@@ -2,7 +2,7 @@ package com.ipartek.formacion.poo;
 
 import java.time.LocalDate;
 
-public class Persona {
+public class Persona { // extends Object
 	// Constantes
 	private static final String NOMBRE_POR_DEFECTO = "Anónimo";
 
@@ -17,6 +17,7 @@ public class Persona {
 
 	// Constructores
 	public Persona(Long id, String nombre, String dni, LocalDate fechaNacimiento) {
+		// super();
 		setId(id);
 		setNombre(nombre);
 		setDni(dni);
@@ -34,6 +35,10 @@ public class Persona {
 	public Persona() {
 		this(null, NOMBRE_POR_DEFECTO, null, null);
 	}
+	
+	//public Persona() {
+	//	super();
+	//}
 
 	// (Constructor de copia)
 	public Persona(Persona persona) {
@@ -78,6 +83,10 @@ public class Persona {
 	}
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		if(fechaNacimiento != null && fechaNacimiento.isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("No se puede nacer en el futuro");
+		}
+		
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -89,7 +98,7 @@ public class Persona {
 		if (mayoriaDeEdad < 0) {
 			throw new IllegalArgumentException("No se puede tener una mayoría de edad negativa");
 		}
-		
+
 		Persona.mayoriaDeEdad = mayoriaDeEdad;
 	}
 

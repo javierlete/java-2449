@@ -39,6 +39,14 @@ public class Empresa {
 		return gerente;
 	}
 
+//	public void setGerente(Empleado gerente) {
+//		if(gerente == null) {
+//			throw new IllegalArgumentException("Se necesita un gerente");
+//		}
+//		
+//		this.gerente = gerente;
+//	}
+	
 	public void setGerente(Persona gerente) {
 		validarPersona(gerente);
 		
@@ -49,12 +57,29 @@ public class Empresa {
 		return personas;
 	}
 
-	public void contratar(Persona persona) {
-		validarPersona(persona);
+//	public void contratar(Empleado empleado) {
+//		if(empleado == null) {
+//			throw new IllegalArgumentException("Debe existir el empleado");
+//		}
+//		
+//		personas.add(empleado);
+//	}
+	
+	public void contratar(Persona empleado) {
+		validarPersona(empleado);
 		
-		personas.add(persona);
+		personas.add(empleado);
 	}
 
+	public void despedir(String nombre) {
+		for (int i = 0; i < personas.size(); i++) {
+			if (personas.get(i).getNombre().equals(nombre)) {
+				personas.remove(i);
+				return;
+			}
+		}
+	}
+	
 	private void validarPersona(Persona persona) {
 		if (persona == null) {
 			throw new IllegalArgumentException("Necesitamos una persona");
@@ -66,15 +91,6 @@ public class Empresa {
 		
 		if(!persona.isMayorDeEdad()) {
 			throw new IllegalArgumentException("La persona debe ser mayor de edad");
-		}
-	}
-
-	public void despedir(String nombre) {
-		for (int i = 0; i < personas.size(); i++) {
-			if (personas.get(i).getNombre().equals(nombre)) {
-				personas.remove(i);
-				return;
-			}
 		}
 	}
 

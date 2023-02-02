@@ -1,7 +1,9 @@
 package com.ipartek.formacion.pruebas;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.ipartek.formacion.poo.Empleado;
 import com.ipartek.formacion.poo.Empresa;
 import com.ipartek.formacion.poo.Persona;
 
@@ -16,6 +18,8 @@ public class EmpresaPrueba {
 		empresa.contratar(p);
 		empresa.contratar(new Persona("Juan", "12346789Z", LocalDate.of(2001, 1, 1)));
 		empresa.contratar(new Persona("Pedro", "12346789Z", LocalDate.of(2001, 1, 1)));
+		
+		empresa.contratar(new Empleado("   Javier   ", "12345678Z", LocalDate.of(2000, 1, 2), "1234123412341234", new BigDecimal("1234.56")));
 
 		for (Persona persona : empresa.getPersonas()) {
 			System.out.println(persona);
