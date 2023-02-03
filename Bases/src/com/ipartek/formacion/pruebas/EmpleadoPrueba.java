@@ -54,6 +54,12 @@ public class EmpleadoPrueba {
 		} else {
 			System.err.println("p2 NO es un empleado");
 		}
+		
+		Empleado empleado = new Empleado("   Javier   ", "12345678Z", LocalDate.of(2000, 1, 2), "1234123412341234",
+				new BigDecimal("1234.56"));
+		Persona persona = empleado;
+		
+		System.out.println(persona);
 	}
 
 }

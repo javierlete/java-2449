@@ -2,6 +2,7 @@ package com.ipartek.formacion.poo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Empleado extends Persona {
 	private String numeroSeguridadSocial;
@@ -73,6 +74,27 @@ public class Empleado extends Persona {
 		}
 		
 		this.sueldoMensual = sueldoMensual;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(numeroSeguridadSocial, sueldoMensual);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empleado other = (Empleado) obj;
+		return Objects.equals(numeroSeguridadSocial, other.numeroSeguridadSocial)
+				&& Objects.equals(sueldoMensual, other.sueldoMensual);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.ipartek.formacion.poo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Empresa {
 	private Long id;
@@ -92,6 +93,26 @@ public class Empresa {
 		if(!persona.isMayorDeEdad()) {
 			throw new IllegalArgumentException("La persona debe ser mayor de edad");
 		}
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(gerente, id, nombre, personas);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(gerente, other.gerente) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(personas, other.personas);
 	}
 
 	@Override

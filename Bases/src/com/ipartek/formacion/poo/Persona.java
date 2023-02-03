@@ -1,6 +1,7 @@
 package com.ipartek.formacion.poo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Persona { // extends Object
 	// Constantes
@@ -9,6 +10,11 @@ public class Persona { // extends Object
 	// Variables estáticas ("de clase")
 	private static int mayoriaDeEdad = 18;
 
+	// Bloque estático / "Constructor estático"
+	static {
+		System.out.println("Persona STATIC");
+	}
+	
 	// Variables de instancia
 	private Long id;
 	private String nombre;
@@ -113,6 +119,26 @@ public class Persona { // extends Object
 
 	public boolean isMayorDeEdad() {
 		return getEdad() >= mayoriaDeEdad;
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni, fechaNacimiento, id, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		return Objects.equals(dni, other.dni) && Objects.equals(fechaNacimiento, other.fechaNacimiento)
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
 	}
 
 	// ToString: resumen de la información del objeto en una línea
