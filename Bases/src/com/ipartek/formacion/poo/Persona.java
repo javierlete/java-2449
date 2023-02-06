@@ -1,9 +1,13 @@
 package com.ipartek.formacion.poo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Persona { // extends Object
+public class Persona implements Serializable { // extends Object
+	
+	private static final long serialVersionUID = 7532053857173125404L;
+	
 	// Constantes
 	private static final String NOMBRE_POR_DEFECTO = "Anónimo";
 

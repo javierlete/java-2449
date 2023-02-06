@@ -1,9 +1,13 @@
 package com.ipartek.formacion.poo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Empresa {
+public class Empresa implements Serializable {
+	
+	private static final long serialVersionUID = 6589803554527905906L;
+	
 	private Long id;
 	private String nombre;
 	private Persona gerente;
