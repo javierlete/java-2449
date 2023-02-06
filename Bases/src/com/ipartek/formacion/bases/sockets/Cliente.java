@@ -12,7 +12,7 @@ public class Cliente {
 		System.out.println("Arrancando cliente");
 		
 		try (Socket s = new Socket(
-				"localhost", 1234);
+				"localhost", 1234); // Conectamos al servidor que está en la IP de localhost (nuestro propio ordenador) y al servicio que está activo en el puerto 1234
 				Scanner sc = new Scanner(s.getInputStream());
 				PrintWriter pw = new PrintWriter(s.getOutputStream(), AUTO_FLUSH)) {
 			String texto = sc.nextLine();
