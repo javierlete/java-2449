@@ -2,7 +2,11 @@ package com.ipartek.formacion.bases.hilos;
 
 import java.util.Random;
 
-public class Corredor extends Thread {
+import com.ipartek.formacion.poo.Persona;
+
+public class Corredor extends Persona implements Runnable {
+	private static final long serialVersionUID = 553866882458666000L;
+
 	private static final int META = 10;
 	
 	private Integer dorsal;
