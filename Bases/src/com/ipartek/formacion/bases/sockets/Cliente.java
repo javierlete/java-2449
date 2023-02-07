@@ -26,6 +26,7 @@ public class Cliente {
 			System.out.println("SERVIDOR: " + texto);
 		} catch (IOException e) {
 			System.err.println("Error en el cliente");
+			System.err.println(e);
 		}
 	}
 }
