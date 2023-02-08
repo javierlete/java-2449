@@ -1,5 +1,6 @@
 package com.ipartek.formacion.bibliotecas;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -30,6 +31,14 @@ public class Consola {
 
 	public static void pl(Object mensaje) {
 		System.out.println(mensaje);
+	}
+	
+	public static void ple(Object mensaje) {
+		System.err.println(mensaje);
+	}
+	
+	public static void pl() {
+		System.out.println();
 	}
 
 	public static void pl(LocalDate fecha) {
@@ -70,6 +79,48 @@ public class Consola {
 		return numero;
 	}
 
+	public static long pedirLong(String mensaje) {
+		boolean hayError = true;
+		
+		long numero = 0;
+
+		String numeroEnTexto;
+		
+		do {
+			numeroEnTexto = pedirTexto(mensaje);
+			
+			try {
+				numero = Long.parseLong(numeroEnTexto);
+				hayError = false;
+			} catch (NumberFormatException e) {
+				pl("Necesito el número en dígitos", ES_ERROR);
+			}
+		} while (hayError);
+		
+		return numero;
+	}
+
+	public static BigDecimal pedirBigDecimal(String mensaje) {
+		boolean hayError = true;
+		
+		BigDecimal numero = null;
+
+		String numeroEnTexto;
+		
+		do {
+			numeroEnTexto = pedirTexto(mensaje);
+			
+			try {
+				numero = new BigDecimal(numeroEnTexto);
+				hayError = false;
+			} catch (NumberFormatException e) {
+				pl("Necesito el número en dígitos", ES_ERROR);
+			}
+		} while (hayError);
+		
+		return numero;
+	}
+	
 	public static double pedirDoble(String mensaje) {
 		boolean hayError = true;
 		
