@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>10</y>
+      <w>710</w>
+      <h>430</h>
+    </coordinates>
+    <panel_attributes>com.ipartek.formacion.almacen.entidades::Producto
+--
+-id: Long
+-nombre: String
+-precio: BigDecimal
+-stock: Integer
+-fechaCaducidad: LocalDate
+--
++Producto(Long id, String nombre, BigDecimal precio, Integer stock, LocalDate fechaCaducidad): ctor
++Producto(String nombre, BigDecimal precio, Integer stock, LocalDate fechaCaducidad): ctor
++Producto(String nombre, BigDecimal precio, Integer stock): ctor
++Producto(String nombre, BigDecimal precio): ctor
++getId(): Long
++setId(Long id): void
++getNombre(): String
++setNombre(String nombre): void
++getPrecio(): BigDecimal
++setPrecio(BigDecimal precio): void
++getStock(): Integer
++setStock(Integer stock): void
++getFechaCaducidad(): LocalDate
++setFechaCaducidad(LocalDate fechaCaducidad): void
++hashCode(): int
++equals(Object obj): boolean
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>10</y>
+      <w>450</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>com.ipartek.formacion.almacen.presentacion::AlmacenConsola
+--
+-SALIR = 0: int
+-dao = new DaoProductoMemoria(): Dao&lt;Producto&gt;
+--
++main(String[] args): void
+-mostrarMenu(): void
+-pedirOpcion(): int
+-ejecutarOpcion(int opcion): void
+-listado(): void
+-mostrarProductoLinea(Producto producto): void
+-buscarPorId(): void
+-mostrarFichaProducto(Producto producto): void
+-insertar(): void
+-pedirDatosProducto(): Producto
+-modificar(): void
+-borrar(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>450</y>
+      <w>480</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>com.ipartek.formacion.almacen.accesodatos::DaoProductoMemoria
+--
+-productos = new TreeMap(): TreeMap&lt;Long, Producto&gt;
+--
++obtenerTodos(): Iterable&lt;Producto&gt;
++obtenerPorId(Long id): Producto
++insertar(Producto producto): Producto
++modificar(Producto producto): Producto
++borrar(Long id): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>450</y>
+      <w>360</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+com.ipartek.formacion.almacen.accesodatos::Dao
+--
+--
+~obtenerTodos(): Iterable&lt;T&gt;
+~obtenerPorId(Long id): T
+~insertar(T entidad): T
+~modificar(T entidad): T
+~borrar(Long id): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>520</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+</diagram>
