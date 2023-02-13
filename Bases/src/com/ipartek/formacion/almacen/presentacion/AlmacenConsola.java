@@ -6,20 +6,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.ipartek.formacion.almacen.accesodatos.Dao;
-import com.ipartek.formacion.almacen.accesodatos.DaoProductoMemoria;
+import com.ipartek.formacion.almacen.accesodatos.DaoProductoFichero;
 import com.ipartek.formacion.almacen.entidades.Producto;
 
 public class AlmacenConsola {
 	private static final int SALIR = 0;
 
-	private static Dao<Producto> dao = new DaoProductoMemoria();
+	private static Dao<Producto> dao = new DaoProductoFichero("almacen.dat");
 	
 	public static void main(String[] args) {
-		dao.insertar(new Producto("Producto1", new BigDecimal(1234), 5));
-		dao.insertar(new Producto("Producto2", new BigDecimal(234)));
-		dao.insertar(new Producto("Producto3", new BigDecimal(3456), 2, LocalDate.of(2030, 2, 3)));
-		
-		
 		int opcion;
 		
 		do {
