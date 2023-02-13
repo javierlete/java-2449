@@ -8,7 +8,7 @@ public class DaoProductoMemoria implements Dao<Producto> {
 
 	private TreeMap<Long, Producto> productos = new TreeMap<>();
 	
-	public DaoProductoMemoria() {}
+	DaoProductoMemoria() {}
 	
 	DaoProductoMemoria(TreeMap<Long, Producto> productos) {
 		this.productos = productos;

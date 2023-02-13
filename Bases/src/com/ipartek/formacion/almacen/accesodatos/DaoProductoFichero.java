@@ -14,7 +14,7 @@ public class DaoProductoFichero implements Dao<Producto> {
 
 	private String fichero;
 
-	public DaoProductoFichero(String fichero) {
+	DaoProductoFichero(String fichero) {
 		this.fichero = fichero;
 
 		File f = new File(fichero);
