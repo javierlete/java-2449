@@ -1,11 +1,10 @@
 package com.ipartek.formacion.poo;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Empleado extends Persona implements Serializable {
+public class Empleado extends Persona {
 	
 	private static final long serialVersionUID = 2124094682886467100L;
 	
