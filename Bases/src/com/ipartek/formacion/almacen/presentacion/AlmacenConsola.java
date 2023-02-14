@@ -2,9 +2,6 @@ package com.ipartek.formacion.almacen.presentacion;
 
 import static com.ipartek.formacion.bibliotecas.Consola.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 import com.ipartek.formacion.almacen.accesodatos.Dao;
 import com.ipartek.formacion.almacen.accesodatos.FabricaDao;
 import com.ipartek.formacion.almacen.entidades.Producto;
@@ -13,16 +10,16 @@ public class AlmacenConsola {
 	private static final int SALIR = 0;
 
 	private static Dao<Producto> dao = FabricaDao.getDaoProducto();
-	
+
 	public static void main(String[] args) {
 		int opcion;
-		
+
 		do {
 			mostrarMenu();
 			opcion = pedirOpcion();
 			ejecutarOpcion(opcion);
-		} while(opcion != SALIR);
-		
+		} while (opcion != SALIR);
+
 	}
 
 	private static void mostrarMenu() {
@@ -42,7 +39,7 @@ public class AlmacenConsola {
 	}
 
 	private static void ejecutarOpcion(int opcion) {
-		switch(opcion) {
+		switch (opcion) {
 		case 0:
 			pl("Gracias por usar la aplicación");
 			break;
@@ -68,13 +65,13 @@ public class AlmacenConsola {
 
 	private static void listado() {
 		boolean hayProductos = false;
-		
-		for(Producto producto: dao.obtenerTodos()) {
+
+		for (Producto producto : dao.obtenerTodos()) {
 			mostrarProductoLinea(producto);
 			hayProductos = true;
 		}
-		
-		if(!hayProductos) {
+
+		if (!hayProductos) {
 			pl("No hay ningún producto");
 		}
 	}
@@ -84,9 +81,7 @@ public class AlmacenConsola {
 	}
 
 	private static void buscarPorId() {
-		Long id = pedirLong("Introduce el id del producto");
-		
-		mostrarFichaProducto(dao.obtenerPorId(id));
+		pedirProductoPorId();
 	}
 
 	private static void mostrarFichaProducto(Producto producto) {
@@ -95,34 +90,97 @@ public class AlmacenConsola {
 
 	private static void insertar() {
 		Producto producto = pedirDatosProducto();
-		
+
 		dao.insertar(producto);
 	}
 
 	private static Producto pedirDatosProducto() {
-		String nombre = pedirTexto("Nombre");
-		BigDecimal precio = pedirBigDecimal("Precio");
-		Integer stock = pedirEntero("Stock");
-		LocalDate fechaCaducidad = pedirFecha("Fecha de caducidad");
-		
-		Producto producto = new Producto(nombre, precio, stock, fechaCaducidad);
-		
+		Producto producto = new Producto();
+
+		boolean esIncorrecto = true;
+
+		do {
+			try {
+				producto.setNombre(pedirTexto("Nombre"));
+				esIncorrecto = false;
+			} catch (IllegalArgumentException e) {
+				ple(e.getMessage());
+			}
+		} while (esIncorrecto);
+
+		esIncorrecto = true;
+
+		do {
+			try {
+				producto.setPrecio(pedirBigDecimal("Precio"));
+				esIncorrecto = false;
+			} catch (IllegalArgumentException e) {
+				ple(e.getMessage());
+			}
+		} while (esIncorrecto);
+
+		esIncorrecto = true;
+
+		do {
+			try {
+				producto.setStock(pedirEntero("Stock", OPCIONAL));
+				esIncorrecto = false;
+			} catch (IllegalArgumentException e) {
+				ple(e.getMessage());
+			}
+		} while (esIncorrecto);
+
+		esIncorrecto = true;
+
+		do {
+			try {
+				producto.setFechaCaducidad(pedirFecha("Fecha de caducidad", OPCIONAL));
+				esIncorrecto = false;
+			} catch (IllegalArgumentException e) {
+				ple(e.getMessage());
+			}
+		} while (esIncorrecto);
+
 		return producto;
 	}
 
 	private static void modificar() {
-		Long id = pedirLong("Id");
+		Producto producto = pedirProductoPorId(); 
+
+		if(producto == null) {
+			return;
+		}
 		
-		Producto producto = pedirDatosProducto();
+		Long id = producto.getId();
 		
+		producto = pedirDatosProducto();
+
 		producto.setId(id);
-		
+
 		dao.modificar(producto);
 	}
 
 	private static void borrar() {
-		Long id = pedirLong("Introduce el id del producto a borrar");
+		Producto producto = pedirProductoPorId();
 		
-		dao.borrar(id);
+		if(producto == null) {
+			return;
+		}
+		
+		dao.borrar(producto.getId());
+	}
+
+	private static Producto pedirProductoPorId() {
+		Long id = pedirLong("Id");
+
+		Producto producto = dao.obtenerPorId(id);
+
+		if (producto == null) {
+			ple("No se ha encontrado el producto");
+		} else {
+			mostrarFichaProducto(producto);
+		}
+
+		return producto;
 	}
 }
