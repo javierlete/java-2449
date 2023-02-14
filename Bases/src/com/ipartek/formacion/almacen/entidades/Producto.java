@@ -34,6 +34,8 @@ public class Producto implements Serializable {
 		this(null, nombre, precio, null, null);
 	}
 	
+	public Producto() {}
+	
 	public Long getId() {
 		return id;
 	}
@@ -44,24 +46,40 @@ public class Producto implements Serializable {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
+		if(nombre == null || nombre.trim().length() == 0) {
+			throw new IllegalArgumentException("El nombre es obligatorio");
+		}
+		
 		this.nombre = nombre;
 	}
 	public BigDecimal getPrecio() {
 		return precio;
 	}
 	public void setPrecio(BigDecimal precio) {
+		if(precio == null || precio.compareTo(BigDecimal.ZERO) < 0) {
+			throw new IllegalArgumentException("El precio es obligatorio y debe ser 0 o superior");
+		}
+		
 		this.precio = precio;
 	}
 	public Integer getStock() {
 		return stock;
 	}
 	public void setStock(Integer stock) {
+		if(stock != null && stock < 0) {
+			throw new IllegalArgumentException("El stock debe ser positivo");
+		}
+		
 		this.stock = stock;
 	}
 	public LocalDate getFechaCaducidad() {
 		return fechaCaducidad;
 	}
 	public void setFechaCaducidad(LocalDate fechaCaducidad) {
+		if(fechaCaducidad != null && fechaCaducidad.isBefore(LocalDate.now())) {
+			throw new IllegalArgumentException("El producto no se puede introducir ya caducado");
+		}
+		
 		this.fechaCaducidad = fechaCaducidad;
 	}
 	@Override
