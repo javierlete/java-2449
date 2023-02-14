@@ -1,6 +1,5 @@
 package com.ipartek.formacion.almacen.accesodatos;
 
-import java.io.IOException;
 import java.util.Properties;
 
 import com.ipartek.formacion.almacen.entidades.Producto;
@@ -16,7 +15,7 @@ public class FabricaDao {
 			
 			tipo = props.getProperty("dao.tipo");
 			fichero = props.getProperty("dao.fichero");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			throw new AccesoDatosException("No se ha podido leer la configuración", e);
 		}
 	}
