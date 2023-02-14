@@ -11,6 +11,9 @@ public class Consola {
 	
 	public static final boolean ES_ERROR = true;
 	
+	public static final boolean OPCIONAL = true;
+	public static final boolean OBLIGATORIO = false;
+	
 	public static final String FECHA_ESPANOL = "d/M/y";
 	public static final String FECHA_EUSKERA = "M/d/y";
 	
@@ -59,14 +62,22 @@ public class Consola {
 	}
 
 	public static int pedirEntero(String mensaje) {
+		return pedirEntero(mensaje, OBLIGATORIO);
+	}
+	
+	public static Integer pedirEntero(String mensaje, boolean opcional) {
 		boolean hayError = true;
 		
-		int numero = 0;
+		Integer numero = 0;
 
 		String numeroEnTexto;
 		
 		do {
-			numeroEnTexto = pedirTexto(mensaje);
+			numeroEnTexto = pedirTexto(mensaje + (opcional ? " (opcional)": " (obligatorio)"));
+			
+			if(opcional && numeroEnTexto.trim().length() == 0) {
+				return null;
+			}
 			
 			try {
 				numero = Integer.parseInt(numeroEnTexto);
@@ -149,8 +160,16 @@ public class Consola {
 	public static LocalDate pedirFecha(String mensaje) {
 		return pedirFecha(mensaje, FECHA_ESPANOL_LONGITUD_FIJA);
 	}
+	
+	public static LocalDate pedirFecha(String mensaje, boolean opcional) {
+		return pedirFecha(mensaje, FECHA_ESPANOL_LONGITUD_FIJA, opcional);
+	}
 
 	public static LocalDate pedirFecha(String mensaje, String formato) {
+		return pedirFecha(mensaje, formato, OBLIGATORIO);
+	}
+	
+	public static LocalDate pedirFecha(String mensaje, String formato, boolean opcional) {
 		boolean hayError = true;
 		
 		LocalDate fecha = null;
@@ -158,7 +177,11 @@ public class Consola {
 		String fechaEnTexto;
 		
 		do {
-			fechaEnTexto = pedirTexto(mensaje);
+			fechaEnTexto = pedirTexto(mensaje + (opcional ? " (opcional)": " (obligatorio)"));
+			
+			if(opcional && fechaEnTexto.trim().length() == 0) {
+				return null;
+			}
 			
 			try {
 				fecha = LocalDate.parse(fechaEnTexto, DateTimeFormatter.ofPattern(formato));
