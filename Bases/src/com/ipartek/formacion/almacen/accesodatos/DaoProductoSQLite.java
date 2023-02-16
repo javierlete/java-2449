@@ -83,40 +83,12 @@ public class DaoProductoSQLite implements Dao<Producto> {
 
 	@Override
 	public Producto insertar(Producto producto) {
-		try (Connection con = obtenerConexion();
-				PreparedStatement pst = con.prepareStatement(SQL_INSERT);
-				) {
-			productoAPreparedStatement(producto, pst);
-			
-			int modificados = pst.executeUpdate();
-
-			if(modificados != 1) {
-				throw new AccesoDatosException("No ha podido insertar el registro");
-			}
-			
-			return producto;
-		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido consultar los registros", e);
-		}
+		return cambiarEnBaseDeDatos(producto, SQL_INSERT);
 	}
 
 	@Override
 	public Producto modificar(Producto producto) {
-		try (Connection con = obtenerConexion();
-				PreparedStatement pst = con.prepareStatement(SQL_UPDATE);
-				) {
-			productoAPreparedStatement(producto, pst);
-			
-			int modificados = pst.executeUpdate();
-
-			if(modificados != 1) {
-				throw new AccesoDatosException("No se puede modificar un registro inexistente " + producto.getId());
-			}
-			
-			return producto;
-		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido consultar los registros", e);
-		}
+		return cambiarEnBaseDeDatos(producto, SQL_UPDATE);
 	}
 
 	@Override
@@ -171,6 +143,24 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		
 		if(producto.getId() != null) {
 			pst.setLong(5, producto.getId());
+		}
+	}
+
+	private Producto cambiarEnBaseDeDatos(Producto producto, String sql) {
+		try (Connection con = obtenerConexion();
+				PreparedStatement pst = con.prepareStatement(sql);
+				) {
+			productoAPreparedStatement(producto, pst);
+			
+			int modificados = pst.executeUpdate();
+	
+			if(modificados != 1) {
+				throw new AccesoDatosException("No ha podido cambiar el registro");
+			}
+			
+			return producto;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido cambiar los registros", e);
 		}
 	}
 
