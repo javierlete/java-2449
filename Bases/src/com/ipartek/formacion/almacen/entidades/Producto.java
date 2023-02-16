@@ -50,7 +50,7 @@ public class Producto implements Serializable {
 			throw new IllegalArgumentException("El nombre es obligatorio");
 		}
 		
-		if(!nombre.matches("^\\p{Lu}\\p{Ll}{2}[\\p{L} ]*$")) {
+		if(!nombre.matches("^\\p{Lu}\\p{Ll}{2}[\\p{L} \\d]*$")) {
 			throw new IllegalArgumentException("El nombre debe tener mayúscula y luego dos caracteres más como mínimo");
 		}
 		
