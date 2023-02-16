@@ -46,21 +46,9 @@ public class DaoProductoSQLite implements Dao<Producto> {
 
 			List<Producto> productos = new ArrayList<>();
 			Producto producto;
-
-			LocalDate fechaCaducidad;
-			String fechaTexto;
 			
 			while (rs.next()) {
-				fechaCaducidad = null;
-				
-				fechaTexto = rs.getString("fecha_caducidad");
-				
-				if(fechaTexto != null) {
-					fechaCaducidad = LocalDate.parse(fechaTexto);
-				}
-				
-				producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
-						(Integer)rs.getObject("stock"), fechaCaducidad);
+				producto = resultSetAProducto(rs);
 				
 				productos.add(producto);
 			}
@@ -69,6 +57,24 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido consultar los registros", e);
 		}
+	}
+
+	private Producto resultSetAProducto(ResultSet rs) throws SQLException {
+		Producto producto;
+		LocalDate fechaCaducidad;
+		String fechaTexto;
+		fechaCaducidad = null;
+		
+		fechaTexto = rs.getString("fecha_caducidad");
+		
+		if(fechaTexto != null) {
+			fechaCaducidad = LocalDate.parse(fechaTexto);
+		}
+		
+		producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
+				(Integer)rs.getObject("stock"), fechaCaducidad);
+		
+		return producto;
 	}
 
 
@@ -80,22 +86,11 @@ public class DaoProductoSQLite implements Dao<Producto> {
 			pst.setLong(1, id);
 			
 			Producto producto = null;
-			LocalDate fechaCaducidad;
-			String fechaTexto;
 			
 			try (ResultSet rs = pst.executeQuery()) {
 
 				if (rs.next()) {
-					fechaCaducidad = null;
-					
-					fechaTexto = rs.getString("fecha_caducidad");
-					
-					if(fechaTexto != null) {
-						fechaCaducidad = LocalDate.parse(fechaTexto);
-					}
-					
-					producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
-							(Integer)rs.getObject("stock"), fechaCaducidad);
+					producto = resultSetAProducto(rs);
 				}
 			}
 
@@ -110,19 +105,7 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		try (Connection con = obtenerConexion();
 				PreparedStatement pst = con.prepareStatement(SQL_INSERT);
 				) {
-			pst.setString(1, producto.getNombre());
-			pst.setBigDecimal(2, producto.getPrecio());
-			pst.setObject(3, producto.getStock());
-			
-			LocalDate fechaCaducidad = producto.getFechaCaducidad();
-			
-			String fechaTexto = null;
-			
-			if(fechaCaducidad != null) {
-				fechaTexto = fechaCaducidad.format(DateTimeFormatter.ISO_DATE);
-			}
-			
-			pst.setObject(4, fechaTexto);
+			productoAPreparedStatement(producto, pst);
 			
 			int modificados = pst.executeUpdate();
 
@@ -136,26 +119,32 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		}
 	}
 
+	private void productoAPreparedStatement(Producto producto, PreparedStatement pst) throws SQLException {
+		pst.setString(1, producto.getNombre());
+		pst.setBigDecimal(2, producto.getPrecio());
+		pst.setObject(3, producto.getStock());
+		
+		LocalDate fechaCaducidad = producto.getFechaCaducidad();
+		
+		String fechaTexto = null;
+		
+		if(fechaCaducidad != null) {
+			fechaTexto = fechaCaducidad.format(DateTimeFormatter.ISO_DATE);
+		}
+		
+		pst.setObject(4, fechaTexto);
+		
+		if(producto.getId() != null) {
+			pst.setLong(5, producto.getId());
+		}
+	}
+
 	@Override
 	public Producto modificar(Producto producto) {
 		try (Connection con = obtenerConexion();
 				PreparedStatement pst = con.prepareStatement(SQL_UPDATE);
 				) {
-			pst.setString(1, producto.getNombre());
-			pst.setBigDecimal(2, producto.getPrecio());
-			pst.setObject(3, producto.getStock());
-			
-			LocalDate fechaCaducidad = producto.getFechaCaducidad();
-			
-			String fechaTexto = null;
-			
-			if(fechaCaducidad != null) {
-				fechaTexto = fechaCaducidad.format(DateTimeFormatter.ISO_DATE);
-			}
-			
-			pst.setObject(4, fechaTexto);
-			
-			pst.setLong(5, producto.getId());
+			productoAPreparedStatement(producto, pst);
 			
 			int modificados = pst.executeUpdate();
 
