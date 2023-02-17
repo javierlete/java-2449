@@ -165,8 +165,7 @@ public class AlmacenConsola {
 		String stock = formatearEntero(producto.getStock());
 		String fecha = formatearFecha(producto.getFechaCaducidad());
 	
-		plf(FORMATO_LINEA, id, nombre, precio,
-				stock, fecha);
+		plf(FORMATO_LINEA, id, nombre, precio, stock, fecha);
 	}
 
 	private static void mostrarFichaProducto(Producto producto) {

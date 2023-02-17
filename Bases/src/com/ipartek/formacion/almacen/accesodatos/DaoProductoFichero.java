@@ -26,9 +26,10 @@ public class DaoProductoFichero implements Dao<Producto> {
 
 	private TreeMap<Long, Producto> leerProductos() {
 		try (FileInputStream fis = new FileInputStream(fichero); ObjectInputStream ois = new ObjectInputStream(fis)) {
+
 			@SuppressWarnings("unchecked")
 			TreeMap<Long, Producto> productos = (TreeMap<Long, Producto>) ois.readObject();
-			ois.close();
+
 			return productos;
 		} catch (ClassNotFoundException | IOException e) {
 			throw new AccesoDatosException("No se ha podido leer el fichero", e);
@@ -38,7 +39,9 @@ public class DaoProductoFichero implements Dao<Producto> {
 	private void escribirProductos(TreeMap<Long, Producto> productos) {
 		try (FileOutputStream fos = new FileOutputStream(fichero);
 				ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
 			oos.writeObject(productos);
+
 		} catch (IOException e) {
 			throw new AccesoDatosException("No se ha podido escribir el fichero", e);
 		}
@@ -57,7 +60,9 @@ public class DaoProductoFichero implements Dao<Producto> {
 	@Override
 	public Producto insertar(Producto entidad) {
 		TreeMap<Long, Producto> productos = leerProductos();
+		
 		Producto producto = new DaoProductoMemoria(productos).insertar(entidad);
+		
 		escribirProductos(productos);
 
 		return producto;
@@ -66,7 +71,9 @@ public class DaoProductoFichero implements Dao<Producto> {
 	@Override
 	public Producto modificar(Producto entidad) {
 		TreeMap<Long, Producto> productos = leerProductos();
+		
 		Producto producto = new DaoProductoMemoria(productos).modificar(entidad);
+		
 		escribirProductos(productos);
 
 		return producto;
@@ -75,7 +82,9 @@ public class DaoProductoFichero implements Dao<Producto> {
 	@Override
 	public void borrar(Long id) {
 		TreeMap<Long, Producto> productos = leerProductos();
+		
 		new DaoProductoMemoria(productos).borrar(id);
+		
 		escribirProductos(productos);
 	}
 
