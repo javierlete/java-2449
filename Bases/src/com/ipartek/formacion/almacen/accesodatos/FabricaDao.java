@@ -3,12 +3,9 @@ package com.ipartek.formacion.almacen.accesodatos;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.ipartek.formacion.almacen.entidades.Producto;
-
-@SuppressWarnings("unchecked")
 public class FabricaDao {
 	private static final String FICHERO_CONFIGURACION = "fabrica.properties";
-	private static Dao<Producto> tipo;
+	private static DaoProducto tipo;
 
 	static {
 		String tipoTexto = null;
@@ -36,9 +33,9 @@ public class FabricaDao {
 			String argumento = props.getProperty("dao.argumento");
 
 			if (argumento == null) {
-				tipo = (Dao<Producto>) clase.getDeclaredConstructor().newInstance();
+				tipo = (DaoProducto) clase.getDeclaredConstructor().newInstance();
 			} else {
-				tipo = (Dao<Producto>) clase.getDeclaredConstructor(String.class).newInstance(argumento);
+				tipo = (DaoProducto) clase.getDeclaredConstructor(String.class).newInstance(argumento);
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -52,7 +49,7 @@ public class FabricaDao {
 		}
 	}
 
-	public static Dao<Producto> getDaoProducto() {
+	public static DaoProducto getDaoProducto() {
 		return tipo;
 	}
 }

@@ -1,5 +1,6 @@
 package com.ipartek.formacion.almacen.accesodatos;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +14,7 @@ import java.util.List;
 
 import com.ipartek.formacion.almacen.entidades.Producto;
 
-public class DaoProductoSQLite implements Dao<Producto> {
+public class DaoProductoSQLite implements DaoProducto {
 	private static final String URL = "jdbc:sqlite:";
 	private static final String USER = "";
 	private static final String PASSWORD = "";
@@ -24,12 +25,15 @@ public class DaoProductoSQLite implements Dao<Producto> {
 	private static final String SQL_UPDATE = "UPDATE productos SET nombre=?, precio=?, stock=?, fecha_caducidad=? WHERE id=?";
 	private static final String SQL_DELETE = "DELETE FROM productos WHERE id=?";
 
+	private static final String SQL_NOMBRE = "SELECT * FROM productos WHERE nombre LIKE ?";
+	private static final String SQL_PRECIO = "SELECT * FROM productos WHERE precio BETWEEN ? AND ?";
+
 	private String url = URL;
-	
+
 	public DaoProductoSQLite(String fichero) {
 		this.url += fichero;
 	}
-	
+
 	private Connection obtenerConexion() {
 		try {
 			return DriverManager.getConnection(url, USER, PASSWORD);
@@ -46,13 +50,13 @@ public class DaoProductoSQLite implements Dao<Producto> {
 
 			List<Producto> productos = new ArrayList<>();
 			Producto producto;
-			
+
 			while (rs.next()) {
 				producto = resultSetAProducto(rs);
-				
+
 				productos.add(producto);
 			}
-			
+
 			return productos;
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido consultar los registros", e);
@@ -61,13 +65,11 @@ public class DaoProductoSQLite implements Dao<Producto> {
 
 	@Override
 	public Producto obtenerPorId(Long id) {
-		try (Connection con = obtenerConexion();
-				PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);
-				) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);) {
 			pst.setLong(1, id);
-			
+
 			Producto producto = null;
-			
+
 			try (ResultSet rs = pst.executeQuery()) {
 
 				if (rs.next()) {
@@ -93,14 +95,12 @@ public class DaoProductoSQLite implements Dao<Producto> {
 
 	@Override
 	public void borrar(Long id) {
-		try (Connection con = obtenerConexion();
-				PreparedStatement pst = con.prepareStatement(SQL_DELETE);
-				) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_DELETE);) {
 			pst.setLong(1, id);
-			
+
 			int modificados = pst.executeUpdate();
 
-			if(modificados != 1) {
+			if (modificados != 1) {
 				throw new AccesoDatosException("No se puede borrar un registro inexistente " + id);
 			}
 		} catch (SQLException e) {
@@ -112,17 +112,18 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		Producto producto;
 		LocalDate fechaCaducidad;
 		String fechaTexto;
+
 		fechaCaducidad = null;
-		
+
 		fechaTexto = rs.getString("fecha_caducidad");
-		
-		if(fechaTexto != null) {
+
+		if (fechaTexto != null) {
 			fechaCaducidad = LocalDate.parse(fechaTexto);
 		}
-		
+
 		producto = new Producto(rs.getLong("id"), rs.getString("nombre"), rs.getBigDecimal("precio"),
-				(Integer)rs.getObject("stock"), fechaCaducidad);
-		
+				(Integer) rs.getObject("stock"), fechaCaducidad);
+
 		return producto;
 	}
 
@@ -130,37 +131,82 @@ public class DaoProductoSQLite implements Dao<Producto> {
 		pst.setString(1, producto.getNombre());
 		pst.setBigDecimal(2, producto.getPrecio());
 		pst.setObject(3, producto.getStock());
-		
+
 		LocalDate fechaCaducidad = producto.getFechaCaducidad();
-		
+
 		String fechaTexto = null;
-		
-		if(fechaCaducidad != null) {
+
+		if (fechaCaducidad != null) {
 			fechaTexto = fechaCaducidad.format(DateTimeFormatter.ISO_DATE);
 		}
-		
-		pst.setObject(4, fechaTexto);
-		
-		if(producto.getId() != null) {
+
+		pst.setString(4, fechaTexto);
+
+		if (producto.getId() != null) {
 			pst.setLong(5, producto.getId());
 		}
 	}
 
 	private Producto cambiarEnBaseDeDatos(Producto producto, String sql) {
-		try (Connection con = obtenerConexion();
-				PreparedStatement pst = con.prepareStatement(sql);
-				) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(sql);) {
 			productoAPreparedStatement(producto, pst);
-			
+
 			int modificados = pst.executeUpdate();
-	
-			if(modificados != 1) {
+
+			if (modificados != 1) {
 				throw new AccesoDatosException("No ha podido cambiar el registro");
 			}
-			
+
 			return producto;
 		} catch (SQLException e) {
 			throw new AccesoDatosException("No se ha podido cambiar los registros", e);
+		}
+	}
+
+	@Override
+	public Iterable<Producto> buscarPorNombre(String nombre) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_NOMBRE);) {
+
+			pst.setString(1, "%" + nombre + "%");
+
+			List<Producto> productos = new ArrayList<>();
+			Producto producto;
+
+			try (ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					producto = resultSetAProducto(rs);
+
+					productos.add(producto);
+				}
+			}
+
+			return productos;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido consultar los registros", e);
+		}
+	}
+
+	@Override
+	public Iterable<Producto> buscarPorRangoPrecio(BigDecimal inferior, BigDecimal superior) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_PRECIO);) {
+
+			pst.setBigDecimal(1, inferior);
+			pst.setBigDecimal(2, superior);
+
+			List<Producto> productos = new ArrayList<>();
+			Producto producto;
+
+			try (ResultSet rs = pst.executeQuery()) {
+				while (rs.next()) {
+					producto = resultSetAProducto(rs);
+
+					productos.add(producto);
+				}
+			}
+
+			return productos;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido consultar los registros", e);
 		}
 	}
 

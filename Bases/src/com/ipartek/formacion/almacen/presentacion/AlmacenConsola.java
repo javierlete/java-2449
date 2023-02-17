@@ -2,14 +2,16 @@ package com.ipartek.formacion.almacen.presentacion;
 
 import static com.ipartek.formacion.bibliotecas.Consola.*;
 
-import com.ipartek.formacion.almacen.accesodatos.Dao;
+import java.math.BigDecimal;
+
+import com.ipartek.formacion.almacen.accesodatos.DaoProducto;
 import com.ipartek.formacion.almacen.accesodatos.FabricaDao;
 import com.ipartek.formacion.almacen.entidades.Producto;
 
 public class AlmacenConsola {
 	private static final int SALIR = 0;
 
-	private static Dao<Producto> dao = FabricaDao.getDaoProducto();
+	private static DaoProducto dao = FabricaDao.getDaoProducto();
 
 	public static void main(String[] args) {
 		int opcion;
@@ -29,6 +31,8 @@ public class AlmacenConsola {
 		pl("3. Insertar");
 		pl("4. Modificar");
 		pl("5. Borrar");
+		pl("6. Buscar por nombre");
+		pl("7. Buscar por precio");
 		pl();
 		pl("0. Salir");
 		pl();
@@ -58,6 +62,12 @@ public class AlmacenConsola {
 		case 5:
 			borrar();
 			break;
+		case 6:
+			buscarPorNombre();
+			break;
+		case 7:
+			buscarPorPrecio();
+			break;
 		default:
 			ple("No conozco esa opción");
 		}
@@ -76,16 +86,8 @@ public class AlmacenConsola {
 		}
 	}
 
-	private static void mostrarProductoLinea(Producto producto) {
-		pl(producto);
-	}
-
 	private static void buscarPorId() {
 		pedirProductoPorId();
-	}
-
-	private static void mostrarFichaProducto(Producto producto) {
-		pl(producto);
 	}
 
 	private static void insertar() {
@@ -168,6 +170,46 @@ public class AlmacenConsola {
 		}
 		
 		dao.borrar(producto.getId());
+	}
+
+	private static void buscarPorNombre() {
+		boolean hayProductos = false;
+
+		String nombre = pedirTexto("Nombre");
+		
+		for (Producto producto : dao.buscarPorNombre(nombre)) {
+			mostrarProductoLinea(producto);
+			hayProductos = true;
+		}
+
+		if (!hayProductos) {
+			pl("No hay ningún producto");
+		}
+
+	}
+
+	private static void buscarPorPrecio() {
+		boolean hayProductos = false;
+
+		BigDecimal inferior = pedirBigDecimal("Precio inferior");
+		BigDecimal superior = pedirBigDecimal("Precio superior");
+		
+		for (Producto producto : dao.buscarPorRangoPrecio(inferior, superior)) {
+			mostrarProductoLinea(producto);
+			hayProductos = true;
+		}
+
+		if (!hayProductos) {
+			pl("No hay ningún producto");
+		}		
+	}
+
+	private static void mostrarProductoLinea(Producto producto) {
+		pl(producto);
+	}
+
+	private static void mostrarFichaProducto(Producto producto) {
+		pl(producto);
 	}
 
 	private static Producto pedirProductoPorId() {

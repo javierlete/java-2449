@@ -3,7 +3,7 @@ package com.ipartek.formacion.almacen.accesodatos;
 // Data
 // Access
 // Object
-public interface Dao<T> {
+interface Dao<T> {
 	Iterable<T> obtenerTodos();
 	T obtenerPorId(Long id);
 	
