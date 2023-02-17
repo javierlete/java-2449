@@ -36,6 +36,10 @@ public class Consola {
 		System.out.println(mensaje);
 	}
 	
+	public static void plf(String formato, Object... argumentos) {
+		System.out.printf(formato, argumentos);
+	}
+	
 	public static void ple(Object mensaje) {
 		System.err.println(mensaje);
 	}

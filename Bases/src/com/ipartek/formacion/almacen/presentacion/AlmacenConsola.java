@@ -3,12 +3,17 @@ package com.ipartek.formacion.almacen.presentacion;
 import static com.ipartek.formacion.bibliotecas.Consola.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.ipartek.formacion.almacen.accesodatos.DaoProducto;
 import com.ipartek.formacion.almacen.accesodatos.FabricaDao;
 import com.ipartek.formacion.almacen.entidades.Producto;
 
 public class AlmacenConsola {
+	private static final String TEXTO_VACIO = "___";
+	private static final String FORMATO_FICHA = "%-10s %-70s\n";
+	private static final String FORMATO_LINEA = "%3s  %-20s  %10s  %6s  %-11s\n";
+
 	private static final int SALIR = 0;
 
 	private static DaoProducto dao = FabricaDao.getDaoProducto();
@@ -74,16 +79,7 @@ public class AlmacenConsola {
 	}
 
 	private static void listado() {
-		boolean hayProductos = false;
-
-		for (Producto producto : dao.obtenerTodos()) {
-			mostrarProductoLinea(producto);
-			hayProductos = true;
-		}
-
-		if (!hayProductos) {
-			pl("No hay ningún producto");
-		}
+		listarProductos(dao.obtenerTodos());
 	}
 
 	private static void buscarPorId() {
@@ -94,6 +90,61 @@ public class AlmacenConsola {
 		Producto producto = pedirDatosProducto();
 
 		dao.insertar(producto);
+	}
+
+	private static void modificar() {
+		Producto producto = pedirProductoPorId();
+
+		if (producto == null) {
+			return;
+		}
+
+		Long id = producto.getId();
+
+		producto = pedirDatosProducto();
+
+		producto.setId(id);
+
+		dao.modificar(producto);
+	}
+
+	private static void borrar() {
+		Producto producto = pedirProductoPorId();
+
+		if (producto == null) {
+			return;
+		}
+
+		dao.borrar(producto.getId());
+	}
+
+	private static void buscarPorNombre() {
+		String nombre = pedirTexto("Nombre");
+
+		listarProductos(dao.buscarPorNombre(nombre));
+	}
+
+	private static void buscarPorPrecio() {
+		BigDecimal inferior = pedirBigDecimal("Precio inferior");
+		BigDecimal superior = pedirBigDecimal("Precio superior");
+
+		listarProductos(dao.buscarPorRangoPrecio(inferior, superior));
+	}
+
+	private static void listarProductos(Iterable<Producto> productos) {
+		boolean hayProductos = false;
+
+		plf(FORMATO_LINEA, "Id", "Nombre", "Precio", "Stock", "Caducidad");
+		plf(FORMATO_LINEA, "==", "======", "======", "=====", "=========");
+
+		for (Producto producto : productos) {
+			mostrarProductoLinea(producto);
+			hayProductos = true;
+		}
+
+		if (!hayProductos) {
+			pl("No hay ningún producto");
+		}
 	}
 
 	private static Producto pedirDatosProducto() {
@@ -146,70 +197,25 @@ public class AlmacenConsola {
 		return producto;
 	}
 
-	private static void modificar() {
-		Producto producto = pedirProductoPorId(); 
-
-		if(producto == null) {
-			return;
-		}
-		
-		Long id = producto.getId();
-		
-		producto = pedirDatosProducto();
-
-		producto.setId(id);
-
-		dao.modificar(producto);
-	}
-
-	private static void borrar() {
-		Producto producto = pedirProductoPorId();
-		
-		if(producto == null) {
-			return;
-		}
-		
-		dao.borrar(producto.getId());
-	}
-
-	private static void buscarPorNombre() {
-		boolean hayProductos = false;
-
-		String nombre = pedirTexto("Nombre");
-		
-		for (Producto producto : dao.buscarPorNombre(nombre)) {
-			mostrarProductoLinea(producto);
-			hayProductos = true;
-		}
-
-		if (!hayProductos) {
-			pl("No hay ningún producto");
-		}
-
-	}
-
-	private static void buscarPorPrecio() {
-		boolean hayProductos = false;
-
-		BigDecimal inferior = pedirBigDecimal("Precio inferior");
-		BigDecimal superior = pedirBigDecimal("Precio superior");
-		
-		for (Producto producto : dao.buscarPorRangoPrecio(inferior, superior)) {
-			mostrarProductoLinea(producto);
-			hayProductos = true;
-		}
-
-		if (!hayProductos) {
-			pl("No hay ningún producto");
-		}		
-	}
-
 	private static void mostrarProductoLinea(Producto producto) {
-		pl(producto);
+		Long id = producto.getId();
+		String nombre = producto.getNombre();
+		String precio = formatearPrecio(producto.getPrecio());
+		String stock = formatearEntero(producto.getStock());
+		String fecha = formatearFecha(producto.getFechaCaducidad());
+	
+		plf(FORMATO_LINEA, id, nombre, precio,
+				stock, fecha);
 	}
 
 	private static void mostrarFichaProducto(Producto producto) {
-		pl(producto);
+		pl();
+		plf(FORMATO_FICHA, "Id", producto.getId());
+		plf(FORMATO_FICHA, "Nombre", producto.getNombre());
+		plf(FORMATO_FICHA, "Precio", formatearPrecio(producto.getPrecio()));
+		plf(FORMATO_FICHA, "Stock", formatearEntero(producto.getStock()));
+		plf(FORMATO_FICHA, "Caducidad", formatearFecha(producto.getFechaCaducidad()));
+		pl();
 	}
 
 	private static Producto pedirProductoPorId() {
@@ -224,5 +230,17 @@ public class AlmacenConsola {
 		}
 
 		return producto;
+	}
+
+	private static String formatearPrecio(BigDecimal precio) {
+		return String.format("%,.2f €", precio);
+	}
+
+	private static String formatearEntero(Integer entero) {
+		return entero == null ? TEXTO_VACIO : entero.toString();
+	}
+
+	private static String formatearFecha(LocalDate fecha) {
+		return fecha == null ? TEXTO_VACIO : String.format("%1$td/%1$tm/%1$tY", fecha);
 	}
 }
