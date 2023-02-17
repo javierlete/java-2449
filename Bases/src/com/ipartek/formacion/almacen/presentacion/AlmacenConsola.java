@@ -150,50 +150,11 @@ public class AlmacenConsola {
 	private static Producto pedirDatosProducto() {
 		Producto producto = new Producto();
 
-		boolean esIncorrecto = true;
-
-		do {
-			try {
-				producto.setNombre(pedirTexto("Nombre"));
-				esIncorrecto = false;
-			} catch (IllegalArgumentException e) {
-				ple(e.getMessage());
-			}
-		} while (esIncorrecto);
-
-		esIncorrecto = true;
-
-		do {
-			try {
-				producto.setPrecio(pedirBigDecimal("Precio"));
-				esIncorrecto = false;
-			} catch (IllegalArgumentException e) {
-				ple(e.getMessage());
-			}
-		} while (esIncorrecto);
-
-		esIncorrecto = true;
-
-		do {
-			try {
-				producto.setStock(pedirEntero("Stock", OPCIONAL));
-				esIncorrecto = false;
-			} catch (IllegalArgumentException e) {
-				ple(e.getMessage());
-			}
-		} while (esIncorrecto);
-
-		esIncorrecto = true;
-
-		do {
-			try {
-				producto.setFechaCaducidad(pedirFecha("Fecha de caducidad", OPCIONAL));
-				esIncorrecto = false;
-			} catch (IllegalArgumentException e) {
-				ple(e.getMessage());
-			}
-		} while (esIncorrecto);
-
+		reintentar(() -> producto.setNombre(pedirTexto("Nombre")));
+		reintentar(() -> producto.setPrecio(pedirBigDecimal("Precio")));
+		reintentar(() -> producto.setStock(pedirEntero("Stock", OPCIONAL)));
+		reintentar(() -> producto.setFechaCaducidad(pedirFecha("Fecha de caducidad", OPCIONAL)));
+		
 		return producto;
 	}
 
@@ -242,5 +203,18 @@ public class AlmacenConsola {
 
 	private static String formatearFecha(LocalDate fecha) {
 		return fecha == null ? TEXTO_VACIO : String.format("%1$td/%1$tm/%1$tY", fecha);
+	}
+	
+	private static void reintentar(Runnable runnable) {
+		boolean esIncorrecto = true;
+		
+		do {
+			try {
+				runnable.run();
+				esIncorrecto = false;
+			} catch (Exception e) {
+				ple(e.getMessage());
+			}
+		} while (esIncorrecto);
 	}
 }
