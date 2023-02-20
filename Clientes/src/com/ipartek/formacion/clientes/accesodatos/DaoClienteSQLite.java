@@ -38,7 +38,7 @@ public class DaoClienteSQLite implements DaoCliente {
 			Cliente cliente;
 			
 			while(rs.next()) {
-				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), LocalDate.parse(rs.getString("fecha")));
+				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), textoAFecha(rs.getString("fecha_nacimiento")));
 				
 				clientes.add(cliente);
 			}
@@ -69,4 +69,11 @@ public class DaoClienteSQLite implements DaoCliente {
 		throw new UnsupportedOperationException("NO IMPLEMENTADA");
 	}
 
+	private LocalDate textoAFecha(String fecha) {
+		if(fecha == null) {
+			return null;
+		}
+		
+		return LocalDate.parse(fecha);
+	}
 }
