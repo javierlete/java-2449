@@ -15,9 +15,14 @@ public class ClientesConsola {
 		
 		listado();
 		
-		insertar();
+		modificar();
+		//insertar();
 		
 		listado();
+	}
+
+	private static void modificar() {
+		dao.modificar(new Cliente(4L, "Juan Pedro", "18273645A", "616253444", "juan@pedro.df", LocalDate.of(2005, 6, 7)));
 	}
 
 	private static void insertar() {
