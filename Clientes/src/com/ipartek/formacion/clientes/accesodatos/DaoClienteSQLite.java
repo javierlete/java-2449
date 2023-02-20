@@ -15,6 +15,7 @@ public class DaoClienteSQLite implements DaoCliente {
 	private final String URL;
 	
 	private static final String SQL_SELECT = "SELECT * FROM clientes";
+	private static final String SQL_SELECT_ID = "SELECT * FROM clientes WHERE id=?";
 	
 	public DaoClienteSQLite(String fichero) {
 		URL = "jdbc:sqlite:" + fichero;
@@ -51,7 +52,24 @@ public class DaoClienteSQLite implements DaoCliente {
 
 	@Override
 	public Cliente obtenerPorId(Long id) {
-		throw new UnsupportedOperationException("NO IMPLEMENTADA");
+		try (Connection con = obtenerConexion();
+				PreparedStatement pst = con.prepareStatement(SQL_SELECT_ID);
+				) {
+			
+			pst.setLong(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			Cliente cliente = null;
+			
+			if(rs.next()) {
+				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), textoAFecha(rs.getString("fecha_nacimiento")));
+			}
+			
+			return cliente;
+		} catch (SQLException e) {
+			throw new AccesoDatos("No se ha podido obtener el registro id=" + id, e);
+		}
 	}
 
 	@Override
