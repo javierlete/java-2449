@@ -16,7 +16,7 @@ public class DaoClienteSQLite implements DaoCliente {
 	
 	private static final String SQL_SELECT = "SELECT * FROM clientes";
 	
-	private DaoClienteSQLite(String fichero) {
+	public DaoClienteSQLite(String fichero) {
 		URL = "jdbc:sqlite:" + fichero;
 	}
 	
