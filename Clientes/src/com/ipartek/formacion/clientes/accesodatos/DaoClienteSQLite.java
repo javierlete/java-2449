@@ -20,6 +20,8 @@ public class DaoClienteSQLite implements DaoCliente {
 
 	private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, nif=?, telefono=?, email=?, fecha_nacimiento=? WHERE id=?";
 
+	private static final String SQL_DELETE = "DELETE FROM clientes WHERE id=?";
+
 	public DaoClienteSQLite(String fichero) {
 		URL = "jdbc:sqlite:" + fichero;
 	}
@@ -117,12 +119,23 @@ public class DaoClienteSQLite implements DaoCliente {
 
 			return cliente;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("No se ha podido insertar el registro", e);
+			throw new AccesoDatosException("No se ha podido modificar el registro", e);
 		}
 	}
 
 	@Override
 	public void borrar(Long id) {
-		throw new UnsupportedOperationException("NO IMPLEMENTADA");
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_DELETE);) {
+
+			pst.setLong(1, id);
+
+			int modificados = pst.executeUpdate();
+
+			if (modificados != 1) {
+				throw new AccesoDatosException("Se ha borrado 0 o más de un cliente");
+			}
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido borrar el registro", e);
+		}
 	}
 }

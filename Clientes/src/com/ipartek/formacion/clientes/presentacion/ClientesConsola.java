@@ -15,10 +15,15 @@ public class ClientesConsola {
 		
 		listado();
 		
-		modificar();
+		borrar();
+		//modificar();
 		//insertar();
 		
 		listado();
+	}
+
+	private static void borrar() {
+		dao.borrar(6L);
 	}
 
 	private static void modificar() {
