@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,8 @@ public class DaoClienteSQLite implements DaoCliente {
 	
 	private static final String SQL_SELECT = "SELECT * FROM clientes";
 	private static final String SQL_SELECT_ID = "SELECT * FROM clientes WHERE id=?";
+
+	private static final String SQL_INSERT = "INSERT INTO clientes (nombre, nif, telefono, email, fecha_nacimiento) VALUES (?,?,?,?,?)";;
 	
 	public DaoClienteSQLite(String fichero) {
 		URL = "jdbc:sqlite:" + fichero;
@@ -25,7 +26,7 @@ public class DaoClienteSQLite implements DaoCliente {
 		try {
 			return DriverManager.getConnection(URL);
 		} catch (SQLException e) {
-			throw new AccesoDatos("No se ha podido conectar a la base de datos", e);
+			throw new AccesoDatosException("No se ha podido conectar a la base de datos", e);
 		}
 	}
 	
@@ -39,14 +40,14 @@ public class DaoClienteSQLite implements DaoCliente {
 			Cliente cliente;
 			
 			while(rs.next()) {
-				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), textoAFecha(rs.getString("fecha_nacimiento")));
+				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), rs.getString("fecha_nacimiento"));
 				
 				clientes.add(cliente);
 			}
 			
 			return clientes;
 		} catch (SQLException e) {
-			throw new AccesoDatos("No se han podido obtener todos los registros", e);
+			throw new AccesoDatosException("No se han podido obtener todos los registros", e);
 		}
 	}
 
@@ -63,19 +64,37 @@ public class DaoClienteSQLite implements DaoCliente {
 			Cliente cliente = null;
 			
 			if(rs.next()) {
-				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), textoAFecha(rs.getString("fecha_nacimiento")));
+				cliente = new Cliente(rs.getLong("id"), rs.getString("nombre"), rs.getString("nif"), rs.getString("telefono"), rs.getString("email"), rs.getString("fecha_nacimiento"));
 			}
 			
 			return cliente;
 		} catch (SQLException e) {
-			throw new AccesoDatos("No se ha podido obtener el registro id=" + id, e);
+			throw new AccesoDatosException("No se ha podido obtener el registro id=" + id, e);
 		}
 	}
 
 	@Override
-	public Cliente insertar(Cliente entidad) {
-		throw new UnsupportedOperationException("NO IMPLEMENTADA");
-	}
+	public Cliente insertar(Cliente cliente) {
+		try (Connection con = obtenerConexion();
+				PreparedStatement pst = con.prepareStatement(SQL_INSERT);
+				) {
+			
+			pst.setString(1, cliente.getNombre());
+			pst.setString(2, cliente.getNif());
+			pst.setString(3, cliente.getTelefono());
+			pst.setString(4, cliente.getEmail());
+			pst.setString(5, cliente.getFechaNacimientoTexto());
+			
+			int modificados = pst.executeUpdate();
+			
+			if(modificados != 1) {
+				throw new AccesoDatosException("Se ha insertado 0 o más de un cliente");
+			}
+			
+			return cliente;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("No se ha podido insertar el registro", e);
+		}	}
 
 	@Override
 	public Cliente modificar(Cliente entidad) {
@@ -85,13 +104,5 @@ public class DaoClienteSQLite implements DaoCliente {
 	@Override
 	public void borrar(Long id) {
 		throw new UnsupportedOperationException("NO IMPLEMENTADA");
-	}
-
-	private LocalDate textoAFecha(String fecha) {
-		if(fecha == null) {
-			return null;
-		}
-		
-		return LocalDate.parse(fecha);
 	}
 }

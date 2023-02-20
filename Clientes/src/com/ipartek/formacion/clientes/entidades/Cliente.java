@@ -1,6 +1,7 @@
 package com.ipartek.formacion.clientes.entidades;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Cliente {
@@ -12,6 +13,15 @@ public class Cliente {
 	private LocalDate fechaNacimiento;
 
 	public Cliente(Long id, String nombre, String nif, String telefono, String email, LocalDate fechaNacimiento) {
+		setId(id);
+		setNombre(nombre);
+		setNif(nif);
+		setTelefono(telefono);
+		setEmail(email);
+		setFechaNacimiento(fechaNacimiento);
+	}
+	
+	public Cliente(Long id, String nombre, String nif, String telefono, String email, String fechaNacimiento) {
 		setId(id);
 		setNombre(nombre);
 		setNif(nif);
@@ -68,8 +78,25 @@ public class Cliente {
 		return fechaNacimiento;
 	}
 
+	public String getFechaNacimientoTexto() {
+		if(fechaNacimiento == null) {
+			return null;
+		}
+		
+		return fechaNacimiento.format(DateTimeFormatter.ISO_DATE);
+	}
+	
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(String texto) {
+		if (texto == null) {
+			setFechaNacimiento((LocalDate) null);
+			return;
+		}
+
+		setFechaNacimiento(LocalDate.parse(texto));
 	}
 
 	@Override
@@ -97,5 +124,4 @@ public class Cliente {
 				+ email + ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
-	
 }
