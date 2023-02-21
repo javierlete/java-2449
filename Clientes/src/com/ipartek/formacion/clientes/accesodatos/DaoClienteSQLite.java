@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +80,7 @@ public class DaoClienteSQLite implements DaoCliente {
 
 	@Override
 	public Cliente insertar(Cliente cliente) {
-		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_INSERT);) {
+		try (Connection con = obtenerConexion(); PreparedStatement pst = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);) {
 
 			pst.setString(1, cliente.getNombre());
 			pst.setString(2, cliente.getNif());
@@ -92,6 +93,14 @@ public class DaoClienteSQLite implements DaoCliente {
 			if (modificados != 1) {
 				throw new AccesoDatosException("Se ha insertado 0 o más de un cliente");
 			}
+			
+			ResultSet rs = pst.getGeneratedKeys();
+			
+			rs.next();
+			
+			Long id = rs.getLong(1);
+			
+			cliente.setId(id);
 
 			return cliente;
 		} catch (SQLException e) {
