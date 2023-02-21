@@ -114,7 +114,7 @@ public class ClientesSwing {
 		GridBagLayout gbl_pFormulario = new GridBagLayout();
 		gbl_pFormulario.columnWidths = new int[] { 0, 0, 0 };
 		gbl_pFormulario.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_pFormulario.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		gbl_pFormulario.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
 		gbl_pFormulario.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		pFormulario.setLayout(gbl_pFormulario);
 
@@ -128,8 +128,8 @@ public class ClientesSwing {
 
 		tfId = new JTextField();
 		GridBagConstraints gbc_tfId = new GridBagConstraints();
-		gbc_tfId.insets = new Insets(0, 0, 5, 0);
 		gbc_tfId.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tfId.insets = new Insets(0, 0, 5, 0);
 		gbc_tfId.gridx = 1;
 		gbc_tfId.gridy = 0;
 		pFormulario.add(tfId, gbc_tfId);
@@ -289,6 +289,7 @@ public class ClientesSwing {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				fila = table.rowAtPoint(e.getPoint());
+				
 				int columna = 0;
 				
 				if (fila > -1) {
