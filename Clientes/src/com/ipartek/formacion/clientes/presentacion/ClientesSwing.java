@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 import com.ipartek.formacion.clientes.accesodatos.DaoCliente;
 import com.ipartek.formacion.clientes.accesodatos.DaoClienteSQLite;
 import com.ipartek.formacion.clientes.entidades.Cliente;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClientesSwing {
 
@@ -70,12 +72,12 @@ public class ClientesSwing {
 
 	// https://www.chuidiang.org/java/tablas/tablamodelo/tablamodelo.php
 	// https://chuwiki.chuidiang.org/index.php?title=JTable
-	
+
 	public ClientesSwing() {
 		initialize();
-		
+
 		tableModel = (DefaultTableModel) table.getModel();
-		
+
 		tableModel.addColumn("Id");
 		tableModel.addColumn("Nombre");
 		tableModel.addColumn("NIF");
@@ -84,8 +86,8 @@ public class ClientesSwing {
 		tableModel.addColumn("Fecha de nacimiento");
 
 		for (Cliente cliente : dao.obtenerTodos()) {
-			tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(), cliente.getTelefono(),
-					cliente.getEmail(), cliente.getFechaNacimiento() });
+			tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(),
+					cliente.getTelefono(), cliente.getEmail(), cliente.getFechaNacimiento() });
 		}
 	}
 
@@ -221,34 +223,52 @@ public class ClientesSwing {
 						tfEmail.getText(), tfFechaNacimiento.getText());
 
 				dao.insertar(cliente);
-				
-				tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(), cliente.getTelefono(),
-						cliente.getEmail(), cliente.getFechaNacimiento() });
-				
+
+				tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(),
+						cliente.getTelefono(), cliente.getEmail(), cliente.getFechaNacimiento() });
+
 				table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
-				
+
 				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-				
+
 				javax.swing.SwingUtilities.invokeLater(() -> verticalScrollBar.setValue(Integer.MAX_VALUE));
 			}
 		});
-		
+
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.anchor = GridBagConstraints.WEST;
 		gbc_btnAceptar.gridx = 1;
 		gbc_btnAceptar.gridy = 6;
 		panel.add(btnAceptar, gbc_btnAceptar);
-		
+
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int fila = table.rowAtPoint(e.getPoint());
+				int columna = 0;
+				if (fila > -1) {
+					Long id = (Long)tableModel.getValueAt(fila, columna);
+					Cliente cliente = dao.obtenerPorId(id);
+					
+					tfId.setText(id.toString());
+					tfNombre.setText(cliente.getNombre());
+					tfNif.setText(cliente.getNif());
+					tfTelefono.setText(cliente.getTelefono());
+					tfEmail.setText(cliente.getEmail());
+					tfFechaNacimiento.setText(cliente.getFechaNacimientoTexto());
+				}
+			}
+		});
 
 		scrollPane = new JScrollPane(table);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
+
 		scrollPane.setAutoscrolls(true);
-		
+
 		splitPane.setLeftComponent(scrollPane);
-		
+
 	}
 
 }
