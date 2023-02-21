@@ -69,6 +69,7 @@ public class ClientesSwing {
 	DefaultTableModel tableModel;
 	private JTable table;
 	private JScrollPane scrollPane;
+	private int fila;
 
 	// https://www.chuidiang.org/java/tablas/tablamodelo/tablamodelo.php
 	// https://chuwiki.chuidiang.org/index.php?title=JTable
@@ -219,20 +220,37 @@ public class ClientesSwing {
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Cliente cliente = new Cliente(null, tfNombre.getText(), tfNif.getText(), tfTelefono.getText(),
-						tfEmail.getText(), tfFechaNacimiento.getText());
 
-				dao.insertar(cliente);
+				String strId = tfId.getText();
 
-				tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(),
-						cliente.getTelefono(), cliente.getEmail(), cliente.getFechaNacimiento() });
+				if (strId == null || strId.trim().length() == 0) {
+					// INSERTAR
+					Cliente cliente = new Cliente(null, tfNombre.getText(), tfNif.getText(), tfTelefono.getText(),
+							tfEmail.getText(), tfFechaNacimiento.getText());
 
-				table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
+					dao.insertar(cliente);
 
-				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+					tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(),
+							cliente.getTelefono(), cliente.getEmail(), cliente.getFechaNacimiento() });
 
-				javax.swing.SwingUtilities.invokeLater(() -> verticalScrollBar.setValue(Integer.MAX_VALUE));
-				
+					table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
+
+					JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+
+					javax.swing.SwingUtilities.invokeLater(() -> verticalScrollBar.setValue(Integer.MAX_VALUE));
+				} else {
+					Cliente cliente = new Cliente(Long.parseLong(strId), tfNombre.getText(), tfNif.getText(), tfTelefono.getText(),
+							tfEmail.getText(), tfFechaNacimiento.getText());
+
+					dao.modificar(cliente);
+					
+					tableModel.setValueAt(cliente.getNombre(), fila, 1);
+					tableModel.setValueAt(cliente.getNif(), fila, 2);
+					tableModel.setValueAt(cliente.getTelefono(), fila, 3);
+					tableModel.setValueAt(cliente.getEmail(), fila, 4);
+					tableModel.setValueAt(cliente.getFechaNacimiento(), fila, 5);
+				}
+
 				tfId.setText("");
 				tfNombre.setText("");
 				tfNif.setText("");
@@ -252,12 +270,13 @@ public class ClientesSwing {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int fila = table.rowAtPoint(e.getPoint());
+				fila = table.rowAtPoint(e.getPoint());
 				int columna = 0;
+				
 				if (fila > -1) {
-					Long id = (Long)tableModel.getValueAt(fila, columna);
+					Long id = (Long) tableModel.getValueAt(fila, columna);
 					Cliente cliente = dao.obtenerPorId(id);
-					
+
 					tfId.setText(id.toString());
 					tfNombre.setText(cliente.getNombre());
 					tfNif.setText(cliente.getNif());
