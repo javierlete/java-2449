@@ -29,7 +29,7 @@ import java.awt.event.MouseEvent;
 public class ClientesSwing {
 
 	private JFrame frame;
-	private JPanel panel;
+	private JPanel pFormulario;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -70,6 +70,9 @@ public class ClientesSwing {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private int fila;
+	private Long id;
+	private JPanel pBotonera;
+	private JButton btnBorrar;
 
 	// https://www.chuidiang.org/java/tablas/tablamodelo/tablamodelo.php
 	// https://chuwiki.chuidiang.org/index.php?title=JTable
@@ -106,14 +109,14 @@ public class ClientesSwing {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
 
-		panel = new JPanel();
-		splitPane.setRightComponent(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 0, 0, 0 };
-		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		panel.setLayout(gbl_panel);
+		pFormulario = new JPanel();
+		splitPane.setRightComponent(pFormulario);
+		GridBagLayout gbl_pFormulario = new GridBagLayout();
+		gbl_pFormulario.columnWidths = new int[] { 0, 0, 0 };
+		gbl_pFormulario.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_pFormulario.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		gbl_pFormulario.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		pFormulario.setLayout(gbl_pFormulario);
 
 		lblNewLabel = new JLabel("Id");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -121,7 +124,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		pFormulario.add(lblNewLabel, gbc_lblNewLabel);
 
 		tfId = new JTextField();
 		GridBagConstraints gbc_tfId = new GridBagConstraints();
@@ -129,7 +132,7 @@ public class ClientesSwing {
 		gbc_tfId.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfId.gridx = 1;
 		gbc_tfId.gridy = 0;
-		panel.add(tfId, gbc_tfId);
+		pFormulario.add(tfId, gbc_tfId);
 		tfId.setColumns(10);
 
 		lblNewLabel_1 = new JLabel("Nombre");
@@ -138,7 +141,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 1;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		pFormulario.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		tfNombre = new JTextField();
 		GridBagConstraints gbc_tfNombre = new GridBagConstraints();
@@ -146,7 +149,7 @@ public class ClientesSwing {
 		gbc_tfNombre.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfNombre.gridx = 1;
 		gbc_tfNombre.gridy = 1;
-		panel.add(tfNombre, gbc_tfNombre);
+		pFormulario.add(tfNombre, gbc_tfNombre);
 		tfNombre.setColumns(10);
 
 		lblNewLabel_2 = new JLabel("NIF");
@@ -155,7 +158,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 2;
-		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		pFormulario.add(lblNewLabel_2, gbc_lblNewLabel_2);
 
 		tfNif = new JTextField();
 		GridBagConstraints gbc_tfNif = new GridBagConstraints();
@@ -163,7 +166,7 @@ public class ClientesSwing {
 		gbc_tfNif.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfNif.gridx = 1;
 		gbc_tfNif.gridy = 2;
-		panel.add(tfNif, gbc_tfNif);
+		pFormulario.add(tfNif, gbc_tfNif);
 		tfNif.setColumns(10);
 
 		lblNewLabel_3 = new JLabel("Teléfono");
@@ -172,7 +175,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 0;
 		gbc_lblNewLabel_3.gridy = 3;
-		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		pFormulario.add(lblNewLabel_3, gbc_lblNewLabel_3);
 
 		tfTelefono = new JTextField();
 		GridBagConstraints gbc_tfTelefono = new GridBagConstraints();
@@ -180,7 +183,7 @@ public class ClientesSwing {
 		gbc_tfTelefono.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfTelefono.gridx = 1;
 		gbc_tfTelefono.gridy = 3;
-		panel.add(tfTelefono, gbc_tfTelefono);
+		pFormulario.add(tfTelefono, gbc_tfTelefono);
 		tfTelefono.setColumns(10);
 
 		lblNewLabel_4 = new JLabel("Email");
@@ -189,7 +192,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
 		gbc_lblNewLabel_4.gridy = 4;
-		panel.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		pFormulario.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
 		tfEmail = new JTextField();
 		GridBagConstraints gbc_tfEmail = new GridBagConstraints();
@@ -197,7 +200,7 @@ public class ClientesSwing {
 		gbc_tfEmail.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfEmail.gridx = 1;
 		gbc_tfEmail.gridy = 4;
-		panel.add(tfEmail, gbc_tfEmail);
+		pFormulario.add(tfEmail, gbc_tfEmail);
 		tfEmail.setColumns(10);
 
 		lblNewLabel_5 = new JLabel("Fecha de nacimiento");
@@ -206,7 +209,7 @@ public class ClientesSwing {
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 0;
 		gbc_lblNewLabel_5.gridy = 5;
-		panel.add(lblNewLabel_5, gbc_lblNewLabel_5);
+		pFormulario.add(lblNewLabel_5, gbc_lblNewLabel_5);
 
 		tfFechaNacimiento = new JTextField();
 		GridBagConstraints gbc_tfFechaNacimiento = new GridBagConstraints();
@@ -214,7 +217,7 @@ public class ClientesSwing {
 		gbc_tfFechaNacimiento.fill = GridBagConstraints.HORIZONTAL;
 		gbc_tfFechaNacimiento.gridx = 1;
 		gbc_tfFechaNacimiento.gridy = 5;
-		panel.add(tfFechaNacimiento, gbc_tfFechaNacimiento);
+		pFormulario.add(tfFechaNacimiento, gbc_tfFechaNacimiento);
 		tfFechaNacimiento.setColumns(10);
 
 		btnAceptar = new JButton("Aceptar");
@@ -260,11 +263,26 @@ public class ClientesSwing {
 			}
 		});
 
-		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
-		gbc_btnAceptar.anchor = GridBagConstraints.WEST;
-		gbc_btnAceptar.gridx = 1;
-		gbc_btnAceptar.gridy = 6;
-		panel.add(btnAceptar, gbc_btnAceptar);
+		pBotonera = new JPanel();
+
+		GridBagConstraints gbc_pBotonera = new GridBagConstraints();
+		gbc_pBotonera.insets = new Insets(0, 0, 5, 0);
+		gbc_pBotonera.anchor = GridBagConstraints.WEST;
+		gbc_pBotonera.gridx = 1;
+		gbc_pBotonera.gridy = 6;
+		pFormulario.add(pBotonera, gbc_pBotonera);
+		
+		pBotonera.add(btnAceptar);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dao.borrar(id);
+				
+				tableModel.removeRow(fila);
+			}
+		});
+		pBotonera.add(btnBorrar);
 
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -274,7 +292,7 @@ public class ClientesSwing {
 				int columna = 0;
 				
 				if (fila > -1) {
-					Long id = (Long) tableModel.getValueAt(fila, columna);
+					id = (Long) tableModel.getValueAt(fila, columna);
 					Cliente cliente = dao.obtenerPorId(id);
 
 					tfId.setText(id.toString());
