@@ -232,6 +232,13 @@ public class ClientesSwing {
 				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
 
 				javax.swing.SwingUtilities.invokeLater(() -> verticalScrollBar.setValue(Integer.MAX_VALUE));
+				
+				tfId.setText("");
+				tfNombre.setText("");
+				tfNif.setText("");
+				tfTelefono.setText("");
+				tfEmail.setText("");
+				tfFechaNacimiento.setText("");
 			}
 		});
 
