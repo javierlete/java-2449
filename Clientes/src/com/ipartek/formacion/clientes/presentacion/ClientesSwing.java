@@ -12,9 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.ipartek.formacion.clientes.accesodatos.DaoCliente;
@@ -63,6 +66,7 @@ public class ClientesSwing {
 
 	DefaultTableModel tableModel;
 	private JTable table;
+	private JScrollPane scrollPane;
 
 	// https://www.chuidiang.org/java/tablas/tablamodelo/tablamodelo.php
 	// https://chuwiki.chuidiang.org/index.php?title=JTable
@@ -94,6 +98,7 @@ public class ClientesSwing {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(1.0);
 		splitPane.setContinuousLayout(true);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
@@ -219,8 +224,15 @@ public class ClientesSwing {
 				
 				tableModel.addRow(new Object[] { cliente.getId(), cliente.getNombre(), cliente.getNif(), cliente.getTelefono(),
 						cliente.getEmail(), cliente.getFechaNacimiento() });
+				
+				table.setRowSelectionInterval(table.getRowCount() - 1, table.getRowCount() - 1);
+				
+				JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+				
+				javax.swing.SwingUtilities.invokeLater(() -> verticalScrollBar.setValue(Integer.MAX_VALUE));
 			}
 		});
+		
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.anchor = GridBagConstraints.WEST;
 		gbc_btnAceptar.gridx = 1;
@@ -228,7 +240,15 @@ public class ClientesSwing {
 		panel.add(btnAceptar, gbc_btnAceptar);
 		
 		table = new JTable();
-		splitPane.setLeftComponent(table);
+
+		scrollPane = new JScrollPane(table);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		scrollPane.setAutoscrolls(true);
+		
+		splitPane.setLeftComponent(scrollPane);
+		
 	}
 
 }
