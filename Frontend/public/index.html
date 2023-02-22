@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de ejemplo</title>
+</head>
+
+<body>
+    <header>
+        <h1>Página de ejemplo de HTML</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Enlace 1</a></li>
+            <li><a href="#">Enlace 2</a></li>
+            <li><a href="#">Enlace 3</a></li>
+            <li><a href="#">Enlace 4</a></li>
+        </ul>
+    </nav>
+    <main>
+        <article id="html">
+            <h2>HTML</h2>
+
+            <section id="texto">
+                <h3>Texto</h3>
+
+                <p><strong>Lorem</strong> ipsum dolor sit amet consectetur adipisicing elit. Magnam magni nemo maxime
+                    sapiente? Voluptatibus explicabo molestiae eos. Nostrum veniam, veritatis voluptate nemo illo
+                    assumenda porro amet quos, sapiente, facilis ipsa?</p>
+                <p><em>Lorem</em> ipsum dolor sit amet.</p>
+                <p><span class="muymarcado">Lorem</span> ipsum dolor sit amet consectetur adipisicing elit. Minus amet
+                    consequatur optio itaque odit perferendis ipsum accusantium. Distinctio eos ipsum voluptate eligendi
+                    aliquid, non id molestias accusantium? Placeat, magnam iure.</p>
+                <p><mark>Eveniet</mark> vero dolor atque officia vitae quisquam quibusdam ex cupiditate iste numquam
+                    mollitia ipsum libero nam praesentium veritatis repellat at culpa, omnis repellendus molestiae
+                    voluptatem ipsam aspernatur. Est, cumque quibusdam?</p>
+                <p>Consequuntur pariatur ut non exercitationem minus libero suscipit quo ad quam, et, a ratione? Id est,
+                    quaerat, reiciendis eaque debitis iste atque sequi veniam nisi, veritatis inventore ducimus
+                    voluptatibus dolore.</p>
+                <p>Quas ex neque perspiciatis aliquid debitis omnis, tempora ullam facere minima excepturi similique
+                    accusamus voluptate aperiam ut atque cupiditate illum? Enim laborum ullam quos ab a ipsam amet sint
+                    accusamus!</p>
+                <p>Doloribus, non. Qui tempore aspernatur est cum nobis eveniet neque. Dicta dolores eius cumque
+                    eligendi impedit, minus nihil vitae, fugiat deleniti sed nemo qui neque ipsum sequi odit nesciunt
+                    voluptas.</p>
+
+                <pre>public class HolaMundo {
+    public static void main(String[] args) { 
+        System.out.println("HolaMundo");
+    }
+}</pre>
+            </section>
+
+            <section id="listas">
+                <h3>Listas</h3>
+
+                <ul>
+                    <li>Uno</li>
+                    <li>Dos</li>
+                    <li>Tres</li>
+                    <li>Cuatro</li>
+                </ul>
+
+                <ol>
+                    <li>Uno</li>
+                    <li>Dos</li>
+                    <li>Tres</li>
+                    <li>Cuatro</li>
+                </ol>
+
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Hyper Text Markup Language</dd>
+
+                    <dt>CSS</dt>
+                    <dd>Cascade Style Sheet</dd>
+
+                    <dt>JS</dt>
+                    <dd>JavaScript</dd>
+                </dl>
+            </section>
+
+            <section id="tablas">
+                <h3>Tablas</h3>
+
+                <table>
+                    <caption>Tabla de ejemplo</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- tr*5>(th[scope=row]>{$})+(td>{Nombre$})+(td>{Apellido$}) -->
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Nombre1</td>
+                            <td>Apellido1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Nombre2</td>
+                            <td>Apellido2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Nombre3</td>
+                            <td>Apellido3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Nombre4</td>
+                            <td>Apellido4</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Nombre5</td>
+                            <td>Apellido5</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+            <section id="multimedia">
+                <h3>Multimedia</h3>
+
+                <figure>
+                    <img src="imgs/matrix.jpg" alt="Letras de Matrix">
+                    <figcaption>Imagen de <a
+                            href="https://pixabay.com/es/users/0fjd125gk87-51581/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=356024">0fjd125gk87</a>
+                        en <a
+                            href="https://pixabay.com/es//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=356024">Pixabay</a>
+                    </figcaption>
+                </figure>
+
+                <audio src="audios/rock.mp3" controls></audio>
+
+                <video src="videos/vinilo.mp4" controls></video>
+
+                <!--                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.7622681978273!2d-2.9157806849173133!3d43.25640397913684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1677055875159!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6nNlTIiFd3J06W0rJiiwlz?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/QRqY_20ti9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+ -->
+            </section>
+
+            <section id="formularios">
+                <h3>Formularios</h3>
+
+                <form action="#">
+                    <fieldset>
+                        <legend>Login</legend>
+
+                        <div>
+                            <label for="usuario">Usuario</label>
+                            <input type="text" id="usuario">
+                        </div>
+                        <div>
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password">
+                        </div>
+                        <div>
+                            <button>Aceptar</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <form action="https://www.google.es/search">
+                    <fieldset>
+                        <legend>Búsqueda en Google</legend>
+
+                        <input type="search" name="q" placeholder="Término a buscar">
+
+                        <button>Buscar</button>
+                    </fieldset>
+                </form>
+
+                <form action="#">
+                    <fieldset>
+                        <legend>Cliente (datos básicos)</legend>
+
+                        <input type="number" placeholder="Id">
+                        <input type="text" placeholder="Nombre">
+                        <input type="email" placeholder="Email">
+                        <input type="tel" placeholder="Teléfono">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Otros</legend>
+
+                        <input type="date">
+                        <input type="checkbox">
+                        <input type="radio" name="opciones">
+                        <input type="radio" name="opciones">
+
+                        <select>
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                        </select>
+
+                        <select multiple>
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                        </select>
+
+                        <textarea placeholder="Comentarios" name="" id="" cols="30" rows="10"></textarea>
+
+                        <input type="url" placeholder="Tu página web">
+                        <input type="range">
+                    </fieldset>
+                    <fieldset id="botones">
+                        <button>Aceptar</button>
+                    </fieldset>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="#">Enlace 1</a></li>
+                <li><a href="#">Enlace 2</a></li>
+                <li><a href="#">Enlace 3</a></li>
+                <li><a href="#">Enlace 4</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <footer>
+        <p>&copy;2023 Javier Lete</p>
+    </footer>
+</body>
+
+</html>
