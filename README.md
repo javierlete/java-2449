@@ -21,3 +21,11 @@ W3Schools: https://www.w3schools.com/html/default.asp
 # Ejemplo de página publicado en
 
 https://javierlete.github.io/java-2449/Frontend/public/
+
+# Juegos de CSS
+
+CSS Diner: https://flukeout.github.io/
+
+Flexbox Froggy: https://flexboxfroggy.com/#es
+
+CSS Grid Garden: https://cssgridgarden.com/#es
