@@ -29,3 +29,9 @@ CSS Diner: https://flukeout.github.io/
 Flexbox Froggy: https://flexboxfroggy.com/#es
 
 CSS Grid Garden: https://cssgridgarden.com/#es
+
+# Cheatsheets
+
+Flex: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+Grid: https://css-tricks.com/snippets/css/complete-guide-grid/

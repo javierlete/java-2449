@@ -110,6 +110,7 @@ table > caption {
 
 table {
     border: 1px solid black;
+    width: 100%;
 }
 
 th, td {
@@ -176,6 +177,7 @@ body > nav {
 
 body > nav li {
     margin: 0;
+    list-style: none;
 }
 
 body > nav a {
@@ -208,4 +210,106 @@ aside ul {
 
 aside a {
     font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    body > nav ul, aside ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    main, aside {
+        padding: 1rem 5rem;
+    }
+
+    #texto {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--hueco);
+    }
+
+    #texto p {
+        width: calc(50% - var(--hueco));
+    }
+
+    h3, pre {
+        width: 100%;
+    }
+
+    #listas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--hueco);
+    }
+
+    #listas ul, #listas ol, #listas dl {
+        width: calc(33.33333% - var(--hueco));
+    }
+
+    #formularios {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--hueco);
+    }
+
+    #formularios h3 {
+        grid-column-end: span 2;
+    }
+
+    /* Login */
+    #formularios form:nth-of-type(1) {
+        grid-column-start: 1;
+        grid-row-start: 2;
+    }
+
+    /* Búsqueda */
+    #formularios form:nth-of-type(2) {
+        grid-column-start: 2;
+        grid-row-start: 2;
+    }
+
+    /* Clientes */
+    #formularios form:nth-of-type(3) {
+        grid-column-start: 1;
+        grid-row-start: 3;
+        grid-column-end: span 2;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: var(--hueco);
+    }
+
+    #formularios form:nth-of-type(3) fieldset:nth-of-type(2) {
+        grid-row-end: span 3;
+        
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: var(--hueco);
+    }
+
+    input {
+        grid-column-end: span 12;
+    }
+    
+    input[type=date] {
+        grid-column-end: span 6;
+    }
+
+    input[type=checkbox], input[type=radio] {
+        grid-column-end: span 2;
+    }
+
+    select {
+        grid-column-end: span 3;
+    }
+
+    select:last-of-type {
+        grid-row-start: 3;
+    }
+
+    textarea {
+        grid-column-end: span 9;
+        grid-row-end: span 2;
+    }
 }
