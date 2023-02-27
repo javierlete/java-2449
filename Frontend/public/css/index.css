@@ -40,7 +40,12 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: bold;
 }
 
@@ -63,7 +68,10 @@ h3 {
     border-bottom: 1px solid black;
 }
 
-p, ul, ol, dl {
+p,
+ul,
+ol,
+dl {
     margin: 1rem 0;
 }
 
@@ -103,7 +111,7 @@ dd {
     padding-left: 1rem;
 }
 
-table > caption {
+table>caption {
     font-weight: bold;
     margin: var(--hueco) 0;
 }
@@ -113,7 +121,8 @@ table {
     width: 100%;
 }
 
-th, td {
+th,
+td {
     padding: var(--hueco);
     border: 1px solid darkgray;
 }
@@ -122,7 +131,8 @@ th {
     font-weight: bold;
 }
 
-thead, tfoot {
+thead,
+tfoot {
     background-color: var(--color-tinta);
     color: var(--color-fondo);
 }
@@ -131,17 +141,84 @@ tbody tr:nth-child(even) {
     background-color: var(--color-fondo-suave);
 }
 
-img, audio, video {
+img,
+audio,
+video {
     width: 100%;
+}
+
+.aspecto iframe,
+img,
+audio,
+video {
+    border-radius: var(--hueco);
+    box-shadow: 0.5rem 0.5rem 1rem;
+}
+
+audio {
+    border-radius: 3% / 50%;
+}
+
+.aspecto {
+    position: relative;
+    width: 100%;
+    height: 0;
+}
+
+._1x1 {
+    padding-bottom: 100%;
+    /* 1 / 1 */
+}
+
+._4x3 {
+    padding-bottom: 75%;
+    /* 3 / 4 */
+}
+
+._16x9 {
+    padding-bottom: 56.25%;
+    /* 9 / 16 */
+}
+
+._21x9 {
+    padding-bottom: 42.857%;
+    /* 9 / 21 */
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 form {
     margin: calc(var(--hueco) * 2) 0;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     width: 100%;
     margin: var(--hueco) 0;
+}
+
+input, select, textarea, button {
+    border-radius: calc(var(--hueco) / 2);
+    border: 1px solid var(--color-fondo-suave);
+    padding: var(--hueco);
+}
+
+button {
+    background-color: var(--color-tinta);
+    color: var(--color-fondo);
+}
+
+button:hover {
+    background-color: var(--color-fondo);
+    color: var(--color-tinta);
+    border: 1px solid var(--color-tinta);
 }
 
 /* CLASES GLOBALES */
@@ -157,7 +234,8 @@ input, select, textarea {
 
 /* Cabecera */
 
-header, footer {
+header,
+footer {
     background-color: var(--color-tinta);
     color: var(--color-fondo);
 
@@ -168,19 +246,19 @@ header, footer {
 
 /* Menú */
 
-body > nav {
+body>nav {
     background-color: var(--color-tinta);
     text-align: center;
     padding: var(--hueco);
     border-top: 1px solid var(--color-fondo);
 }
 
-body > nav li {
+body>nav li {
     margin: 0;
     list-style: none;
 }
 
-body > nav a {
+body>nav a {
     display: inline-block;
     color: var(--color-fondo);
     width: 100%;
@@ -189,7 +267,7 @@ body > nav a {
     font-weight: bold;
 }
 
-body > nav a:hover {
+body>nav a:hover {
     background-color: var(--color-fondo);
     color: var(--color-tinta);
     text-decoration: none;
@@ -197,7 +275,8 @@ body > nav a:hover {
 
 /* Main */
 
-main, aside {
+main,
+aside {
     padding: var(--hueco);
 }
 
@@ -213,12 +292,15 @@ aside a {
 }
 
 @media (min-width: 768px) {
-    body > nav ul, aside ul {
+
+    body>nav ul,
+    aside ul {
         display: flex;
         flex-direction: row;
     }
 
-    main, aside {
+    main,
+    aside {
         padding: 1rem 5rem;
     }
 
@@ -232,7 +314,8 @@ aside a {
         width: calc(50% - var(--hueco));
     }
 
-    h3, pre {
+    h3,
+    pre {
         width: 100%;
     }
 
@@ -242,7 +325,9 @@ aside a {
         gap: var(--hueco);
     }
 
-    #listas ul, #listas ol, #listas dl {
+    #listas ul,
+    #listas ol,
+    #listas dl {
         width: calc(33.33333% - var(--hueco));
     }
 
@@ -281,7 +366,7 @@ aside a {
 
     #formularios form:nth-of-type(3) fieldset:nth-of-type(2) {
         grid-row-end: span 3;
-        
+
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: repeat(3, auto);
@@ -291,12 +376,13 @@ aside a {
     input {
         grid-column-end: span 12;
     }
-    
+
     input[type=date] {
         grid-column-end: span 6;
     }
 
-    input[type=checkbox], input[type=radio] {
+    input[type=checkbox],
+    input[type=radio] {
         grid-column-end: span 2;
     }
 
@@ -311,5 +397,158 @@ aside a {
     textarea {
         grid-column-end: span 9;
         grid-row-end: span 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    body > header {
+        grid-area: cabecera;
+    }
+
+    body > nav {
+        grid-area: menu;
+    }
+
+    body > main {
+        grid-area: contenido;
+    }
+
+    body > aside {
+        grid-area: anuncios;
+    }
+
+    body > footer {
+        grid-area: pie;
+    }
+
+    aside ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    aside li {
+        margin-left: 0;
+    }
+
+    main {
+        padding-right: var(--hueco);
+    }
+
+    aside {
+        padding-left: var(--hueco);
+    }
+
+    aside ul, aside nav {
+        height: 100%;
+        margin-top: 0;
+    }
+
+    body {
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        grid-template-areas:
+            "cabecera cabecera"
+            "menu menu"
+            "contenido anuncios"
+            "pie pie";
+    }
+
+
+    #multimedia {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: var(--hueco);
+    }
+
+    #multimedia>* {
+        width: calc(50% - var(--hueco));
+    }
+
+    #multimedia h3 {
+        order: -10;
+        width: calc(100% - var(--hueco));
+    }
+
+    #multimedia audio {
+        order: -9;
+        width: calc(100% - var(--hueco));
+    }
+
+    #multimedia figure {
+        order: -2;
+    }
+
+    #multimedia video {
+        order: -1;
+    }
+
+
+    ._1x1 {
+        padding-bottom: calc(50% - var(--hueco));
+    }
+
+    ._4x3 {
+        padding-bottom: calc(37.5% - var(--hueco));
+    }
+
+    ._16x9 {
+        padding-bottom: calc(28.125% - var(--hueco));
+    }
+}
+
+@media (min-width: 1440px) {
+    h2 {
+        grid-area: titulo;
+    }
+
+    #texto {
+        grid-area: texto;
+    }
+
+    #listas {
+        grid-area: listas;
+    }
+
+    #multimedia {
+        grid-area: multimedia;
+    }
+
+    #tablas {
+        grid-area: tablas;
+    }
+
+    #formularios {
+        grid-area: formularios;
+    }
+
+    #html {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+
+        align-items: start;
+
+        grid-template-areas:
+            "titulo titulo"
+            "texto multimedia"
+            "listas tablas"
+            "formularios formularios";
+    }
+}
+
+@media (min-width: 2560px) {
+    #html {
+        grid-template-columns: 1fr 1fr 1fr;
+
+        grid-template-areas:
+            "titulo titulo titulo"
+            "texto multimedia multimedia"
+            "listas multimedia multimedia"
+            "tablas multimedia multimedia"
+            "formularios multimedia multimedia"
+            ". multimedia multimedia";
     }
 }
