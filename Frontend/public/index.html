@@ -14,10 +14,11 @@
     </header>
     <nav>
         <ul>
-            <li><a href="#">Enlace 1</a></li>
-            <li><a href="#">Enlace 2</a></li>
-            <li><a href="#">Enlace 3</a></li>
-            <li><a href="#">Enlace 4</a></li>
+            <li><a href="#texto">Texto</a></li>
+            <li><a href="#listas">Listas</a></li>
+            <li><a href="#tablas">Tablas</a></li>
+            <li><a href="#multimedia">Multimedia</a></li>
+            <li><a href="#formularios">Formularios</a></li>
         </ul>
     </nav>
     <main>
@@ -27,23 +28,23 @@
             <section id="texto">
                 <h3>Texto</h3>
 
-                <p><strong>Lorem</strong> ipsum dolor sit amet consectetur adipisicing elit. Magnam magni nemo maxime
+                <p lang="zxx"><strong>Lorem</strong> ipsum dolor sit amet consectetur adipisicing elit. Magnam magni nemo maxime
                     sapiente? Voluptatibus explicabo molestiae eos. Nostrum veniam, veritatis voluptate nemo illo
                     assumenda porro amet quos, sapiente, facilis ipsa?</p>
-                <p><em>Lorem</em> ipsum dolor sit amet.</p>
-                <p><span class="muymarcado">Lorem</span> ipsum dolor sit amet consectetur adipisicing elit. Minus amet
+                <p lang="zxx"><em>Lorem</em> ipsum dolor sit amet.</p>
+                <p lang="zxx"><span class="muymarcado">Lorem</span> ipsum dolor sit amet consectetur adipisicing elit. Minus amet
                     consequatur optio itaque odit perferendis ipsum accusantium. Distinctio eos ipsum voluptate eligendi
                     aliquid, non id molestias accusantium? Placeat, magnam iure.</p>
-                <p><mark>Eveniet</mark> vero dolor atque officia vitae quisquam quibusdam ex cupiditate iste numquam
+                <p lang="zxx"><mark>Eveniet</mark> vero dolor atque officia vitae quisquam quibusdam ex cupiditate iste numquam
                     mollitia ipsum libero nam praesentium veritatis repellat at culpa, omnis repellendus molestiae
                     voluptatem ipsam aspernatur. Est, cumque quibusdam?</p>
-                <p>Consequuntur pariatur ut non exercitationem minus libero suscipit quo ad quam, et, a ratione? Id est,
+                <p lang="zxx">Consequuntur pariatur ut non exercitationem minus libero suscipit quo ad quam, et, a ratione? Id est,
                     quaerat, reiciendis eaque debitis iste atque sequi veniam nisi, veritatis inventore ducimus
                     voluptatibus dolore.</p>
-                <p>Quas ex neque perspiciatis aliquid debitis omnis, tempora ullam facere minima excepturi similique
+                <p lang="zxx">Quas ex neque perspiciatis aliquid debitis omnis, tempora ullam facere minima excepturi similique
                     accusamus voluptate aperiam ut atque cupiditate illum? Enim laborum ullam quos ab a ipsam amet sint
                     accusamus!</p>
-                <p>Doloribus, non. Qui tempore aspernatur est cum nobis eveniet neque. Dicta dolores eius cumque
+                <p lang="zxx">Doloribus, non. Qui tempore aspernatur est cum nobis eveniet neque. Dicta dolores eius cumque
                     eligendi impedit, minus nihil vitae, fugiat deleniti sed nemo qui neque ipsum sequi odit nesciunt
                     voluptas.</p>
 
@@ -149,12 +150,17 @@
 
                 <video src="videos/vinilo.mp4" controls></video>
 
-                <!--                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.7622681978273!2d-2.9157806849173133!3d43.25640397913684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1677055875159!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="aspecto _1x1">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.7622681978273!2d-2.9157806849173133!3d43.25640397913684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1677055875159!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
 
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6nNlTIiFd3J06W0rJiiwlz?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <div class="aspecto _4x3">
+                    <iframe src="https://open.spotify.com/embed/album/6nNlTIiFd3J06W0rJiiwlz?utm_source=generator&theme=0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
 
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/QRqY_20ti9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
- -->
+                <div class="aspecto _16x9">
+                    <iframe src="https://www.youtube.com/embed/QRqY_20ti9A" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
             </section>
 
             <section id="formularios">
@@ -217,7 +223,7 @@
                             <option value="3">Tres</option>
                         </select>
 
-                        <textarea placeholder="Comentarios" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea placeholder="Comentarios" cols="30" rows="10"></textarea>
 
                         <input type="url" placeholder="Tu página web">
                         <input type="range">
@@ -243,6 +249,9 @@
 
     <footer>
         <p>&copy;2023 Javier Lete</p>
+        <div id="subir">
+            <a href="#">Ir arriba</a>
+        </div>
     </footer>
 </body>
 
