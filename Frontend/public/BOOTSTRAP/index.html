@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de ejemplo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="d-none">
+        <h1>Página de ejemplo de HTML</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Página de ejemplo de HTML</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#texto">Texto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#listas">Listas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tablas">Tablas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#multimedia">Multimedia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formularios">Formularios</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-youtube" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-tiktok" viewBox="0 0 16 16">
+                                <path
+                                    d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-linkedin" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <article id="html">
+            <h2 class="display-2 text-center">HTML</h2>
+
+            <section id="texto">
+                <h3>Texto</h3>
+
+                <p lang="zxx"><strong>Lorem</strong> ipsum dolor sit amet consectetur adipisicing elit. Magnam magni
+                    nemo maxime
+                    sapiente? Voluptatibus explicabo molestiae eos. Nostrum veniam, veritatis voluptate nemo illo
+                    assumenda porro amet quos, sapiente, facilis ipsa?</p>
+                <p lang="zxx"><em>Lorem</em> ipsum dolor sit amet.</p>
+                <p lang="zxx"><span class="fs-1">Lorem</span> ipsum dolor sit amet consectetur adipisicing elit.
+                    Minus amet
+                    consequatur optio itaque odit perferendis ipsum accusantium. Distinctio eos ipsum voluptate eligendi
+                    aliquid, non id molestias accusantium? Placeat, magnam iure.</p>
+                <p lang="zxx"><mark>Eveniet</mark> vero dolor atque officia vitae quisquam quibusdam ex cupiditate iste
+                    numquam
+                    mollitia ipsum libero nam praesentium veritatis repellat at culpa, omnis repellendus molestiae
+                    voluptatem ipsam aspernatur. Est, cumque quibusdam?</p>
+                <p lang="zxx">Consequuntur pariatur ut non exercitationem minus libero suscipit quo ad quam, et, a
+                    ratione? Id est,
+                    quaerat, reiciendis eaque debitis iste atque sequi veniam nisi, veritatis inventore ducimus
+                    voluptatibus dolore.</p>
+                <p lang="zxx">Quas ex neque perspiciatis aliquid debitis omnis, tempora ullam facere minima excepturi
+                    similique
+                    accusamus voluptate aperiam ut atque cupiditate illum? Enim laborum ullam quos ab a ipsam amet sint
+                    accusamus!</p>
+                <p lang="zxx">Doloribus, non. Qui tempore aspernatur est cum nobis eveniet neque. Dicta dolores eius
+                    cumque
+                    eligendi impedit, minus nihil vitae, fugiat deleniti sed nemo qui neque ipsum sequi odit nesciunt
+                    voluptas.</p>
+
+                <pre>public class HolaMundo {
+    public static void main(String[] args) { 
+        System.out.println("HolaMundo");
+    }
+}</pre>
+            </section>
+
+            <section id="listas">
+                <h3>Listas</h3>
+
+                <ul>
+                    <li>Uno</li>
+                    <li>Dos</li>
+                    <li>Tres</li>
+                    <li>Cuatro</li>
+                </ul>
+
+                <ol>
+                    <li>Uno</li>
+                    <li>Dos</li>
+                    <li>Tres</li>
+                    <li>Cuatro</li>
+                </ol>
+
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Hyper Text Markup Language</dd>
+
+                    <dt>CSS</dt>
+                    <dd>Cascade Style Sheet</dd>
+
+                    <dt>JS</dt>
+                    <dd>JavaScript</dd>
+                </dl>
+            </section>
+
+            <section id="tablas">
+                <h3>Tablas</h3>
+
+                <table class="table table-bordered table-hover table-striped">
+                    <caption>Tabla de ejemplo</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- tr*5>(th[scope=row]>{$})+(td>{Nombre$})+(td>{Apellido$}) -->
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Nombre1</td>
+                            <td>Apellido1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Nombre2</td>
+                            <td>Apellido2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Nombre3</td>
+                            <td>Apellido3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Nombre4</td>
+                            <td>Apellido4</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Nombre5</td>
+                            <td>Apellido5</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="table-dark">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+            <section id="multimedia">
+                <h3>Multimedia</h3>
+
+                <figure class="figure">
+                    <img class="figure-img img-fluid rounded shadow" src="imgs/matrix.jpg" alt="Letras de Matrix">
+                    <figcaption class="figure-caption text-end">Imagen de <a
+                            href="https://pixabay.com/es/users/0fjd125gk87-51581/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=356024">0fjd125gk87</a>
+                        en <a
+                            href="https://pixabay.com/es//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=356024">Pixabay</a>
+                    </figcaption>
+                </figure>
+
+                <audio class="w-100 mt-5 shadow rounded-5" src="audios/rock.mp3" controls></audio>
+
+                <video class="w-100 mt-5 rounded shadow" src="videos/vinilo.mp4" controls></video>
+
+                <div class="ratio ratio-1x1 mt-5">
+                    <iframe class="rounded shadow"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.7622681978273!2d-2.9157806849173133!3d43.25640397913684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fb46238d865%3A0xb671edfb1120ab06!2sIpartek%20Servicios%20Inform%C3%A1ticos!5e0!3m2!1ses!2ses!4v1677055875159!5m2!1ses!2ses"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="ratio ratio-4x3 mt-5">
+                    <iframe class="rounded shadow"
+                        src="https://open.spotify.com/embed/album/6nNlTIiFd3J06W0rJiiwlz?utm_source=generator&theme=0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+                </div>
+
+                <div class="ratio ratio-16x9 mt-5">
+                    <iframe class="rounded shadow" src="https://www.youtube.com/embed/QRqY_20ti9A"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <section id="formularios">
+                <h3>Formularios</h3>
+
+                <form action="#">
+                    <fieldset>
+                        <legend>Login</legend>
+
+                        <div class="mt-3">
+                            <label class="form-label" for="usuario">Usuario</label>
+                            <input class="form-control" type="text" id="usuario">
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label" for="password">Contraseña</label>
+                            <input class="form-control" type="password" id="password">
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary">Aceptar</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <form class="mt-3" action="https://www.google.es/search">
+                    <fieldset>
+                        <legend>Búsqueda en Google</legend>
+
+                        <input class="form-control" type="search" name="q" placeholder="Término a buscar">
+
+                        <button class="btn btn-primary mt-3">Buscar</button>
+                    </fieldset>
+                </form>
+
+                <form action="#" class="mt-3">
+                    <fieldset>
+                        <legend>Cliente (datos básicos)</legend>
+
+                        <input class="form-control" type="number" placeholder="Id">
+                        <input class="form-control" type="text" placeholder="Nombre">
+                        <input class="form-control" type="email" placeholder="Email">
+                        <input class="form-control" type="tel" placeholder="Teléfono">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Otros</legend>
+
+                        <input class="form-control" type="date">
+                        <input class="form-check-input" type="checkbox">
+                        <input class="form-check-input" type="radio" name="opciones">
+                        <input class="form-check-input" type="radio" name="opciones">
+
+                        <select class="form-select">
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                        </select>
+
+                        <select multiple class="form-select">
+                            <option value="1">Uno</option>
+                            <option value="2">Dos</option>
+                            <option value="3">Tres</option>
+                        </select>
+
+                        <textarea class="form-control" placeholder="Comentarios" cols="30" rows="10"></textarea>
+
+                        <input class="form-control" type="url" placeholder="Tu página web">
+                        <input class="form-range" type="range">
+                    </fieldset>
+                    <fieldset id="botones">
+                        <button class="btn btn-primary">Aceptar</button>
+                    </fieldset>
+                </form>
+            </section>
+        </article>
+    </main>
+
+    <aside class="mt-3">
+        <nav class="bg-secondary-subtle">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Enlace 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Enlace 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Enlace 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Enlace 4</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <footer class="bg-dark text-light p-3">
+        <p class="text-center">&copy;2023 Javier Lete</p>
+        <div id="subir">
+            <a href="#" class="position-fixed bottom-0 end-0 z-3 rounded-circle border bg-dark text-white p-3 m-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                    class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
