@@ -1,3 +1,8 @@
+/* TIPOS DE LETRA */
+
+@import url(fonts.css);
+@import url(all.min.css); /* Font Awesome */
+
 /* RESETEO */
 
 @import url(reset.css);
@@ -19,12 +24,16 @@
     --color-fondo: white;
     --color-tinta: black;
     --color-fondo-suave: lightgray;
+    --color-fondo-fuerte: darkgray;
+    --font-texto: 'Golos Text', sans-serif;
+    --font-titulo: 'Nabla', cursive;
+    --font-codigo: 'Red Hat Mono', monospace;
 }
 
 /* ETIQUETAS GENERALES */
 
 body {
-    font-family: sans-serif;
+    font-family: var(--font-texto);
     line-height: calc(1rem + var(--hueco));
 
     background-color: var(--color-fondo);
@@ -46,10 +55,16 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: var(--font-titulo);
     font-weight: bold;
+    background-color: var(--color-fondo-fuerte);
+    padding: var(--hueco);
+    border-radius: var(--hueco);
+    margin: calc(var(--hueco) * 2) 0;
 }
 
 h1 {
+    background-color: var(--color-tinta);
     font-size: var(--titulo1);
     line-height: calc(var(--titulo1) + var(--hueco));
     font-variant: small-caps;
@@ -57,15 +72,18 @@ h1 {
 
 h2 {
     font-size: var(--titulo2);
-    padding: var(--hueco);
     text-align: center;
-    background-color: var(--color-fondo-suave);
+    background-color: var(--color-tinta);
+    margin: 0;
 }
 
 h3 {
-    padding: var(--hueco) 0;
     font-size: var(--titulo3);
     border-bottom: 1px solid black;
+}
+
+section {
+    padding-top: 2rem;
 }
 
 p,
@@ -84,7 +102,7 @@ em {
 }
 
 pre {
-    font-family: monospace;
+    font-family: var(--font-codigo);
     background-color: var(--color-fondo-suave);
     padding: var(--hueco);
     border: 1px solid black;
@@ -256,9 +274,23 @@ footer {
 body>nav {
     background-color: var(--color-tinta);
     text-align: center;
-    padding: var(--hueco);
     border-top: 1px solid var(--color-fondo);
 }
+
+body>nav ul {
+    margin: 0;
+}
+
+body>nav ul:last-of-type {
+    display: flex;
+    justify-content: space-around;
+}
+
+/*
+body>nav ul:first-of-type {
+    margin-right: auto;
+}
+*/
 
 body>nav li {
     margin: 0;
@@ -307,12 +339,19 @@ aside a {
     z-index: 1000;
 }
 
+#subir a {
+    border-radius: 100%;
+}
+
 @media (min-width: 768px) {
     body>nav {
         position: sticky;
         top: 0;
 
         z-index: 1000;
+
+        display: flex;
+        justify-content: space-between;
     }
 
     #subir {
@@ -323,6 +362,10 @@ aside a {
     aside ul {
         display: flex;
         flex-direction: row;
+    }
+
+    body>nav a:hover {
+        border-radius: var(--hueco) var(--hueco) 0 0;
     }
 
     main,
