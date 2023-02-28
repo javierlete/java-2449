@@ -1,6 +1,7 @@
 /* TIPOS DE LETRA */
 
 @import url(fonts.css);
+@import url(all.min.css); /* Font Awesome */
 
 /* RESETEO */
 
@@ -274,11 +275,20 @@ body>nav {
     background-color: var(--color-tinta);
     text-align: center;
     border-top: 1px solid var(--color-fondo);
+
+    display: flex;
+    justify-content: space-between;
 }
 
 body>nav ul {
     margin: 0;
 }
+
+/*
+body>nav ul:first-of-type {
+    margin-right: auto;
+}
+*/
 
 body>nav li {
     margin: 0;
