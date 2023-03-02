@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tienda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Principal</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/listado.html">Administración</a>
+                    </li>
+                    <li class="nav-item navbar-text">
+                        Javier
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- tr*3>(td>{Producto $})+(td>{$$$$ €})+(td>a.btn.btn-sm.btn-danger[href=admin/listado.html]>{Borrar}) -->
+                <tr>
+                    <td>Producto 1</td>
+                    <td>0001 €</td>
+                    <td><a href="admin/listado.html" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <td>Producto 2</td>
+                    <td>0002 €</td>
+                    <td><a href="admin/listado.html" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                <tr>
+                    <td>Producto 3</td>
+                    <td>0003 €</td>
+                    <td><a href="admin/listado.html" class="btn btn-sm btn-danger">Borrar</a></td>
+                </tr>
+                
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th>
+                        <!-- a.btn.btn-sm.btn-primary[href=admin/formulario.html]>{Añadir} -->
+                        <a href="index.html" class="btn btn-sm btn-primary">Añadir</a>
+                        <a href="factura.html" class="btn btn-sm btn-primary">Comprar</a>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+    <footer class="bg-dark text-light p-3">
+        <p class="text-center">&copy; 2023 Javier Lete</p>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

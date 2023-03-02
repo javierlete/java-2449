@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tienda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Principal</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/listado.html">Administración</a>
+                    </li>
+                    <li class="nav-item navbar-text">
+                        Javier
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <form action="admin/listado.html" class="container mt-3">
+            <div class="row mb-3">
+                <label for="id" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="number" readonly class="form-control" id="id">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" required class="form-control" id="nombre">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+                <div class="col-sm-10">
+                    <input type="number" step=".01" required min="0" class="form-control" id="precio">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="stock" class="col-sm-2 col-form-label">Stock</label>
+                <div class="col-sm-10">
+                    <input type="number" min="0" class="form-control" id="stock">
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="caducidad" class="col-sm-2 col-form-label">Caducidad</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="caducidad">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+            
+        </form>
+    </main>
+    <footer class="bg-dark text-light p-3">
+        <p class="text-center">&copy; 2023 Javier Lete</p>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

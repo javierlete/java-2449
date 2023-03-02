@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tienda</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Principal</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/listado.html">Administración</a>
+                    </li>
+                    <li class="nav-item navbar-text">
+                        Javier
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <header class="d-flex flex-wrap">
+            <div class="me-auto">
+                <p><strong>Tienda tienda</strong></p>
+                <p>Su dirección</p>
+                <p>48012</p>
+                <p>941231234</p>
+                <p>CIF: B12345678</p>
+            </div>
+            <div>
+                <p><strong>Cliente clientez</strong></p>
+                <p>Su dirección</p>
+                <p>48321</p>
+                <p>933214321</p>
+                <p>CIF: B87654321</p>
+            </div>
+            <div class="w-100">
+                <p><strong>Fecha de factura</strong>: 12-12-2012</p>
+                <p><strong>Número de factura</strong>: 1234</p>
+            </div>
+        </header>
+        <div class="row">
+            <table class="table table-borderless col-12">
+                <thead class="border-bottom">
+                    <tr>
+                        <th>Producto</th>
+                        <th class="text-end">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- tr*3>(td>{Producto $})+(td.text-end>{$$$$ €}) -->
+                    <tr>
+                        <td>Producto 1</td>
+                        <td class="text-end">0001 €</td>
+                    </tr>
+                    <tr>
+                        <td>Producto 2</td>
+                        <td class="text-end">0002 €</td>
+                    </tr>
+                    <tr>
+                        <td>Producto 3</td>
+                        <td class="text-end">0003 €</td>
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <th class="text-end">12345 €</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+    <footer class="bg-dark text-light p-3">
+        <p class="text-center">&copy; 2023 Javier Lete</p>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
