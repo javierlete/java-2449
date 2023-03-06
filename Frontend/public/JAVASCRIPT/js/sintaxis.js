@@ -36,6 +36,19 @@ arr.push(new Date());
 
 console.log(arr, typeof arr);
 
+for(let clave in arr) {
+    console.log(clave, arr[clave]);
+}
+
+for(let dato of arr) {
+    console.log(dato);
+}
+
+arr.forEach(elemento => console.log(elemento));
+
+arr.forEach((elemento, indice) => console.log(indice, elemento));
+
+/*
 console.log(variableVar);
 //console.log(variableLet);
 
@@ -73,7 +86,7 @@ persona['profesion'] = 'Profesor';
 
 console.log(typeof persona, persona);
 
-/*
+
 function Persona(id, nombre, apellidos) {
     this.id = id;
     this.nombre = nombre;
@@ -83,7 +96,7 @@ function Persona(id, nombre, apellidos) {
 Persona.prototype.nombreCompleto = function() {
     return `${this.nombre} ${this.apellidos}`;
 }
-*/
+
 
 class Persona {
     constructor(id, nombre, apellidos) {
@@ -105,3 +118,4 @@ console.log(persona1.nombre);
 console.log(typeof persona1, persona1);
 
 console.log(persona1.nombreCompleto());
+*/
