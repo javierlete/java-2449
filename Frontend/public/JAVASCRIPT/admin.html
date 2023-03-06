@@ -26,10 +26,19 @@
                 <td></td>
                 <td></td>
                 <th>
-                    <a href="#">Añadir</a>
+                    <a href="javascript:formulario()">Añadir</a>
                 </th>
             </tr>
         </tfoot>
     </table>
+
+    <form>
+        <input readonly type="number" id="id" placeholder="Id">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" step=".01" id="precio" placeholder="Precio">
+        <input type="date" id="garantia" placeholder="Garantía">
+        
+        <button>Aceptar</button>
+    </form>
 </body>
 </html>
