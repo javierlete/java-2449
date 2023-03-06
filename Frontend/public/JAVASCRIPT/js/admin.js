@@ -18,7 +18,10 @@ window.addEventListener('DOMContentLoaded', function() {
             <td>${producto.nombre}</td>
             <td>${producto.precio}</td>
             <td>${producto.garantia.toLocaleDateString()}</td>
-            <td></td>`;
+            <td>
+                <a href="#">Editar</a>
+                <a href="#">Borrar</a>
+            </td>`;
         
         tbody.appendChild(tr);
     });
