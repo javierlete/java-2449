@@ -1,10 +1,8 @@
 'use strict';
 
-let productos = [
-    { id: 1, nombre: 'Portátil', precio: 1234.12, garantia: new Date() },
-    { id: 3, nombre: 'Ratón', precio: 12.12, garantia: new Date() },
-    { id: 2, nombre: 'Monitor', precio: 123.12, garantia: new Date() },
-];
+const URL = 'http://localhost:3000/productos/';
+
+let productos;
 
 let tbody;
 let tabla;
@@ -19,38 +17,51 @@ window.addEventListener('DOMContentLoaded', function() {
     tbody = document.querySelector('tbody');
     tabla = document.querySelector('table');
     form = document.querySelector('form');
+    const boton = document.querySelector('form button');
 
     inputId = document.getElementById('id');
     inputNombre = document.getElementById('nombre');
     inputPrecio = document.getElementById('precio');
     inputGarantia = document.getElementById('garantia');
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const producto = {
-            id: inputId.valueAsNumber,
-            nombre: inputNombre.value,
-            precio: inputPrecio.valueAsNumber,
-            garantia: inputGarantia.valueAsDate,
-        };
-
-        if(producto.id) {
-            const indiceProductoOriginal = productos.findIndex(p => p.id === producto.id);
-            productos[indiceProductoOriginal] = producto;
-        } else {
-            producto.id = Math.max(...productos.map(producto => producto.id)) + 1;
-            // producto.id = productos.reduce((acumulado, producto) => (producto.id > acumulado ? producto.id : acumulado), 0) + 1;
-            productos.push(producto);
-        }
-
-        mostrarTabla();
-    });
-
+    boton.addEventListener('click', guardar);
+    
     mostrarTabla();
 });
 
-function rellenarTabla() {
+async function guardar() {
+    const producto = {
+        id: inputId.valueAsNumber,
+        nombre: inputNombre.value,
+        precio: inputPrecio.valueAsNumber,
+        garantia: inputGarantia.value,
+    };
+
+    if (producto.id) {
+        await fetch(URL + producto.id, {
+            method: 'PUT',
+            body: JSON.stringify(producto),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    } else {
+        await fetch(URL, {
+            method: 'POST',
+            body: JSON.stringify(producto),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+    }
+
+    mostrarTabla();
+}
+
+async function rellenarTabla() {
+    const respuesta = await fetch(URL);
+    productos = await respuesta.json();
+
     tbody.innerHTML = '';
 
     let tr;
@@ -61,7 +72,7 @@ function rellenarTabla() {
         <th>${producto.id}</th>
         <td>${producto.nombre}</td>
         <td>${producto.precio}</td>
-        <td>${producto.garantia.toLocaleDateString()}</td>
+        <td>${producto.garantia}</td>
         <td>
             <a href="javascript:formulario(${producto.id})">Editar</a>
             <a href="javascript:borrar(${producto.id})">Borrar</a>
@@ -71,23 +82,26 @@ function rellenarTabla() {
     });
 }
 
-function formulario(id) {
+async function formulario(id) {
     mostrarFormulario();
 
     let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
 
     if(id) {
-        producto = productos.filter(producto => producto.id === id)[0];
+        const respuesta = await fetch(URL + id);
+        producto = await respuesta.json();
     }
 
     inputId.valueAsNumber = producto.id;
     inputNombre.value = producto.nombre;
     inputPrecio.valueAsNumber = producto.precio;
-    inputGarantia.valueAsDate = producto.garantia;
+    inputGarantia.value = producto.garantia;
 }
 
-function borrar(id) {
-    productos = productos.filter(producto => producto.id !== id);
+async function borrar(id) {
+    await fetch(URL + id, {
+        method: 'DELETE'
+    });
 
     rellenarTabla();
 }

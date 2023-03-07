@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Portátil",
+      "precio": 1234.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 2,
+      "nombre": "Monitor",
+      "precio": 123.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 8,
+      "nombre": "Ratón",
+      "precio": 12.34,
+      "garantia": "2023-12-31"
+    },
+    {
+      "id": 9,
+      "nombre": "Cambiado de nuevo",
+      "precio": 123,
+      "garantia": "2023-12-31"
+    }
+  ]
+}
