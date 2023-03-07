@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', function() {
     inputGarantia = document.getElementById('garantia');
 
     boton.addEventListener('click', guardar);
-    
+
     mostrarTabla();
 });
 
@@ -74,8 +74,8 @@ async function rellenarTabla() {
         <td>${producto.precio}</td>
         <td>${producto.garantia}</td>
         <td>
-            <a href="javascript:formulario(${producto.id})">Editar</a>
-            <a href="javascript:borrar(${producto.id})">Borrar</a>
+            <a class="btn btn-sm btn-primary" href="javascript:formulario(${producto.id})">Editar</a>
+            <a class="btn btn-sm btn-danger" href="javascript:borrar(${producto.id})">Borrar</a>
         </td>`;
 
         tbody.appendChild(tr);
