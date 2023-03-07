@@ -17,12 +17,6 @@
       "nombre": "Ratón",
       "precio": 12.34,
       "garantia": "2023-12-31"
-    },
-    {
-      "id": 9,
-      "nombre": "Cambiado de nuevo",
-      "precio": 123,
-      "garantia": "2023-12-31"
     }
   ]
 }

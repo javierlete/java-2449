@@ -99,6 +99,10 @@ async function formulario(id) {
 }
 
 async function borrar(id) {
+    if(!confirm('¿Estás seguro de que quieres borrar el elemento ' + id + '?')) {
+        return;
+    }
+    
     await fetch(URL + id, {
         method: 'DELETE'
     });
