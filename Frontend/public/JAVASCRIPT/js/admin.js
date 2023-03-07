@@ -13,10 +13,19 @@ let inputNombre;
 let inputPrecio;
 let inputGarantia;
 
+let numeroRegistro;
+let estasSeguro;
+let confirmar;
+
 window.addEventListener('DOMContentLoaded', function() {
     tbody = document.querySelector('tbody');
     tabla = document.querySelector('table');
     form = document.querySelector('form');
+    
+    numeroRegistro = document.querySelector('#numero-registro');
+    estasSeguro = new bootstrap.Modal('#estasSeguro');
+    confirmar = document.querySelector('#confirmar');
+    
     const boton = document.querySelector('form button');
 
     inputId = document.getElementById('id');
@@ -25,6 +34,8 @@ window.addEventListener('DOMContentLoaded', function() {
     inputGarantia = document.getElementById('garantia');
 
     boton.addEventListener('click', guardar);
+
+    confirmar.addEventListener('click', borrarConfirmado);
 
     mostrarTabla();
 });
@@ -99,13 +110,20 @@ async function formulario(id) {
 }
 
 async function borrar(id) {
-    if(!confirm('¿Estás seguro de que quieres borrar el elemento ' + id + '?')) {
-        return;
-    }
-    
+    confirmar.dataset.id = id;
+    numeroRegistro.innerHTML = id;
+
+    estasSeguro.show();
+}
+
+async function borrarConfirmado() {
+    const id = this.dataset.id;
+
     await fetch(URL + id, {
         method: 'DELETE'
     });
+
+    estasSeguro.hide();
 
     rellenarTabla();
 }
