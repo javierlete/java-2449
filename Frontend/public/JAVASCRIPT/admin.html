@@ -49,19 +49,28 @@
         <div class="mb-3 row">
             <label class="col-sm-2 form-label" for="nombre">Nombre</label>
             <div class="col-sm-10">
-                <input class="form-control" type="text" id="nombre" placeholder="Nombre">
+                <input required minlength="3" class="form-control" type="text" id="nombre" placeholder="Nombre">
+                <div class="invalid-feedback">
+                    El nombre debe tener como mínimo 3 caracteres y es obligatorio.
+                </div>
             </div>
         </div>
         <div class="mb-3 row">
             <label class="col-sm-2 form-label" for="precio">Precio</label>
             <div class="col-sm-10">
-                <input class="form-control" type="number" step=".01" id="precio" placeholder="Precio">
+                <input required min="0" class="form-control" type="number" step=".01" id="precio" placeholder="Precio">
+                <div class="invalid-feedback">
+                    El precio es obligatorio y debe ser positivo.
+                </div>
             </div>
         </div>
         <div class="mb-3 row">
             <label class="col-sm-2 form-label" for="garantia">Garantía</label>
             <div class="col-sm-10">
                 <input class="form-control" type="date" id="garantia" placeholder="Garantía">
+                <div class="valid-feedback">
+                    La fecha es opcional.
+                </div>
             </div>
         </div>
         <div class="mb-3 row">

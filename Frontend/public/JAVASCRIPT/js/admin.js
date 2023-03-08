@@ -50,6 +50,12 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 async function guardar() {
+    if(!form.checkValidity()) {
+        form.classList.add('was-validated');
+        mostrarAlerta('Hay datos incorrectos en el formulario', 'danger');
+        return;
+    }
+
     const producto = {
         id: inputId.valueAsNumber,
         nombre: inputNombre.value,
@@ -166,6 +172,8 @@ function mostrarTabla() {
 }
 
 function mostrarAlerta(mensaje, nivel) {
+    cerrarAlerta();
+    
     mensajeAlerta.innerHTML = mensaje;
     alerta.classList.add('alert-' + nivel);
 
