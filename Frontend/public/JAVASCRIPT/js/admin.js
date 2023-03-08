@@ -16,16 +16,23 @@ let inputGarantia;
 let numeroRegistro;
 let estasSeguro;
 let confirmar;
+let alerta;
+let mensajeAlerta;
+let nivelUltimaAlerta;
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
+    alerta = document.querySelector('.alert');
+    mensajeAlerta = alerta.querySelector('span');
+    const cierreAlerta = alerta.querySelector('button');
+
     tbody = document.querySelector('tbody');
     tabla = document.querySelector('table');
     form = document.querySelector('form');
-    
+
     numeroRegistro = document.querySelector('#numero-registro');
     estasSeguro = new bootstrap.Modal('#estasSeguro');
     confirmar = document.querySelector('#confirmar');
-    
+
     const boton = document.querySelector('form button');
 
     inputId = document.getElementById('id');
@@ -34,8 +41,10 @@ window.addEventListener('DOMContentLoaded', function() {
     inputGarantia = document.getElementById('garantia');
 
     boton.addEventListener('click', guardar);
-
     confirmar.addEventListener('click', borrarConfirmado);
+    cierreAlerta.addEventListener('click', cerrarAlerta);
+
+    cerrarAlerta();
 
     mostrarTabla();
 });
@@ -70,16 +79,17 @@ async function guardar() {
 }
 
 async function rellenarTabla() {
-    const respuesta = await fetch(URL);
-    productos = await respuesta.json();
+    try {
+        const respuesta = await fetch(URL);
+        productos = await respuesta.json();
 
-    tbody.innerHTML = '';
+        tbody.innerHTML = '';
 
-    let tr;
+        let tr;
 
-    productos.forEach(producto => {
-        tr = document.createElement('tr');
-        tr.innerHTML = `
+        productos.forEach(producto => {
+            tr = document.createElement('tr');
+            tr.innerHTML = `
         <th>${producto.id}</th>
         <td>${producto.nombre}</td>
         <td>${producto.precio}</td>
@@ -89,8 +99,17 @@ async function rellenarTabla() {
             <a class="btn btn-sm btn-danger" href="javascript:borrar(${producto.id})">Borrar</a>
         </td>`;
 
-        tbody.appendChild(tr);
-    });
+            tbody.appendChild(tr);
+        });
+
+    } catch(e) {
+        console.error('No se han podido recibir los datos');
+        console.error(e.message);
+
+        //alert('Ha habido un error al pedir los datos al servidor');
+
+        mostrarAlerta(e.message, 'danger');
+    }
 }
 
 async function formulario(id) {
@@ -98,7 +117,7 @@ async function formulario(id) {
 
     let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
 
-    if(id) {
+    if (id) {
         const respuesta = await fetch(URL + id);
         producto = await respuesta.json();
     }
@@ -138,4 +157,19 @@ function mostrarTabla() {
 
     tabla.style.display = 'table';
     form.style.display = 'none';
+}
+
+function mostrarAlerta(mensaje, nivel) {
+    mensajeAlerta.innerHTML = mensaje;
+    alerta.classList.add('alert-' + nivel);
+
+    nivelUltimaAlerta = nivel;
+
+    alerta.style.display = 'block';
+}
+
+function cerrarAlerta() {
+    alerta.style.display = 'none';
+
+    alerta.classList.remove('alert-' + nivelUltimaAlerta);
 }
