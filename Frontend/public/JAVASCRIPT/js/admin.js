@@ -81,6 +81,11 @@ async function guardar() {
 async function rellenarTabla() {
     try {
         const respuesta = await fetch(URL);
+
+        if(!respuesta.ok) {
+            throw { message: respuesta.statusText };
+        }
+
         productos = await respuesta.json();
 
         tbody.innerHTML = '';
@@ -102,6 +107,7 @@ async function rellenarTabla() {
             tbody.appendChild(tr);
         });
 
+        mostrarAlerta('Se han recibido correctamente los productos', 'success');
     } catch(e) {
         console.error('No se han podido recibir los datos');
         console.error(e.message);
