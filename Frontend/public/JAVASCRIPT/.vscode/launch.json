@@ -5,9 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "PUBLIC",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://127.0.0.1:3001/public.html",
+            "webRoot": "${workspaceFolder}"
+        },
+
+        {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "ADMIN",
             "url": "http://127.0.0.1:3001/admin.html",
             "webRoot": "${workspaceFolder}"
         }
