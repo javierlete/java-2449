@@ -3,20 +3,35 @@
 const URL = 'http://127.0.0.1:3000/productos/';
 
 window.addEventListener('DOMContentLoaded', async function () {
+    const main = document.querySelector('main');
     const contenedor = document.querySelector('main > div');
-    const plantilla = document.querySelector('#plantilla-tarjeta');
+    const plantillaListado = document.querySelector('#plantilla-tarjeta');
+    const plantillaProducto = document.querySelector('#plantilla-producto');
 
     const respuesta = await fetch(URL);
     const productos = await respuesta.json();
 
     productos.forEach(producto => {
-        const tarjeta = plantilla.content.cloneNode(true);
+        const tarjetaProducto = plantillaListado.content.cloneNode(true);
 
-        tarjeta.querySelector('.card-title').innerHTML = producto.nombre;
-        tarjeta.querySelector('.card-text').innerHTML = producto.precio;
-        tarjeta.querySelector('.card-footer > .text-muted').innerHTML = producto.id;
-        tarjeta.querySelector('img').src = 'https://picsum.photos/400/200?'+ producto.id;
+        tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
+        tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
+        tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
+        tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/200?' + producto.id;
 
-        contenedor.appendChild(tarjeta);
+        tarjetaProducto.querySelector('button').addEventListener('click', function () {
+            main.innerHTML = '';
+
+            const tarjetaProducto = plantillaProducto.content.cloneNode(true);
+
+            tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
+            tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
+            tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
+            tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/400?' + producto.id;
+
+            main.appendChild(tarjetaProducto);
+        });
+
+        contenedor.appendChild(tarjetaProducto);
     });
 });
