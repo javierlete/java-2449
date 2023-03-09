@@ -50,38 +50,50 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 async function guardar() {
-    if(!form.checkValidity()) {
-        form.classList.add('was-validated');
-        mostrarAlerta('Hay datos incorrectos en el formulario', 'danger');
-        return;
+    try {
+        if(!form.checkValidity()) {
+            form.classList.add('was-validated');
+            mostrarAlerta('Hay datos incorrectos en el formulario', 'danger');
+            return;
+        }
+    
+        const producto = {
+            id: inputId.valueAsNumber,
+            nombre: inputNombre.value,
+            precio: inputPrecio.valueAsNumber,
+            garantia: inputGarantia.value,
+        };
+    
+        let respuesta;
+    
+        if (producto.id) {
+            respuesta = await fetch(URL + producto.id, {
+                method: 'PUT',
+                body: JSON.stringify(producto),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        } else {
+            respuesta = await fetch(URL, {
+                method: 'POST',
+                body: JSON.stringify(producto),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    
+        if(!respuesta.ok) {
+            throw { message: respuesta.statusText };
+        }
+
+        mostrarTabla();
+
+        mostrarAlerta('Registro guardado correctamente', 'success');
+    } catch (error) {
+        mostrarAlerta('No se ha podido guardar el registro: ' + error.message, 'danger');
     }
-
-    const producto = {
-        id: inputId.valueAsNumber,
-        nombre: inputNombre.value,
-        precio: inputPrecio.valueAsNumber,
-        garantia: inputGarantia.value,
-    };
-
-    if (producto.id) {
-        await fetch(URL + producto.id, {
-            method: 'PUT',
-            body: JSON.stringify(producto),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    } else {
-        await fetch(URL, {
-            method: 'POST',
-            body: JSON.stringify(producto),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        });
-    }
-
-    mostrarTabla();
 }
 
 async function rellenarTabla() {
@@ -113,31 +125,44 @@ async function rellenarTabla() {
             tbody.appendChild(tr);
         });
 
-        mostrarAlerta('Se han recibido correctamente los productos', 'success');
+        if(!productos.length) {
+            mostrarAlerta('No hay productos para mostrar', 'warning');
+        }
     } catch(e) {
         console.error('No se han podido recibir los datos');
         console.error(e.message);
 
         //alert('Ha habido un error al pedir los datos al servidor');
 
-        mostrarAlerta(e.message, 'danger');
+        mostrarAlerta('No se han podido recibir los datos: ' + e.message, 'danger');
     }
 }
 
 async function formulario(id) {
-    mostrarFormulario();
+    try {
+        mostrarFormulario();
+    
+        let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
+    
+        if (id) {
+            const respuesta = await fetch(URL + id);
 
-    let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
+            if(!respuesta.ok) {
+                throw { message: respuesta.statusText };
+            }
 
-    if (id) {
-        const respuesta = await fetch(URL + id);
-        producto = await respuesta.json();
+            producto = await respuesta.json();
+        }
+    
+        inputId.valueAsNumber = producto.id;
+        inputNombre.value = producto.nombre;
+        inputPrecio.valueAsNumber = producto.precio;
+        inputGarantia.value = producto.garantia;
+
+        mostrarAlerta('Datos mostrados correctamente', 'success');
+    } catch (error) {
+        mostrarAlerta('No se han podido mostrar los datos en el formulario: ' + error.message, 'danger');
     }
-
-    inputId.valueAsNumber = producto.id;
-    inputNombre.value = producto.nombre;
-    inputPrecio.valueAsNumber = producto.precio;
-    inputGarantia.value = producto.garantia;
 }
 
 async function borrar(id) {
@@ -148,15 +173,25 @@ async function borrar(id) {
 }
 
 async function borrarConfirmado() {
-    const id = this.dataset.id;
+    try {
+        const id = this.dataset.id;
+    
+        const respuesta = await fetch(URL + id, {
+            method: 'DELETE'
+        });
+    
+        if(!respuesta.ok) {
+            throw { message: respuesta.statusText };
+        }
 
-    await fetch(URL + id, {
-        method: 'DELETE'
-    });
+        estasSeguro.hide();
+    
+        rellenarTabla();
 
-    estasSeguro.hide();
-
-    rellenarTabla();
+        mostrarAlerta('Registro borrado correctamente', 'success');
+    } catch (error) {
+        mostrarAlerta('No se ha podido borrar el registro: ' + error.message, 'danger');
+    }
 }
 
 function mostrarFormulario() {
