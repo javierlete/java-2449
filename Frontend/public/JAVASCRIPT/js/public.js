@@ -1,6 +1,7 @@
 'use strict';
 
 const URL = 'http://127.0.0.1:3000/productos/';
+const FORMATO_EURO = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -79,17 +80,22 @@ function mostrarProducto(producto) {
 function rellenarCarrito() {
     tbodyCarrito.innerHTML = '';
 
+    let total = 0;
     let tr;
     carrito.forEach(p => {
         tr = document.createElement('tr');
         tr.innerHTML = `
                         <td>${p.nombre}</td>
-                        <td>${p.precio} €</td>
+                        <td>${FORMATO_EURO.format(p.precio)}</td>
                         <td>
                             <a href="javascript:quitarDelCarrito(${p.id})" class="btn-close"></a>
                     `;
         tbodyCarrito.appendChild(tr);
+
+        total += p.precio;
     });
+
+    document.querySelector('#total-carrito').innerHTML = FORMATO_EURO.format(total);
 }
 
 function vaciarCarrito() {
