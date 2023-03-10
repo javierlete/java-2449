@@ -86,8 +86,8 @@ function rellenarCarrito() {
         tr = document.createElement('tr');
         tr.innerHTML = `
                         <td>${p.nombre}</td>
-                        <td>${FORMATO_EURO.format(p.precio)}</td>
-                        <td>
+                        <td class="text-end font-monospace">${FORMATO_EURO.format(p.precio)}</td>
+                        <td class="text-center">
                             <a href="javascript:quitarDelCarrito(${p.id})" class="btn-close"></a>
                     `;
         tbodyCarrito.appendChild(tr);
