@@ -8,22 +8,30 @@ if(!carrito.length) {
     guardarCarrito();
 }
 
-let tbodyCarrito;
+let main, plantillaListado, plantillaTarjeta, plantillaProducto, tbodyCarrito, offcanvas, contenedor;
 
 window.addEventListener('DOMContentLoaded', async function () {
-    const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
+    offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
     tbodyCarrito = document.querySelector('.offcanvas-body tbody');
 
-    const main = document.querySelector('main');
-    const contenedor = document.querySelector('main > div');
-    const plantillaListado = document.querySelector('#plantilla-tarjeta');
-    const plantillaProducto = document.querySelector('#plantilla-producto');
+    main = document.querySelector('main');
+    plantillaTarjeta = document.querySelector('#plantilla-tarjeta');
+    plantillaProducto = document.querySelector('#plantilla-producto');
+    plantillaListado = document.querySelector('#plantilla-listado');
+    contenedor = plantillaListado.content.cloneNode(true).querySelector('div');
 
+    mostrarListado();
+});
+
+async function mostrarListado() {
     const respuesta = await fetch(URL);
     const productos = await respuesta.json();
 
+    main.innerHTML = '';
+    contenedor.innerHTML = '';
+
     productos.forEach(producto => {
-        const tarjetaProducto = plantillaListado.content.cloneNode(true);
+        const tarjetaProducto = plantillaTarjeta.content.cloneNode(true);
 
         tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
         tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
@@ -31,30 +39,42 @@ window.addEventListener('DOMContentLoaded', async function () {
         tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/200?' + producto.id;
 
         tarjetaProducto.querySelector('button').addEventListener('click', function () {
-            main.innerHTML = '';
-
-            const tarjetaProducto = plantillaProducto.content.cloneNode(true);
-
-            tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
-            tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
-            tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
-            tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/400?' + producto.id;
-
-            tarjetaProducto.querySelector('button').addEventListener('click', function() {
-                carrito.push(producto);
-                guardarCarrito();
-
-                rellenarCarrito();
-
-                offcanvas.show();
-            });
-
-            main.appendChild(tarjetaProducto);
+            mostrarProducto(producto);
         });
 
         contenedor.appendChild(tarjetaProducto);
     });
-});
+
+    main.appendChild(contenedor);
+}
+
+function mostrarProducto(producto) {
+    main.innerHTML = '';
+
+    const tarjetaProducto = plantillaProducto.content.cloneNode(true);
+
+    tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
+    tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
+    tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
+    tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/400?' + producto.id;
+
+    tarjetaProducto.querySelector('button').addEventListener('click', function () {
+        carrito.push(producto);
+        guardarCarrito();
+
+        rellenarCarrito();
+
+        mostrarListado();
+
+        offcanvas.show();
+    });
+
+    tarjetaProducto.querySelector('button:last-of-type').addEventListener('click', function() {
+        mostrarListado();
+    });
+
+    main.appendChild(tarjetaProducto);
+}
 
 function rellenarCarrito() {
     tbodyCarrito.innerHTML = '';
@@ -90,4 +110,9 @@ function quitarDelCarrito(id) {
 
 function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function verCarrito() {
+    rellenarCarrito();
+    offcanvas.show();
 }
