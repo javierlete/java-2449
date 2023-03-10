@@ -2,15 +2,18 @@
 
 const URL = 'http://127.0.0.1:3000/productos/';
 
-const carrito = JSON.parse(localStorage.getItem('carrito'));
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-if(!carrito) {
-    localStorage.setItem('carrito', '[]');
+if(!carrito.length) {
+    guardarCarrito();
 }
+
+let tbodyCarrito;
 
 window.addEventListener('DOMContentLoaded', async function () {
     const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
-    
+    tbodyCarrito = document.querySelector('.offcanvas-body tbody');
+
     const main = document.querySelector('main');
     const contenedor = document.querySelector('main > div');
     const plantillaListado = document.querySelector('#plantilla-tarjeta');
@@ -39,7 +42,10 @@ window.addEventListener('DOMContentLoaded', async function () {
 
             tarjetaProducto.querySelector('button').addEventListener('click', function() {
                 carrito.push(producto);
-                localStorage.setItem('carrito', JSON.stringify(carrito));
+                guardarCarrito();
+
+                rellenarCarrito();
+
                 offcanvas.show();
             });
 
@@ -49,3 +55,39 @@ window.addEventListener('DOMContentLoaded', async function () {
         contenedor.appendChild(tarjetaProducto);
     });
 });
+
+function rellenarCarrito() {
+    tbodyCarrito.innerHTML = '';
+
+    let tr;
+    carrito.forEach(p => {
+        tr = document.createElement('tr');
+        tr.innerHTML = `
+                        <td>${p.nombre}</td>
+                        <td>${p.precio} €</td>
+                        <td>
+                            <a href="javascript:quitarDelCarrito(${p.id})" class="btn-close"></a>
+                    `;
+        tbodyCarrito.appendChild(tr);
+    });
+}
+
+function vaciarCarrito() {
+    carrito = [];
+
+    guardarCarrito();
+
+    tbodyCarrito.innerHTML = '';
+}
+
+function quitarDelCarrito(id) {
+    carrito = carrito.filter(p => p.id !== id);
+
+    guardarCarrito();
+
+    rellenarCarrito();
+}
+
+function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
