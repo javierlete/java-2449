@@ -1,13 +1,16 @@
 'use strict';
 
 const URL = 'http://127.0.0.1:3000/productos/';
-let carrito = JSON.parse(localStorage.getItem('carrito'));
+
+const carrito = JSON.parse(localStorage.getItem('carrito'));
 
 if(!carrito) {
     localStorage.setItem('carrito', '[]');
 }
 
 window.addEventListener('DOMContentLoaded', async function () {
+    const offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
+    
     const main = document.querySelector('main');
     const contenedor = document.querySelector('main > div');
     const plantillaListado = document.querySelector('#plantilla-tarjeta');
@@ -37,6 +40,7 @@ window.addEventListener('DOMContentLoaded', async function () {
             tarjetaProducto.querySelector('button').addEventListener('click', function() {
                 carrito.push(producto);
                 localStorage.setItem('carrito', JSON.stringify(carrito));
+                offcanvas.show();
             });
 
             main.appendChild(tarjetaProducto);
