@@ -1,0 +1,76 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Portátil",
+      "precio": 1234.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 3,
+      "nombre": "Ratón",
+      "precio": 12.34,
+      "garantia": "2023-12-31"
+    },
+    {
+      "id": 4,
+      "nombre": "Portátil",
+      "precio": 1234.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 5,
+      "nombre": "Monitor",
+      "precio": 123.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 6,
+      "nombre": "Ratón",
+      "precio": 12.34,
+      "garantia": "2023-12-31"
+    },
+    {
+      "id": 7,
+      "nombre": "Portátil",
+      "precio": 1234.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 8,
+      "nombre": "Monitor",
+      "precio": 123.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 9,
+      "nombre": "Ratón",
+      "precio": 12.34,
+      "garantia": "2023-12-31"
+    },
+    {
+      "id": 10,
+      "nombre": "Portátil",
+      "precio": 1234.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 11,
+      "nombre": "Monitor",
+      "precio": 123.12,
+      "garantia": "2024-01-02"
+    },
+    {
+      "id": 12,
+      "nombre": "Ratón",
+      "precio": 12.34,
+      "garantia": "2023-12-31"
+    },
+    {
+      "id": 13,
+      "nombre": "sdfgsdfg",
+      "precio": 5665,
+      "garantia": "2023-01-01"
+    }
+  ]
+}
