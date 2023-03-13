@@ -1,50 +1,20 @@
 'use strict';
 
-const URL = 'http://localhost:3000/productos/';
+var URL = 'http://localhost:3000/productos/';
 
-let productos;
+var productos;
 
-let tbody;
-let tabla;
-let form;
+var estasSeguro;
+var nivelUltimaAlerta;
 
-let inputId;
-let inputNombre;
-let inputPrecio;
-let inputGarantia;
+var datatable;
 
-let numeroRegistro;
-let estasSeguro;
-let confirmar;
-let alerta;
-let mensajeAlerta;
-let nivelUltimaAlerta;
-
-let datatable;
-
-window.addEventListener('DOMContentLoaded', function () {
-    alerta = document.querySelector('.alert');
-    mensajeAlerta = alerta.querySelector('span');
-    const cierreAlerta = alerta.querySelector('button');
-
-    tbody = document.querySelector('tbody');
-    tabla = document.querySelector('table');
-    form = document.querySelector('form');
-
-    numeroRegistro = document.querySelector('#numero-registro');
+$(function () {
     estasSeguro = new bootstrap.Modal('#estasSeguro');
-    confirmar = document.querySelector('#confirmar');
 
-    const boton = document.querySelector('form button');
-
-    inputId = document.getElementById('id');
-    inputNombre = document.getElementById('nombre');
-    inputPrecio = document.getElementById('precio');
-    inputGarantia = document.getElementById('garantia');
-
-    boton.addEventListener('click', guardar);
-    confirmar.addEventListener('click', borrarConfirmado);
-    cierreAlerta.addEventListener('click', cerrarAlerta);
+    $('form button').on('click', guardar);
+    $('#confirmar').on('click', borrarConfirmado);
+    $('.alert button').on('click', cerrarAlerta);
 
     cerrarAlerta();
 
@@ -53,46 +23,46 @@ window.addEventListener('DOMContentLoaded', function () {
 
 async function guardar() {
     try {
-        if (!form.checkValidity()) {
-            form.classList.add('was-validated');
+        if (!$('form')[0].checkValidity()) {
+            $('form').addClass('was-validated');
             mostrarAlerta('Hay datos incorrectos en el formulario', 'danger');
             return;
         }
 
-        const producto = {
-            id: inputId.valueAsNumber,
-            nombre: inputNombre.value,
-            precio: inputPrecio.valueAsNumber,
-            garantia: inputGarantia.value,
+        var producto = {
+            id: $('#id')[0].valueAsNumber,
+            nombre: $('#nombre')[0].value,
+            precio: $('#precio')[0].valueAsNumber,
+            garantia: $('#garantia')[0].value,
         };
 
-        let respuesta;
+        var respuesta;
 
         if (producto.id) {
-            respuesta = await fetch(URL + producto.id, {
+            $.ajax(URL + producto.id, {
                 method: 'PUT',
-                body: JSON.stringify(producto),
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                data: JSON.stringify(producto),
+                contentType: 'application/json'
+            }).done(function (data, textStatus, jqXHR) {
+                mostrarTabla();
+
+                mostrarAlerta('Registro guardado correctamente', 'success');
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                throw { message: textStatus };
             });
         } else {
-            respuesta = await fetch(URL, {
+            $.ajax(URL, {
                 method: 'POST',
-                body: JSON.stringify(producto),
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                data: JSON.stringify(producto),
+                contentType: 'application/json'
+            }).done(function (data, textStatus, jqXHR) {
+                mostrarTabla();
+
+                mostrarAlerta('Registro guardado correctamente', 'success');
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                throw { message: textStatus };
             });
         }
-
-        if (!respuesta.ok) {
-            throw { message: respuesta.statusText };
-        }
-
-        mostrarTabla();
-
-        mostrarAlerta('Registro guardado correctamente', 'success');
     } catch (error) {
         mostrarAlerta('No se ha podido guardar el registro: ' + error.message, 'danger');
     }
@@ -102,65 +72,65 @@ function rellenarTabla() {
     datatable.ajax.reload();
 }
 
-async function formulario(id) {
+function formulario(id) {
     try {
         mostrarFormulario();
 
-        let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
+        var producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
+
+        $('#id')[0].valueAsNumber = producto.id;
+        $('#nombre')[0].value = producto.nombre;
+        $('#precio')[0].valueAsNumber = producto.precio;
+        $('#garantia')[0].value = producto.garantia;
 
         if (id) {
-            const respuesta = await fetch(URL + id);
+            $.get(URL + id, function (producto) {
+                $('#id')[0].valueAsNumber = producto.id;
+                $('#nombre')[0].value = producto.nombre;
+                $('#precio')[0].valueAsNumber = producto.precio;
+                $('#garantia')[0].value = producto.garantia;
 
-            if (!respuesta.ok) {
-                throw { message: respuesta.statusText };
-            }
-
-            producto = await respuesta.json();
+                mostrarAlerta('Datos mostrados correctamente', 'success');
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                throw { message: textStatus };
+            });
         }
 
-        inputId.valueAsNumber = producto.id;
-        inputNombre.value = producto.nombre;
-        inputPrecio.valueAsNumber = producto.precio;
-        inputGarantia.value = producto.garantia;
-
-        mostrarAlerta('Datos mostrados correctamente', 'success');
     } catch (error) {
         mostrarAlerta('No se han podido mostrar los datos en el formulario: ' + error.message, 'danger');
     }
 }
 
-async function borrar(id) {
-    confirmar.dataset.id = id;
-    numeroRegistro.innerHTML = id;
+function borrar(id) {
+    $('#confirmar')[0].dataset.id = id;
+    $('#numero-registro').html(id);
 
     estasSeguro.show();
 }
 
-async function borrarConfirmado() {
+function borrarConfirmado() {
     try {
-        const id = this.dataset.id;
+        var id = this.dataset.id;
 
-        const respuesta = await fetch(URL + id, {
+        $.ajax(URL + id, {
             method: 'DELETE'
+        }).done(function() {
+            estasSeguro.hide();
+
+            rellenarTabla();
+    
+            mostrarAlerta('Registro borrado correctamente', 'success');
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            throw { message: textStatus };
         });
-
-        if (!respuesta.ok) {
-            throw { message: respuesta.statusText };
-        }
-
-        estasSeguro.hide();
-
-        rellenarTabla();
-
-        mostrarAlerta('Registro borrado correctamente', 'success');
     } catch (error) {
         mostrarAlerta('No se ha podido borrar el registro: ' + error.message, 'danger');
     }
 }
 
 function mostrarFormulario() {
-    tabla.style.display = 'none';
-    form.style.display = 'block';
+    $('table').hide();
+    $('form').show();
 }
 
 function mostrarTabla() {
@@ -175,7 +145,7 @@ function mostrarTabla() {
             },
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json',
-            }, 
+            },
             columns: [
                 { data: 'id' },
                 { data: 'nombre' },
@@ -197,23 +167,23 @@ function mostrarTabla() {
         });
     }
 
-    tabla.style.display = 'table';
-    form.style.display = 'none';
+    $('table').show();
+    $('form').hide();
 }
 
 function mostrarAlerta(mensaje, nivel) {
     cerrarAlerta();
 
-    mensajeAlerta.innerHTML = mensaje;
-    alerta.classList.add('alert-' + nivel);
+    $('.alert span').html(mensaje);
+    $('.alert').addClass('alert-' + nivel);
 
     nivelUltimaAlerta = nivel;
 
-    alerta.style.display = 'block';
+    $('.alert').show();
 }
 
 function cerrarAlerta() {
-    alerta.style.display = 'none';
+    $('.alert').hide();
 
-    alerta.classList.remove('alert-' + nivelUltimaAlerta);
+    $('.alert').removeClass('alert-' + nivelUltimaAlerta);
 }
