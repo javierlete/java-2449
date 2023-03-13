@@ -1,65 +1,63 @@
 'use strict';
 
-const URL = 'http://127.0.0.1:3000/productos/';
-const FORMATO_EURO = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+var URL = 'http://127.0.0.1:3000/productos/';
+var FORMATO_EURO = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
 
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-if(!carrito.length) {
+if (!carrito.length) {
     guardarCarrito();
 }
 
-let main, plantillaListado, plantillaTarjeta, plantillaProducto, tbodyCarrito, offcanvas, contenedor;
+let offcanvas, tbodyCarrito, contenedor;
 
-window.addEventListener('DOMContentLoaded', async function () {
-    offcanvas = new bootstrap.Offcanvas(document.querySelector('.offcanvas'));
-    tbodyCarrito = document.querySelector('.offcanvas-body tbody');
+$(function () {
+    offcanvas = new bootstrap.Offcanvas($('.offcanvas')[0]);
+    tbodyCarrito = $('.offcanvas-body tbody');
 
-    main = document.querySelector('main');
-    plantillaTarjeta = document.querySelector('#plantilla-tarjeta');
-    plantillaProducto = document.querySelector('#plantilla-producto');
-    plantillaListado = document.querySelector('#plantilla-listado');
-    contenedor = plantillaListado.content.cloneNode(true).querySelector('div');
+    contenedor = $('#plantilla-listado')[0].content.cloneNode(true).querySelector('div');
 
     mostrarListado();
 });
 
-async function mostrarListado() {
-    const respuesta = await fetch(URL);
-    const productos = await respuesta.json();
+function mostrarListado() {
+    $.get(URL, function (productos) {
+        $('main').empty();
+        $('contenedor').empty();
 
-    main.innerHTML = '';
-    contenedor.innerHTML = '';
+        $(productos).each(function () {
+            var tarjetaProducto = $('#plantilla-tarjeta')[0].content.cloneNode(true);
 
-    productos.forEach(producto => {
-        const tarjetaProducto = plantillaTarjeta.content.cloneNode(true);
+            $(tarjetaProducto).find('.card-title').html(this.nombre);
+            $(tarjetaProducto).find('.card-text').html(this.precio);
+            $(tarjetaProducto).find('.text-muted').html(this.id);
+            $(tarjetaProducto).find('img')[0].src = 'https://picsum.photos/400/200?' + this.id;
 
-        tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
-        tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
-        tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
-        tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/200?' + producto.id;
+            var producto = this;
 
-        tarjetaProducto.querySelector('button').addEventListener('click', function () {
-            mostrarProducto(producto);
+            $(tarjetaProducto).find('button').on('click', function () {
+                mostrarProducto(producto);
+            });
+
+            $(contenedor).append(tarjetaProducto);
         });
 
-        contenedor.appendChild(tarjetaProducto);
+        $('main').append(contenedor);
     });
 
-    main.appendChild(contenedor);
 }
 
 function mostrarProducto(producto) {
-    main.innerHTML = '';
+    $('main').empty();
 
-    const tarjetaProducto = plantillaProducto.content.cloneNode(true);
+    var tarjetaProducto = $('#plantilla-producto')[0].content.cloneNode(true);
 
-    tarjetaProducto.querySelector('.card-title').innerHTML = producto.nombre;
-    tarjetaProducto.querySelector('.card-text').innerHTML = producto.precio;
-    tarjetaProducto.querySelector('.text-muted').innerHTML = producto.id;
-    tarjetaProducto.querySelector('img').src = 'https://picsum.photos/400/400?' + producto.id;
+    $(tarjetaProducto).find('.card-title').html(producto.nombre);
+    $(tarjetaProducto).find('.card-text').html(producto.precio);
+    $(tarjetaProducto).find('.text-muted').html(producto.id);
+    $(tarjetaProducto).find('img')[0].src = 'https://picsum.photos/400/200?' + producto.id;
 
-    tarjetaProducto.querySelector('button').addEventListener('click', function () {
+    $(tarjetaProducto).find('button').on('click', function () {
         carrito.push(producto);
         guardarCarrito();
 
@@ -70,32 +68,29 @@ function mostrarProducto(producto) {
         offcanvas.show();
     });
 
-    tarjetaProducto.querySelector('button:last-of-type').addEventListener('click', function() {
+    $(tarjetaProducto).find('button:last-of-type').on('click', function () {
         mostrarListado();
     });
 
-    main.appendChild(tarjetaProducto);
+    $('main').append(tarjetaProducto);
 }
 
 function rellenarCarrito() {
-    tbodyCarrito.innerHTML = '';
+    $('tbody').empty();
 
-    let total = 0;
-    let tr;
-    carrito.forEach(p => {
-        tr = document.createElement('tr');
-        tr.innerHTML = `
-                        <td>${p.nombre}</td>
-                        <td class="text-end font-monospace">${FORMATO_EURO.format(p.precio)}</td>
+    var total = 0;
+    $(carrito).each(function() {
+        $('<tr>').html(`
+                        <td>${this.nombre}</td>
+                        <td class="text-end font-monospace">${FORMATO_EURO.format(this.precio)}</td>
                         <td class="text-center">
-                            <a href="javascript:quitarDelCarrito(${p.id})" class="btn-close"></a>
-                    `;
-        tbodyCarrito.appendChild(tr);
+                            <a href="javascript:quitarDelCarrito(${this.id})" class="btn-close"></a>
+                    `).appendTo($('tbody'));
 
-        total += p.precio;
+        total += this.precio;
     });
 
-    document.querySelector('#total-carrito').innerHTML = FORMATO_EURO.format(total);
+    $('#total-carrito').html(FORMATO_EURO.format(total));
 }
 
 function vaciarCarrito() {
@@ -103,7 +98,7 @@ function vaciarCarrito() {
 
     guardarCarrito();
 
-    tbodyCarrito.innerHTML = '';
+    $('tbody').empty();
 }
 
 function quitarDelCarrito(id) {
