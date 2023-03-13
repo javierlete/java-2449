@@ -20,6 +20,8 @@ let alerta;
 let mensajeAlerta;
 let nivelUltimaAlerta;
 
+let datatable;
+
 window.addEventListener('DOMContentLoaded', function () {
     alerta = document.querySelector('.alert');
     mensajeAlerta = alerta.querySelector('span');
@@ -51,21 +53,21 @@ window.addEventListener('DOMContentLoaded', function () {
 
 async function guardar() {
     try {
-        if(!form.checkValidity()) {
+        if (!form.checkValidity()) {
             form.classList.add('was-validated');
             mostrarAlerta('Hay datos incorrectos en el formulario', 'danger');
             return;
         }
-    
+
         const producto = {
             id: inputId.valueAsNumber,
             nombre: inputNombre.value,
             precio: inputPrecio.valueAsNumber,
             garantia: inputGarantia.value,
         };
-    
+
         let respuesta;
-    
+
         if (producto.id) {
             respuesta = await fetch(URL + producto.id, {
                 method: 'PUT',
@@ -83,8 +85,8 @@ async function guardar() {
                 }
             });
         }
-    
-        if(!respuesta.ok) {
+
+        if (!respuesta.ok) {
             throw { message: respuesta.statusText };
         }
 
@@ -96,64 +98,26 @@ async function guardar() {
     }
 }
 
-async function rellenarTabla() {
-    try {
-        const respuesta = await fetch(URL);
-
-        if(!respuesta.ok) {
-            throw { message: respuesta.statusText };
-        }
-
-        productos = await respuesta.json();
-
-        tbody.innerHTML = '';
-
-        let tr;
-
-        productos.forEach(producto => {
-            tr = document.createElement('tr');
-            tr.innerHTML = `
-        <th>${producto.id}</th>
-        <td>${producto.nombre}</td>
-        <td>${producto.precio}</td>
-        <td>${producto.garantia}</td>
-        <td>
-            <a class="btn btn-sm btn-primary" href="javascript:formulario(${producto.id})">Editar</a>
-            <a class="btn btn-sm btn-danger" href="javascript:borrar(${producto.id})">Borrar</a>
-        </td>`;
-
-            tbody.appendChild(tr);
-        });
-
-        if(!productos.length) {
-            mostrarAlerta('No hay productos para mostrar', 'warning');
-        }
-    } catch(e) {
-        console.error('No se han podido recibir los datos');
-        console.error(e.message);
-
-        //alert('Ha habido un error al pedir los datos al servidor');
-
-        mostrarAlerta('No se han podido recibir los datos: ' + e.message, 'danger');
-    }
+function rellenarTabla() {
+    datatable.ajax.reload();
 }
 
 async function formulario(id) {
     try {
         mostrarFormulario();
-    
+
         let producto = { id: undefined, nombre: '', precio: undefined, garantia: undefined };
-    
+
         if (id) {
             const respuesta = await fetch(URL + id);
 
-            if(!respuesta.ok) {
+            if (!respuesta.ok) {
                 throw { message: respuesta.statusText };
             }
 
             producto = await respuesta.json();
         }
-    
+
         inputId.valueAsNumber = producto.id;
         inputNombre.value = producto.nombre;
         inputPrecio.valueAsNumber = producto.precio;
@@ -175,17 +139,17 @@ async function borrar(id) {
 async function borrarConfirmado() {
     try {
         const id = this.dataset.id;
-    
+
         const respuesta = await fetch(URL + id, {
             method: 'DELETE'
         });
-    
-        if(!respuesta.ok) {
+
+        if (!respuesta.ok) {
             throw { message: respuesta.statusText };
         }
 
         estasSeguro.hide();
-    
+
         rellenarTabla();
 
         mostrarAlerta('Registro borrado correctamente', 'success');
@@ -200,7 +164,38 @@ function mostrarFormulario() {
 }
 
 function mostrarTabla() {
-    rellenarTabla();
+    if (datatable) {
+        rellenarTabla();
+    } else {
+
+        datatable = $('table').DataTable({
+            ajax: {
+                url: URL,
+                dataSrc: '',
+            },
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/es-ES.json',
+            }, 
+            columns: [
+                { data: 'id' },
+                { data: 'nombre' },
+                { data: 'precio' },
+                { data: 'garantia' },
+                { data: null }
+            ],
+            columnDefs: [
+                {
+                    targets: -1,
+                    data: id,
+                    render: function (data, type, row, meta) {
+                        return `
+                            <a class="btn btn-sm btn-primary" href="javascript:formulario(${data.id})">Editar</a>
+                            <a class="btn btn-sm btn-danger" href="javascript:borrar(${data.id})">Borrar</a>`;
+                    }
+                },
+            ],
+        });
+    }
 
     tabla.style.display = 'table';
     form.style.display = 'none';
@@ -208,7 +203,7 @@ function mostrarTabla() {
 
 function mostrarAlerta(mensaje, nivel) {
     cerrarAlerta();
-    
+
     mensajeAlerta.innerHTML = mensaje;
     alerta.classList.add('alert-' + nivel);
 
