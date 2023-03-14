@@ -1,11 +1,13 @@
 package com.ipartek.formacion.servlets;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @WebServlet("/hola")
 public class HolaMundo extends HttpServlet {
@@ -14,13 +16,29 @@ public class HolaMundo extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html"); // "text/plain")
+		PrintWriter out = response.getWriter();
+		
 		String nombre = request.getParameter("nombre");
 
+		out.println("""
+			<!DOCTYPE html>
+			<html>
+			<body>
+				<h1>
+				""");
+		
 		if (nombre == null) {
-			response.getWriter().println("Hola a todos");
+			out.println("Hola a todos");
 		} else {
-			response.getWriter().println("Hola " + nombre);
+			out.println("Hola " + nombre);
 		}
+		
+		out.println("""
+				</h1>
+			</body>
+			</html>
+				""");
 	}
 	
 	@Override
