@@ -4,6 +4,9 @@
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>

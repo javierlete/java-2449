@@ -26,15 +26,18 @@ public class ClientesConsola {
 		dao.borrar(6L);
 	}
 
+	@SuppressWarnings("unused")
 	private static void modificar() {
 		dao.modificar(new Cliente(4L, "Juan Pedro", "18273645A", "616253444", "juan@pedro.df", LocalDate.of(2005, 6, 7)));
 	}
 
+	@SuppressWarnings("unused")
 	private static void insertar() {
 		dao.insertar(new Cliente(null, "Juan", "13243546A", "61625344", "asdf@asdf.df", LocalDate.of(2003, 4, 5)));
 		dao.insertar(new Cliente(null, "Juan", "13243546A", null, null, (LocalDate)null));
 	}
 
+	@SuppressWarnings("unused")
 	private static void buscarPorId() {
 		System.out.println(dao.obtenerPorId(2L));
 	}
