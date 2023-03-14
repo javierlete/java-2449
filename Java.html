@@ -4,6 +4,8 @@
 <a href="#" onclick="collapseAll(document.getElementById('base'))">Collapse</a></div><div id="base" class="basetext"><ul>
 	<li class="col" id="FMID_696401721FM"><div class="nodecontent" style="color:#000000;font-size:150%;">Java</div>
 		<ul class="subexp">
+	<li class="col" id="FMID_1564355340FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JavaSE</div>
+		<ul class="subexp">
 	<li class="col" id="FMID_938408823FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Antecedentes</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_56768543FM"><div class="nodecontent" style="color:#000000;font-size:83%;">C++</div>
@@ -913,7 +915,48 @@
 	<li class="basic" id="FMID_1245061723FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">class MiClase extends Thread</div></li>
 	<li class="basic" id="FMID_950972446FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Override public void run {...}</div></li></ul></li>
 	<li class="basic" id="FMID_1886479955FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">miClase.start()</div></li>
-	<li class="basic" id="FMID_320105848FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Thread.sleep(MILISEGUNDOS)</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_320105848FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Thread.sleep(MILISEGUNDOS)</div></li></ul></li>
+	<li class="col" id="FMID_1801288305FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JDBC</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1683209384FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Connection</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1494465547FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Conexión a una base de datos</div></li>
+	<li class="basic" id="FMID_684818814FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">DriverManager.getConnection(URL, USER, PASSWORD)</div></li>
+	<li class="col" id="FMID_1910510016FM"><div class="nodecontent" style="color:#000000;font-size:83%;">URL</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1805800284FM"><div class="nodecontent" style="color:#000000;font-size:83%;">sqlite</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1468601261FM"><div class="nodecontent" style="color:#000000;font-size:83%;">jdbc:sqlite:RUTAFICHERO</div></li></ul></li>
+	<li class="col" id="FMID_128985618FM"><div class="nodecontent" style="color:#000000;font-size:83%;">mysql</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_577738551FM"><div class="nodecontent" style="color:#000000;font-size:83%;">jdbc:mysql://SERVIDOR:PUERTO/BASEDEDATOS</div></li></ul></li>
+	<li class="basic" id="FMID_1816593872FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li>
+	<li class="col" id="FMID_1930872268FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Statement</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1111172624FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Representa una sentencia que se puede ejecutar</div></li>
+	<li class="basic" id="FMID_150174940FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">con.createStatement()</div></li></ul></li>
+	<li class="col" id="FMID_475624397FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">PreparedStatement</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1339741345FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Lo mismo que la anterior pero con posibles argumentos como ? en las SQL</div></li>
+	<li class="col" id="FMID_771374602FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">con.prepareStatement(SQL)</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1080792071FM"><div class="nodecontent" style="color:#000000;font-size:83%;">SQL</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_403400974FM"><div class="nodecontent" style="color:#000000;font-size:83%;">SELECT * FROM productos WHERE id=?</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_1807855026FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">pst.setTIPO(POSICION_DE_LA_INTERROGACION, DATO)</div></li>
+	<li class="basic" id="FMID_1053479709FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ResultSet rs = pst.executeQuery()</div></li>
+	<li class="basic" id="FMID_917411542FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">int numeroRegistrosModificados = pst.executeUpdate()</div></li></ul></li>
+	<li class="col" id="FMID_275056709FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ResultSet</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_447026946FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Conjunto de resultados de la consulta</div></li>
+	<li class="col" id="FMID_1367154522FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">rs.next()</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1957973737FM"><div class="nodecontent" style="color:#000000;font-size:83%;">true si hay registro</div></li>
+	<li class="basic" id="FMID_1405955834FM"><div class="nodecontent" style="color:#000000;font-size:83%;">false si no lo hay</div></li></ul></li>
+	<li class="basic" id="FMID_1963953845FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">rs.getTIPO("CAMPO")</div></li></ul></li>
+	<li class="col" id="FMID_434190372FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">SQLException</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_441353542FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Error en un acceso a base de datos</div></li></ul></li></ul></li></ul></li>
 	<li class="col" id="FMID_194743246FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Tipos de errores</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1846017510FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Compilación (javac)</div>
@@ -925,7 +968,181 @@
 	<li class="basic" id="FMID_1738454314FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Excepciones</div></li>
 	<li class="col" id="FMID_768722926FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Lógicos</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_1384386650FM"><div class="nodecontent" style="color:#000000;font-size:83%;">El programa no hace lo que quieres</div></li></ul></li></ul></li></ul></li>
+	<li class="basic" id="FMID_1384386650FM"><div class="nodecontent" style="color:#000000;font-size:83%;">El programa no hace lo que quieres</div></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_1268845108FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JavaEE / JakartaEE</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1183310619FM"><div class="nodecontent" style="color:#000000;font-size:83%;">JavaSE + APIs extra</div></li>
+	<li class="col" id="FMID_1924342032FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Servidores</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1261066797FM"><div class="nodecontent" style="color:#000000;font-size:83%;">OpenSource</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_357366133FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Tomcat</div></li>
+	<li class="basic" id="FMID_1914522231FM"><div class="nodecontent" style="color:#000000;font-size:83%;">TomEE</div></li>
+	<li class="basic" id="FMID_496663418FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Geronimo</div></li>
+	<li class="basic" id="FMID_124072290FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Apache Foundation</div></li>
+	<li class="col" id="FMID_335816972FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Glassfish</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_661733807FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Oracle</div></li></ul></li>
+	<li class="basic" id="FMID_1243369392FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Jetty</div></li>
+	<li class="basic" id="FMID_733336638FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Wildfly</div></li>
+	<li class="col" id="FMID_609193511FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JBoss</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_461368812FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">RedHat</div></li></ul></li>
+	<li class="basic" id="FMID_613672155FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li>
+	<li class="col" id="FMID_250973440FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Comerciales</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_299983190FM"><div class="nodecontent" style="color:#000000;font-size:83%;">WebSphere</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1875068230FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">IBM</div></li></ul></li>
+	<li class="col" id="FMID_352099700FM"><div class="nodecontent" style="color:#000000;font-size:83%;">WebLogic</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1931246238FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Oracle</div></li></ul></li></ul></li>
+	<li class="col" id="FMID_1640572850FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Estructura</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_956497606FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">bin</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1744538730FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Comandos para arrancar el servidor</div></li>
+	<li class="col" id="FMID_1342644538FM"><div class="nodecontent" style="color:#000000;font-size:83%;">startup.cmd</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1320478776FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Arrancar servidor</div></li></ul></li>
+	<li class="col" id="FMID_1319629973FM"><div class="nodecontent" style="color:#000000;font-size:83%;">shutdown.cmd</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1590200322FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Parar servidor</div></li></ul></li>
+	<li class="col" id="FMID_1436008242FM"><div class="nodecontent" style="color:#000000;font-size:83%;">catalina.bat</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1821653444FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Motor del servidor</div></li></ul></li>
+	<li class="basic" id="FMID_1939390323FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li>
+	<li class="col" id="FMID_1250262359FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">conf</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_979325900FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Configuración</div></li>
+	<li class="basic" id="FMID_1665367548FM"><div class="nodecontent" style="color:#000000;font-size:83%;">server.xml</div></li>
+	<li class="basic" id="FMID_86796200FM"><div class="nodecontent" style="color:#000000;font-size:83%;">web.xml</div></li>
+	<li class="basic" id="FMID_1354420045FM"><div class="nodecontent" style="color:#000000;font-size:83%;">tomcat-users.xml</div></li>
+	<li class="basic" id="FMID_1890769988FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li>
+	<li class="col" id="FMID_947000161FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">lib</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_885166666FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Bibliotecas del servidor</div></li>
+	<li class="basic" id="FMID_980814471FM"><div class="nodecontent" style="color:#000000;font-size:83%;">servlet-api.jar</div></li>
+	<li class="basic" id="FMID_487396476FM"><div class="nodecontent" style="color:#000000;font-size:83%;">jsp-api.jar</div></li>
+	<li class="basic" id="FMID_758473633FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li>
+	<li class="col" id="FMID_710076728FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">logs</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_202394235FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Históricos</div></li></ul></li>
+	<li class="col" id="FMID_703249904FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">temp</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1695826703FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Ficheros temporales</div></li></ul></li>
+	<li class="col" id="FMID_264186485FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">work</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_815644898FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Temporal de Jasper</div></li></ul></li>
+	<li class="col" id="FMID_779145342FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">webapps</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_795924199FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ROOT</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1442193085FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Aplicación de /</div></li></ul></li>
+	<li class="col" id="FMID_337716802FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">pruebas</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1702283147FM"><div class="nodecontent" style="color:#000000;font-size:83%;">WEB-INF</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1169884332FM"><div class="nodecontent" style="color:#000000;font-size:83%;">classes</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_185266455FM"><div class="nodecontent" style="color:#000000;font-size:83%;">com</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_178706528FM"><div class="nodecontent" style="color:#000000;font-size:83%;">ipartek</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1114573259FM"><div class="nodecontent" style="color:#000000;font-size:83%;">formacion</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_991100032FM"><div class="nodecontent" style="color:#000000;font-size:83%;">servlets</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1730715815FM"><div class="nodecontent" style="color:#000000;font-size:83%;">HolaMundo.java</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_325967433FM"><div class="nodecontent" style="color:#000000;font-size:83%;">package com.ipartek.formacion.servlets;<br /><br />import java.io.*;<br />import jakarta.servlet.*;<br />import jakarta.servlet.http.*;<br />import jakarta.servlet.annotation.WebServlet;<br /><br />@WebServlet("/hola")<br />public class HolaMundo extends HttpServlet {<br />        public void doGet(HttpServletRequest request, HttpServletResponse response)<br />                                                            throws IOException, ServletException {<br />                response.getWriter().println("Prueba desde servlets");<br />        }<br />}</div></li></ul></li>
+	<li class="basic" id="FMID_1167403695FM"><div class="nodecontent" style="color:#000000;font-size:83%;">HolaMundo.class</div></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="basic" id="FMID_1282587337FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">javac -cp ../../../../lib/servlet-api.jar com/ipartek/formacion/servlets/HolaMundo.java</div> <a onclick="getVisibleParents('FMID_1167403695FM')" href="#FMID_1167403695FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li>
+	<li class="col" id="FMID_1559142906FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;font-style:italic;">http://localhost:8080/pruebas/hola</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1058558133FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">http</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1298600937FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Protocolo HTTP</div></li></ul></li>
+	<li class="col" id="FMID_1997900229FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">localhost</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_352348178FM"><div class="nodecontent" style="color:#000000;font-size:83%;">127.0.0.1</div></li>
+	<li class="basic" id="FMID_1760471471FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Nuestro propio equipo</div></li></ul></li>
+	<li class="col" id="FMID_1159128524FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">8080</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_997291481FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Puerto por defecto de Tomcat</div></li></ul></li>
+	<li class="col" id="FMID_1740365447FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">/pruebas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_900668796FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Nombre del contexto / aplicación / carpeta dentro de webapps</div></li></ul></li>
+	<li class="col" id="FMID_267580777FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">/hola</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_403965950FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Ruta del @WebServlet</div></li></ul></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_576784981FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">contexto1</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1145499351FM"><div class="nodecontent" style="color:#000000;font-size:83%;">*.jsp</div></li>
+	<li class="basic" id="FMID_159639262FM"><div class="nodecontent" style="color:#000000;font-size:83%;">*.html</div></li>
+	<li class="basic" id="FMID_556957918FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">css</div></li>
+	<li class="basic" id="FMID_539986189FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">js</div></li>
+	<li class="basic" id="FMID_1102354076FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">imgs</div></li>
+	<li class="basic" id="FMID_1807146677FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">videos</div></li>
+	<li class="basic" id="FMID_1479854990FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">audios</div></li>
+	<li class="col" id="FMID_1902930857FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">WEB-INF</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_240410352FM"><div class="nodecontent" style="color:#000000;font-size:83%;">web.xml</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1749019722FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Deployment Descriptor</div></li></ul></li>
+	<li class="col" id="FMID_672378073FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">classes</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1446862955FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Raíz de paquetes</div></li>
+	<li class="basic" id="FMID_476433268FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Clases compiladas</div></li>
+	<li class="col" id="FMID_1412665458FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">com</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_195671532FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ipartek</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_98605544FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">formacion</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_652418404FM"><div class="nodecontent" style="color:#000000;font-size:83%;">HolaMundo.class</div></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_1662624220FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">lib</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1482814975FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Bibliotecas necesarias para la aplicación</div></li>
+	<li class="basic" id="FMID_1966000292FM"><div class="nodecontent" style="color:#000000;font-size:83%;">*.jar</div></li></ul></li></ul></li></ul></li>
+	<li class="basic" id="FMID_1252050572FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">contexto2</div></li>
+	<li class="basic" id="FMID_1232528578FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_782172362FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">API</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1017637884FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Servlets</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1647564074FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Aplicaciones Java</div></li>
+	<li class="basic" id="FMID_571839088FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;"><a href="https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html">https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html</a> <a href="https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
+	<li class="col" id="FMID_684626482FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JSPs</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1309744558FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_785254855FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Java</div></li>
+	<li class="basic" id="FMID_1191312949FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Server</div></li>
+	<li class="basic" id="FMID_1319347051FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Pages</div></li></ul></li>
+	<li class="col" id="FMID_342286281FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Scriptlets</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_50897911FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;%= new java.util.Date() %&gt;</div></li>
+	<li class="basic" id="FMID_1429881010FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;% for(int i = 0; i &lt; 10; i++) { %&gt;</div></li></ul></li>
+	<li class="col" id="FMID_1027105191FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Expression Language</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1511064584FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">${i}</div></li></ul></li>
+	<li class="col" id="FMID_1627950029FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Ámbitos</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_137863177FM"><div class="nodecontent" style="color:#000000;font-size:83%;">page</div></li>
+	<li class="basic" id="FMID_1153251804FM"><div class="nodecontent" style="color:#000000;font-size:83%;">request</div></li>
+	<li class="basic" id="FMID_170585016FM"><div class="nodecontent" style="color:#000000;font-size:83%;">session</div></li>
+	<li class="basic" id="FMID_71312904FM"><div class="nodecontent" style="color:#000000;font-size:83%;">application</div></li></ul></li></ul></li>
+	<li class="col" id="FMID_872433008FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JSTL</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_802419066FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1809762543FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Java</div></li>
+	<li class="basic" id="FMID_688547156FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Standard</div></li>
+	<li class="basic" id="FMID_157330570FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Tag</div></li>
+	<li class="basic" id="FMID_1799929795FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Library</div></li></ul></li>
+	<li class="basic" id="FMID_1976621992FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;c:if test="expr"&gt;</div></li>
+	<li class="basic" id="FMID_1140465384FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;c:forEach items="${coleccion}" var="elemento"&gt;</div></li></ul></li></ul></li></ul></li>
 	<li class="col" id="FMID_266810709FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Editores</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_657647082FM"><div class="nodecontent" style="color:#000000;font-size:83%;">De texto</div>
@@ -1627,47 +1844,6 @@
 	<li class="basic" id="FMID_678967264FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://regex101.com/"><a charset="utf-8" href="https://regex101.com/">regex101: build, test, and debug regex</a></a> <a href="https://regex101.com/"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li>
 	<li class="basic" id="FMID_224790833FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://www.regular-expressions.info/"><a charset="utf-8" href="https://www.regular-expressions.info/">Regular-Expressions.info - Regex Tutorial, Examples and Reference - Regexp Patterns</a></a> <a href="https://www.regular-expressions.info/"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li>
 	<li class="basic" id="FMID_1429838032FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://www.regular-expressions.info/unicode.html#category"><a charset="utf-8" href="https://www.regular-expressions.info/unicode.html#category">Regex Tutorial - Unicode Characters and Properties (regular-expressions.info)</a></a> <a href="https://www.regular-expressions.info/unicode.html#category"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li></ul></li>
-	<li class="col" id="FMID_1801288305FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JDBC</div>
-		<ul class="subexp">
-	<li class="col" id="FMID_1683209384FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Connection</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1494465547FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Conexión a una base de datos</div></li>
-	<li class="basic" id="FMID_684818814FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">DriverManager.getConnection(URL, USER, PASSWORD)</div></li>
-	<li class="col" id="FMID_1910510016FM"><div class="nodecontent" style="color:#000000;font-size:83%;">URL</div>
-		<ul class="subexp">
-	<li class="col" id="FMID_1805800284FM"><div class="nodecontent" style="color:#000000;font-size:83%;">sqlite</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1468601261FM"><div class="nodecontent" style="color:#000000;font-size:83%;">jdbc:sqlite:RUTAFICHERO</div></li></ul></li>
-	<li class="col" id="FMID_128985618FM"><div class="nodecontent" style="color:#000000;font-size:83%;">mysql</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_577738551FM"><div class="nodecontent" style="color:#000000;font-size:83%;">jdbc:mysql://SERVIDOR:PUERTO/BASEDEDATOS</div></li></ul></li>
-	<li class="basic" id="FMID_1816593872FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li>
-	<li class="col" id="FMID_1930872268FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Statement</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1111172624FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Representa una sentencia que se puede ejecutar</div></li>
-	<li class="basic" id="FMID_150174940FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">con.createStatement()</div></li></ul></li>
-	<li class="col" id="FMID_475624397FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">PreparedStatement</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1339741345FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Lo mismo que la anterior pero con posibles argumentos como ? en las SQL</div></li>
-	<li class="col" id="FMID_771374602FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">con.prepareStatement(SQL)</div>
-		<ul class="subexp">
-	<li class="col" id="FMID_1080792071FM"><div class="nodecontent" style="color:#000000;font-size:83%;">SQL</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_403400974FM"><div class="nodecontent" style="color:#000000;font-size:83%;">SELECT * FROM productos WHERE id=?</div></li></ul></li></ul></li>
-	<li class="basic" id="FMID_1807855026FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">pst.setTIPO(POSICION_DE_LA_INTERROGACION, DATO)</div></li>
-	<li class="basic" id="FMID_1053479709FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ResultSet rs = pst.executeQuery()</div></li>
-	<li class="basic" id="FMID_917411542FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">int numeroRegistrosModificados = pst.executeUpdate()</div></li></ul></li>
-	<li class="col" id="FMID_275056709FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ResultSet</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_447026946FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Conjunto de resultados de la consulta</div></li>
-	<li class="col" id="FMID_1367154522FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">rs.next()</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1957973737FM"><div class="nodecontent" style="color:#000000;font-size:83%;">true si hay registro</div></li>
-	<li class="basic" id="FMID_1405955834FM"><div class="nodecontent" style="color:#000000;font-size:83%;">false si no lo hay</div></li></ul></li>
-	<li class="basic" id="FMID_1963953845FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">rs.getTIPO("CAMPO")</div></li></ul></li>
-	<li class="col" id="FMID_434190372FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">SQLException</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_441353542FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Error en un acceso a base de datos</div></li></ul></li></ul></li>
 	<li class="col" id="FMID_1269641591FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Bases de datos</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_711635944FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Relacionales (SQL)</div>
@@ -2261,4 +2437,64 @@
 		<ul class="subexp">
 	<li class="basic" id="FMID_749921772FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Eclipse</div></li>
 	<li class="basic" id="FMID_1540447759FM"><div class="nodecontent" style="color:#000000;font-size:83%;">NetBeans</div></li>
-	<li class="basic" id="FMID_1515897903FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li></ul></li></ul></li></ul></div></body></html>
+	<li class="basic" id="FMID_1515897903FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_1582439407FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Backend</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_93489726FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Servidor web</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_903620469FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">HTTP (80)</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1099764699FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_353830574FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Hyper</div></li>
+	<li class="basic" id="FMID_656719208FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Text</div></li>
+	<li class="basic" id="FMID_125608512FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Transfer</div></li>
+	<li class="basic" id="FMID_226551155FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Protocol</div></li></ul></li>
+	<li class="col" id="FMID_1410376044FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Métodos</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_17323044FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">GET</div></li>
+	<li class="basic" id="FMID_16319162FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">POST</div></li>
+	<li class="basic" id="FMID_909659217FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li></ul></li>
+	<li class="col" id="FMID_1074461402FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">CGI</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1612605762FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_142487933FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Common</div></li>
+	<li class="basic" id="FMID_1401019877FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Gateway</div></li>
+	<li class="basic" id="FMID_393472578FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Interface</div></li></ul></li>
+	<li class="col" id="FMID_1042082096FM"><div class="nodecontent" style="color:#000000;font-size:83%;">/cgi-bin/programa</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_898449572FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Entrada</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1309687988FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Variables de entorno</div></li>
+	<li class="basic" id="FMID_613910491FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Flujo de entrada de HTTP</div></li></ul></li>
+	<li class="col" id="FMID_1802392631FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Salida</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_773458139FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Flujo de salida de HTTP</div></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_70626433FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">PHP</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1226390708FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_865539299FM"><div class="nodecontent" style="color:#000000;font-size:83%;">PHP</div></li>
+	<li class="basic" id="FMID_1613955561FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Hypertext</div></li>
+	<li class="basic" id="FMID_314809943FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Preprocesor</div></li></ul></li>
+	<li class="basic" id="FMID_983892981FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">OpenSource</div></li>
+	<li class="basic" id="FMID_1330951705FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Script shell + C</div></li>
+	<li class="basic" id="FMID_1079169030FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;?php echo 5+2; ?&gt;</div></li></ul></li>
+	<li class="col" id="FMID_576365201FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ASP</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_340403209FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_926412741FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Active</div></li>
+	<li class="basic" id="FMID_741381632FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Server</div></li>
+	<li class="basic" id="FMID_1812102206FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Pages</div></li></ul></li>
+	<li class="col" id="FMID_501334186FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Microsoft</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1925565426FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Internet</div></li>
+	<li class="basic" id="FMID_342473538FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Information</div></li>
+	<li class="basic" id="FMID_1962220070FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Services</div></li></ul></li>
+	<li class="col" id="FMID_1003018462FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Lenguajes</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1981934521FM"><div class="nodecontent" style="color:#000000;font-size:83%;">VBScript</div></li>
+	<li class="basic" id="FMID_1627790184FM"><div class="nodecontent" style="color:#000000;font-size:83%;">JScript</div></li></ul></li>
+	<li class="basic" id="FMID_1205101876FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;%= 5+2 %&gt;</div></li></ul></li></ul></li></ul></li></ul></li></ul></div></body></html>
