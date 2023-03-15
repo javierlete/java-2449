@@ -1,4 +1,4 @@
-package com.ipartek.formacion.clientes.entidades;
+package com.ipartek.formacion.clientes.modelos;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

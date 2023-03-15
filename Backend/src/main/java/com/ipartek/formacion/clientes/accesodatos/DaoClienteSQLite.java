@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ipartek.formacion.clientes.entidades.Cliente;
+import com.ipartek.formacion.clientes.modelos.Cliente;
 
 public class DaoClienteSQLite implements DaoCliente {
 	private final String URL;
