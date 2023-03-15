@@ -12,6 +12,14 @@ import java.util.List;
 import com.ipartek.formacion.clientes.modelos.Cliente;
 
 public class DaoClienteSQLite implements DaoCliente {
+	static {
+		try {
+			Class.forName("org.sqlite.JDBC");
+		} catch (ClassNotFoundException e) {
+			throw new AccesoDatosException("No se ha encontrado el driver de SQLite", e);
+		}
+	}
+	
 	private final String URL;
 
 	private static final String SQL_SELECT = "SELECT * FROM clientes";

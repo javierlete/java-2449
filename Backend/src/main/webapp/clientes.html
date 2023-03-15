@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+</head>
+<body>
+
+	<a href="clientes/listado">Listado</a>
+	
+	<form action="clientes/buscar">
+		<input name="id" placeholder="Id a buscar">
+		<button>Aceptar</button>
+	</form>
+	
+	<form action="clientes/agregar">
+		<input name="nombre" placeholder="Nombre">
+		<input name="nif" placeholder="NIF">
+		<input name="telefono" placeholder="Teléfono">
+		<input name="email" placeholder="Email">
+		<input name="fechaNacimiento" placeholder="Fecha de nacimiento">
+		<button>Añadir</button>
+	</form>
+	
+	<form action="clientes/modificar">
+		<input name="id" placeholder="Id">
+		<input name="nombre" placeholder="Nombre">
+		<input name="nif" placeholder="NIF">
+		<input name="telefono" placeholder="Teléfono">
+		<input name="email" placeholder="Email">
+		<input name="fechaNacimiento" placeholder="Fecha de nacimiento">
+		<button>Modificar</button>
+	</form>
+	
+	<form action="clientes/borrar">
+		<input name="id" placeholder="Id">
+		<button>Borrar</button>
+	</form>
+</body>
+</html>
