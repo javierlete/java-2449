@@ -18,7 +18,23 @@
 		<input name="email" value="${cliente.email}">
 		<input name="fechaNacimiento" value="${cliente.fechaNacimiento}">
 		
-		<button>Aceptar</button>
+		<button>
+			<c:choose>
+				<c:when test="${cliente != null}">
+					Modificar
+				</c:when>
+				<c:otherwise>
+					Añadir
+				</c:otherwise>
+			</c:choose>
+			<%-- <c:if test="${cliente != null}">
+				Modificar
+			</c:if>
+			
+			<c:if test="${cliente == null}">
+				Añadir
+			</c:if> --%>
+		</button>
 	</form>
 </body>
 </html>

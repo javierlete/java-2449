@@ -25,9 +25,11 @@ public class ClienteServlet extends HttpServlet {
 
 		String paramId = request.getParameter("id");
 
-		Long id = Long.parseLong(paramId);
+		if (paramId != null) {
+			Long id = Long.parseLong(paramId);
 
-		request.setAttribute("cliente", dao.obtenerPorId(id));
+			request.setAttribute("cliente", dao.obtenerPorId(id));
+		}
 
 		request.getRequestDispatcher("cliente.jsp").forward(request, response);
 	}
@@ -45,18 +47,26 @@ public class ClienteServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String paramFechaNacimiento = request.getParameter("fechaNacimiento");
 
-		Long id = Long.parseLong(paramId);
+		Long id = null;
+
+		if (paramId.trim().length() > 0) {
+			id = Long.parseLong(paramId);
+		}
 
 		LocalDate fechaNacimiento = null;
 
-		if (paramFechaNacimiento != null) {
+		if (paramFechaNacimiento.trim().length() > 0) {
 			fechaNacimiento = LocalDate.parse(paramFechaNacimiento);
 		}
 
 		Cliente cliente = new Cliente(id, nombre, nif, telefono, email, fechaNacimiento);
 
-		dao.modificar(cliente);
-		
+		if (id != null) {
+			dao.modificar(cliente);
+		} else {
+			dao.insertar(cliente);
+		}
+
 		response.sendRedirect("clientes");
 	}
 
