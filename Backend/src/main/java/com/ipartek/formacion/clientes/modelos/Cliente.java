@@ -3,6 +3,8 @@ package com.ipartek.formacion.clientes.modelos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Cliente {
 	private Long id;
@@ -11,6 +13,8 @@ public class Cliente {
 	private String telefono;
 	private String email;
 	private LocalDate fechaNacimiento;
+	
+	private Map<String, String> errores = new HashMap<>();
 
 	public Cliente(Long id, String nombre, String nif, String telefono, String email, LocalDate fechaNacimiento) {
 		setId(id);
@@ -47,6 +51,10 @@ public class Cliente {
 	}
 
 	public void setNombre(String nombre) {
+		if(nombre == null || nombre.trim().length() == 0) {
+			errores.put("nombre", "El nombre es obligatorio rellenarlo");
+		}
+
 		this.nombre = nombre;
 	}
 
@@ -55,6 +63,10 @@ public class Cliente {
 	}
 
 	public void setNif(String nif) {
+		if(nif == null || !nif.matches("[XYZ\\d]\\d{7}[A-Z]")) {
+			errores.put("nif", "El NIF debe tener el formato adecuado y es obligatorio");
+		}
+		
 		this.nif = nif;
 	}
 
@@ -99,6 +111,14 @@ public class Cliente {
 		setFechaNacimiento(LocalDate.parse(texto));
 	}
 
+	public Map<String, String> getErrores() {
+		return errores;
+	}
+
+	public boolean isValido() {
+		return errores.size() == 0;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, fechaNacimiento, id, nif, nombre, telefono);

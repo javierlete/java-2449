@@ -72,6 +72,13 @@ public class ClienteServlet extends HttpServlet {
 
 		Cliente cliente = new Cliente(id, nombre, nif, telefono, email, fechaNacimiento);
 
+		if(!cliente.isValido()) {
+			request.setAttribute("cliente", cliente);
+			request.getRequestDispatcher("cliente.jsp").forward(request, response);
+
+			return;
+		}
+		
 		if (id != null) {
 			dao.modificar(cliente);
 		} else {
