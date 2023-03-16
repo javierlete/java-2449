@@ -18,5 +18,9 @@
 			</li>
 		</c:forEach>
 	</ul>
+	
+	<p>
+		<a href="cliente">Añadir nuevo cliente</a>
+	</p>
 </body>
 </html>
