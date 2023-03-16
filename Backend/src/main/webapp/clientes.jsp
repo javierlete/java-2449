@@ -12,7 +12,10 @@
 
 	<ul>
 		<c:forEach items="${clientes}" var="c">
-			<li><a href="cliente?id=${c.id}">${c.nombre}</a></li>
+			<li>
+				<a href="cliente?id=${c.id}">${c.nombre}</a>
+				<a href="cliente?borrarId=${c.id}">X</a>
+			</li>
 		</c:forEach>
 	</ul>
 </body>

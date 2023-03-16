@@ -24,7 +24,18 @@ public class ClienteServlet extends HttpServlet {
 		DaoCliente dao = new DaoClienteSQLite(sqliteDb);
 
 		String paramId = request.getParameter("id");
-
+		String paramBorrarId = request.getParameter("borrarId");
+		
+		if(paramBorrarId != null) {
+			Long id = Long.parseLong(paramBorrarId);
+			
+			dao.borrar(id);
+			
+			response.sendRedirect("clientes");
+			
+			return;
+		}
+		
 		if (paramId != null) {
 			Long id = Long.parseLong(paramId);
 
