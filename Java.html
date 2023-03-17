@@ -1116,8 +1116,8 @@
 		<ul class="subexp">
 	<li class="col" id="FMID_1316309550FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">HttpServlet</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_1543145186FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">doGet()</div></li>
-	<li class="basic" id="FMID_503099551FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">doPost()</div></li>
+	<li class="basic" id="FMID_1543145186FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">doGet(HttpServletRequest request, HttpServletResponse response)</div></li>
+	<li class="basic" id="FMID_503099551FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">doPost(HttpServletRequest request, HttpServletResponse response)</div></li>
 	<li class="basic" id="FMID_1803678540FM"><div class="nodecontent" style="color:#000000;font-size:83%;">...</div></li></ul></li>
 	<li class="basic" id="FMID_1402386696FM"><div class="nodecontent" style="color:#000000;font-size:83%;">service()</div></li></ul></li>
 	<li class="col" id="FMID_1280486390FM"><div class="nodecontent" style="color:#000000;font-size:83%;">ServletRequest</div>
@@ -1126,7 +1126,9 @@
 		<ul class="subexp">
 	<li class="col" id="FMID_910557243FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">request</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_1356363109FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">getParameter("PARAM")</div></li>
+	<li class="basic" id="FMID_1356363109FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">String getParameter("PARAM")</div></li>
+	<li class="basic" id="FMID_1908089880FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">void setAttribute(CLAVE, VALOR)</div></li>
+	<li class="basic" id="FMID_939963337FM"><div class="nodecontent" style="color:#000000;font-size:83%;"> VALOR getAttribute(CLAVE)</div></li>
 	<li class="col" id="FMID_404309239FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">getRequestDispatcher("URL").forward(request, response)</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_966143619FM"><div class="nodecontent" style="color:#000000;font-size:83%;">new java.util.Date()</div></li></ul></li></ul></li></ul></li></ul></li>
@@ -1156,18 +1158,23 @@
 	<li class="basic" id="FMID_1868434363FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Ejecución</div></li></ul></li>
 	<li class="col" id="FMID_369134238FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Directivas</div>
 		<ul class="subexp">
-	<li class="col" id="FMID_30744858FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;%@</div>
+	<li class="col" id="FMID_30744858FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;%@</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1110148238FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">page</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_1507744898FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">import</div></li></ul></li></ul></li></ul></li>
-	<li class="col" id="FMID_342286281FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Scriptlets</div>
+	<li class="basic" id="FMID_1507744898FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">import</div></li></ul></li>
+	<li class="col" id="FMID_371356985FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">taglib</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_50897911FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;%= new java.util.Date() %&gt;</div></li>
+	<li class="col" id="FMID_1988173295FM"><div class="nodecontent" style="color:#000000;font-size:83%;">uri</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_712598095FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">jakarta.taglibs.core</div></li></ul></li>
+	<li class="col" id="FMID_95612868FM"><div class="nodecontent" style="color:#000000;font-size:83%;">prefix</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1810873740FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">c</div></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="col" id="FMID_342286281FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Scriptlets</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_50897911FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;%= new java.util.Date() %&gt;</div></li>
 	<li class="basic" id="FMID_1429881010FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;% for(int i = 0; i &lt; 10; i++) { %&gt;</div></li></ul></li>
-	<li class="col" id="FMID_1027105191FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Expression Language</div>
-		<ul class="subexp">
-	<li class="basic" id="FMID_1511064584FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">${i}</div></li></ul></li>
 	<li class="col" id="FMID_1627950029FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Ámbitos</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_137863177FM"><div class="nodecontent" style="color:#000000;font-size:83%;">page</div></li>
@@ -1182,6 +1189,22 @@
 	<li class="basic" id="FMID_994269621FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Jakarta</div></li>
 	<li class="basic" id="FMID_936234535FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Expression</div></li>
 	<li class="basic" id="FMID_1476218654FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Language</div></li></ul></li>
+	<li class="col" id="FMID_1510393098FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">${}</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_82225815FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">variable</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_504595922FM"><div class="nodecontent" style="color:#000000;font-size:83%;">page</div></li>
+	<li class="basic" id="FMID_1934680561FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">request</div></li>
+	<li class="basic" id="FMID_1825611704FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">session</div></li>
+	<li class="basic" id="FMID_421742604FM"><div class="nodecontent" style="color:#000000;font-size:83%;">application</div></li></ul></li>
+	<li class="basic" id="FMID_1010801251FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">requestScope.variable</div></li>
+	<li class="basic" id="FMID_434690080FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">sessionScope.variable</div></li>
+	<li class="col" id="FMID_768163148FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">${variable.propiedad}</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_564990775FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;%=variable.getPropiedad()%&gt;</div></li></ul></li>
+	<li class="col" id="FMID_865179717FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">${variable.mapa.clave}</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_493573646FM"><div class="nodecontent" style="color:#000000;font-size:83%;">&lt;%=variable.getMapa().get(clave)%&gt;</div></li></ul></li></ul></li>
 	<li class="basic" id="FMID_525528449FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;"><a href="https://jakarta.ee/specifications/expression-language/5.0/jakarta-expression-language-spec-5.0.html">https://jakarta.ee/specifications/expression-language/5.0/jakarta-expression-language-spec-5.0.html</a> <a href="https://jakarta.ee/specifications/expression-language/5.0/jakarta-expression-language-spec-5.0.html"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="col" id="FMID_872433008FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">JSTL</div>
 		<ul class="subexp">
