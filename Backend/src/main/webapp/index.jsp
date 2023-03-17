@@ -7,8 +7,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Listado clientes</title>
+<style>
+	.claro {
+		background-color: white;
+		color: black;
+	}
+	
+	.oscuro {
+		background-color: black;
+		color: white;
+	}
+</style>
 </head>
-<body>
+<body class="${cookie.tema.value}">
+	<nav>
+		<ul>
+			<li><a href="login">Login</a></li>
+			<li><a href="logout">Logout</a></li>
+			<li><a href="clientes">Clientes</a></li>
+		</ul>
+	</nav>
+	<p>Usuario: ${usuario}</p>
+	<form action="cookies" method="post">
+		<p>Tema: ${cookie.tema.value}</p>
+		<select name="tema">
+			<option value="claro">Claro</option>
+			<option value="oscuro">Oscuro</option>
+		</select>
+		<button>Aceptar</button>
+	</form>
 
 	<ul>
 		<c:forEach items="${clientes}" var="c">
