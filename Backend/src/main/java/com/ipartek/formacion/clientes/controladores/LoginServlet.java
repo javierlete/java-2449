@@ -1,5 +1,7 @@
 package com.ipartek.formacion.clientes.controladores;
 
+import static com.ipartek.formacion.clientes.controladores.Globales.*;
+
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
@@ -14,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		request.getRequestDispatcher(VISTAS + "/login.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,9 +28,9 @@ public class LoginServlet extends HttpServlet {
 			
 			session.setAttribute("usuario", user);
 			
-			response.sendRedirect("index");
+			response.sendRedirect(request.getContextPath() + "/index");
 		} else {
-			response.sendRedirect("login");
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 	}
 
