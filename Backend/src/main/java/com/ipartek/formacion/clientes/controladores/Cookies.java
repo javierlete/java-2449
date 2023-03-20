@@ -15,8 +15,10 @@ public class Cookies extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String tema = request.getParameter("tema");
-
+		String interruptor = request.getParameter("tema");
+		
+		String tema = interruptor == null ? "claro" : "oscuro";
+		
 		Cookie c = new Cookie("tema", tema);
 		c.setMaxAge(60 * 60 * 24 * 30 * 2);
 
