@@ -4,17 +4,17 @@
 	<c:forEach items="${clientes}" var="c">
 		<li class="col">
 			<div class="card h-100 text-bg-${tema}">
-				<img src="#" class="card-img-top" alt="">
-				<div class="card-body">
+				<img src="https://picsum.photos/300/200?${c.id}" class="card-img-top" alt="">
+				<div class="card-body d-flex flex-column">
 					<h5 class="card-title">${c.nombre}</h5>
 					<p class="card-text">${c.nif}</p>
 					<p class="card-text">${c.email}</p>
 					<p class="card-text">${c.telefono}</p>
-					<a class="btn btn-primary w-100" href="cliente?id=${c.id}">Ver
+					<a class="mt-auto btn btn-primary w-100" href="cliente?id=${c.id}">Ver
 						detalles</a>
 				</div>
 				<div class="card-footer">
-					<small class="text-muted">${c.fechaNacimiento}</small>
+					<small class="text-muted">${c.fechaNacimiento == null ? 'No se sabe' : c.fechaNacimiento}</small>
 				</div>
 			</div>
 		</li>
