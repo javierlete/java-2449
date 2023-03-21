@@ -10,8 +10,29 @@
 <title>Aplicación</title>
 <base href="${pageContext.request.contextPath}/">
 
+<%-- BOOTSTRAP --%>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+
+<%-- DATATABLES --%>
+<link rel="stylesheet" href="css/dataTables.bootstrap5.min.css">
+
+<%-- BOOTSTRAP --%>
 <script src="js/bootstrap.bundle.min.js"></script>
+
+<%-- DATATABLES --%>
+<script src="js/jquery-3.6.4.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+	$(function() {
+		$('table').DataTable({
+		    language: {
+		        url: 'json/es-ES.json'
+		    }
+		});
+	});
+</script>
 
 <style>
 .claro {
