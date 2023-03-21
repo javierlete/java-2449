@@ -4,6 +4,9 @@ import static com.ipartek.formacion.clientes.controladores.Globales.*;
 
 import java.io.IOException;
 
+import com.ipartek.formacion.clientes.modelos.Alerta;
+import com.ipartek.formacion.clientes.modelos.Usuario;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,19 +26,29 @@ public class LoginServlet extends HttpServlet {
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
 		
-		if(usuarioValido(user, password)) {
+		Usuario usuario = new Usuario(user, password, null);
+		
+		if(usuarioValido(usuario)) {
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("usuario", user);
+			session.setAttribute("usuario", usuario);
 			
 			response.sendRedirect(request.getContextPath() + "/index");
 		} else {
-			response.sendRedirect(request.getContextPath() + "/login");
+			request.setAttribute("usuario", usuario);
+			request.setAttribute("alerta", new Alerta("Usuario o contraseña incorrectos", "danger"));
+			
+			request.getRequestDispatcher(VISTAS + "/login.jsp").forward(request, response);
 		}
 	}
 
-	private boolean usuarioValido(String user, String password) {
-		return "javier".equals(user) && "lete".equals(password);
+	private boolean usuarioValido(Usuario usuario) {
+		if("javier".equals(usuario.getIdentificativo()) && "lete".equals(usuario.getPassword())) {
+			usuario.setNombre("Javier Lete");
+			return true;
+		}
+		
+		return false;
 	}
 
 }

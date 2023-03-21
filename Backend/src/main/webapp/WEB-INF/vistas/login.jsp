@@ -5,7 +5,7 @@
 		<label for="user" class="col-sm-3 col-form-label">Usuario</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control text-bg-${tema}" id="user"
-				name="user">
+				name="user" value="${usuario.identificativo}">
 		</div>
 	</div>
 	<div class="row mb-3">
