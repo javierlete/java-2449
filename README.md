@@ -35,3 +35,8 @@ CSS Grid Garden: https://cssgridgarden.com/#es
 Flex: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 Grid: https://css-tricks.com/snippets/css/complete-guide-grid/
+
+# Accesibilidad
+
+Video de programador ciego: https://www.youtube.com/watch?v=Iw4vXFDniZs
+
