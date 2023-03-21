@@ -5,6 +5,7 @@ import static com.ipartek.formacion.clientes.controladores.Globales.*;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.ipartek.formacion.clientes.modelos.Alerta;
 import com.ipartek.formacion.clientes.modelos.Cliente;
 
 import jakarta.servlet.ServletException;
@@ -66,6 +67,8 @@ public class ClienteServlet extends HttpServlet {
 
 		if(!cliente.isValido()) {
 			request.setAttribute("cliente", cliente);
+			request.setAttribute("alerta", new Alerta("Revisa los datos del formulario", "danger"));
+
 			request.getRequestDispatcher(VISTAS + "/admin/cliente.jsp").forward(request, response);
 
 			return;

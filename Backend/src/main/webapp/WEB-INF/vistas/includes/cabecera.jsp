@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +26,18 @@
 </style>
 </head>
 
-<c:set var="tema" value="${cookie.tema.value == 'oscuro' ? 'dark' : 'light'}"></c:set>
-<c:set var="temaInverso" value="${cookie.tema.value == 'oscuro' ? 'light' : 'dark'}"></c:set>
-<c:set var="boton" value="${cookie.tema.value == 'oscuro' ? 'btn btn-outline' : 'btn btn'}"></c:set>
+<c:set var="tema"
+	value="${cookie.tema.value == 'oscuro' ? 'dark' : 'light'}"></c:set>
+<c:set var="temaInverso"
+	value="${cookie.tema.value == 'oscuro' ? 'light' : 'dark'}"></c:set>
+<c:set var="boton"
+	value="${cookie.tema.value == 'oscuro' ? 'btn btn-outline' : 'btn btn'}"></c:set>
 
 <body class="text-bg-${tema}">
 
 
-	<nav class="navbar navbar-expand-lg navbar-${temaInverso} bg-${temaInverso}">
+	<nav
+		class="navbar navbar-expand-lg navbar-${temaInverso} bg-${temaInverso}">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Aplicación</a>
 			<button class="navbar-toggler" type="button"
@@ -74,4 +78,12 @@
 			</div>
 		</div>
 	</nav>
+	<c:if test="${alerta != null}">
+		<div class="alert alert-${alerta.nivel} alert-dismissible fade show"
+			role="alert">
+			${alerta.texto}
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
+		</div>
+	</c:if>
 	<main class="container py-3">

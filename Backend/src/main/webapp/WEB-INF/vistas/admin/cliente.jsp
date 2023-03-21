@@ -1,14 +1,5 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<c:if test="${cliente != null && !cliente.valido}">
-	<div class="alert alert-danger alert-dismissible fade show"
-		role="alert">
-		Hay errores en el formulario
-		<button type="button" class="btn-close" data-bs-dismiss="alert"
-			aria-label="Close"></button>
-	</div>
-</c:if>
-
 <form action="admin/cliente" method="post">
 	<div class="row mb-3">
 		<label for="id" class="col-sm-2 col-form-label">Id</label>
