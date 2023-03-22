@@ -4,6 +4,7 @@
 	<thead class="table-${temaInverso}">
 		<tr>
 			<th>Id</th>
+			<th>Imagen</th>
 			<th>Nombre</th>
 			<th>NIF</th>
 			<th>Teléfono</th>
@@ -16,6 +17,9 @@
 		<c:forEach items="${clientes}" var="c">
 			<tr>
 				<th>${c.id}</th>
+				<td>
+					<img width="50" src="imgs/${c.id}.jpg" alt="">
+				</td>
 				<td>${c.nombre}</td>
 				<td>${c.nif}</td>
 				<td>${c.telefono}</td>

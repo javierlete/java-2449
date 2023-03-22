@@ -4,7 +4,7 @@
 	<c:forEach items="${clientes}" var="c">
 		<li class="col">
 			<div class="card h-100 text-bg-${tema}">
-				<img src="https://picsum.photos/300/200?${c.id}" class="card-img-top" alt="">
+				<img src="imgs/${c.id}.jpg" class="card-img-top" alt="">
 				<div class="card-body d-flex flex-column">
 					<h5 class="card-title">${c.nombre}</h5>
 					<p class="card-text">${c.nif}</p>

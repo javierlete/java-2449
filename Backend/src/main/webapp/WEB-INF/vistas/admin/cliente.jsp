@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-<form action="admin/cliente" method="post">
+<form action="admin/cliente" method="post" enctype="multipart/form-data">
 	<div class="row mb-3">
 		<label for="id" class="col-sm-2 col-form-label">Id</label>
 		<div class="col-sm-10">
@@ -8,6 +8,14 @@
 				class="form-control text-bg-${tema} ${cliente.errores.id != null ? 'is-invalid' : '' }"
 				id="id" name="id" value="${cliente.id}">
 			<div class="invalid-feedback">${cliente.errores.id}</div>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+		<div class="col-sm-10">
+			<input type="file" accept="image/jpeg"
+				class="form-control text-bg-${tema}"
+				id="imagen" name="imagen">
 		</div>
 	</div>
 	<div class="row mb-3">
