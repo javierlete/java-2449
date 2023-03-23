@@ -3,21 +3,21 @@
 <table class="table table-hover table-bordered table-striped">
 	<thead class="table-${temaInverso}">
 		<tr>
-			<th>Id</th>
-			<th>Imagen</th>
+			<th class="text-end">Id</th>
+			<th class="text-center">Imagen</th>
 			<th>Nombre</th>
 			<th>NIF</th>
 			<th>Teléfono</th>
 			<th>Email</th>
 			<th>Fecha Nacimiento</th>
-			<th>OPCIONES</th>
+			<th class="text-center">OPCIONES</th>
 		</tr>
 	</thead>
 	<tbody class="table-${tema}">
 		<c:forEach items="${clientes}" var="c">
 			<tr>
-				<th>${c.id}</th>
-				<td>
+				<th class="text-end">${c.id}</th>
+				<td class="text-center">
 					<img width="50" src="imgs/${c.id}.jpg" alt="">
 				</td>
 				<td>${c.nombre}</td>
@@ -25,7 +25,7 @@
 				<td>${c.telefono}</td>
 				<td>${c.email}</td>
 				<td><tags:localDate date="${c.fechaNacimiento}"/></td>
-				<td><a class="btn-sm ${boton}-primary"
+				<td class="text-center"><a class="btn-sm ${boton}-primary"
 					href="admin/cliente?id=${c.id}">Editar</a> <a
 					class="btn-sm ${boton}-danger" href="admin/cliente?borrarId=${c.id}">Borrar</a>
 				</td>
@@ -40,8 +40,8 @@
 			<td></td>
 			<td></td>
 			<td></td>
-
-			<td><a class="btn btn-sm btn-primary" href="admin/cliente">Añadir
+			<td></td>
+			<td class="text-center"><a class="btn btn-sm btn-primary" href="admin/cliente">Añadir
 					nuevo cliente</a></td>
 		</tr>
 
