@@ -10,7 +10,7 @@
 					<p class="card-text">${c.nif}</p>
 					<p class="card-text">${c.email}</p>
 					<p class="card-text">${c.telefono}</p>
-					<a class="mt-auto btn btn-primary w-100" href="cliente?id=${c.id}">Ver
+					<a class="mt-auto btn btn-primary w-100" href="detalle?id=${c.id}">Ver
 						detalles</a>
 				</div>
 				<div class="card-footer">
