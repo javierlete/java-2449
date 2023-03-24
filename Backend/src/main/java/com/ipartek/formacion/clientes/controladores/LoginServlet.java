@@ -17,38 +17,47 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher(VISTAS + "/login.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String user = request.getParameter("user");
 		String password = request.getParameter("password");
-		
-		Usuario usuario = new Usuario(user, password, null);
-		
-		if(usuarioValido(usuario)) {
+
+		Usuario usuario = new Usuario(null, user, password, null, null);
+
+		Usuario usuarioValidado = usuarioValido(usuario);
+
+		if (usuarioValidado != null) {
 			HttpSession session = request.getSession();
-			
-			session.setAttribute("usuario", usuario);
-			
+
+			session.setAttribute("usuario", usuarioValidado);
+
 			response.sendRedirect(request.getContextPath() + "/index");
 		} else {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("alerta", new Alerta("Usuario o contraseña incorrectos", "danger"));
-			
+
 			request.getRequestDispatcher(VISTAS + "/login.jsp").forward(request, response);
 		}
 	}
 
-	private boolean usuarioValido(Usuario usuario) {
-		if("javier".equals(usuario.getIdentificativo()) && "lete".equals(usuario.getPassword())) {
-			usuario.setNombre("Javier Lete");
-			return true;
+	private Usuario usuarioValido(Usuario usuarioIntroducido) {
+		Usuario usuarioEncontrado = DAO_USUARIO.obtenerPorIdentificativo(usuarioIntroducido.getIdentificativo());
+
+		if (usuarioEncontrado == null) {
+			return null;
 		}
-		
-		return false;
+
+		if (!usuarioIntroducido.getPassword().equals(usuarioEncontrado.getPassword())) {
+			return null;
+		}
+
+		return usuarioEncontrado;
 	}
 
 }

@@ -32,8 +32,8 @@ public class LoginFilter extends HttpFilter implements Filter {
 
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-		if(usuario == null) {
-			request.setAttribute("alerta", new Alerta("Debes estar autenticado para entrar en administración", "danger"));
+		if(usuario == null || !usuario.getRol().getNombre().equals("ADMIN")) {
+			request.setAttribute("alerta", new Alerta("Debes estar autenticado y ser administrador para entrar en administración", "danger"));
 			request.getRequestDispatcher(VISTAS + "/login.jsp").forward(req, res);
 			
 			return;

@@ -27,9 +27,9 @@
 <script>
 	$(function() {
 		$('table').DataTable({
-		    language: {
-		        url: 'json/es-ES.json'
-		    }
+			language : {
+				url : 'json/es-ES.json'
+			}
 		});
 	});
 </script>
@@ -78,8 +78,12 @@
 							<li class="nav-item"><a class="nav-link" href="login">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="admin/clientes">Administración</a></li>
+							<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
+								<li class="nav-item"><a class="nav-link"
+									href="admin/clientes">Administración</a></li>
+							</c:if>
 							<li class="nav-item navbar-text px-3">${sessionScope.usuario.nombre}</li>
+							<li class="nav-item navbar-text px-3">${sessionScope.usuario.rol.nombre}</li>
 							<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 						</c:otherwise>
 					</c:choose>
