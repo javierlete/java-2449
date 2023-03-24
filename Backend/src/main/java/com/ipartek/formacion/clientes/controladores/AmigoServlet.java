@@ -3,7 +3,6 @@ package com.ipartek.formacion.clientes.controladores;
 import static com.ipartek.formacion.clientes.controladores.Globales.*;
 
 import java.io.IOException;
-import java.util.Map;
 
 import com.ipartek.formacion.clientes.modelos.Cliente;
 import com.ipartek.formacion.clientes.modelos.ListaAmigos;
@@ -25,7 +24,7 @@ public class AmigoServlet extends HttpServlet {
 		
 		ListaAmigos listaAmigos = (ListaAmigos) request.getSession().getAttribute("listaAmigos");
 		
-		Cliente amigo = DAO.obtenerPorId(id);
+		Cliente amigo = DAO_CLIENTES.obtenerPorId(id);
 		
 		listaAmigos.getAmigos().put(amigo.getId(), amigo);
 		

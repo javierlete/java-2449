@@ -19,7 +19,7 @@ public class DetalleServlet extends HttpServlet {
 		
 		Long id = Long.parseLong(paramId);
 		
-		request.setAttribute("cliente", DAO.obtenerPorId(id));
+		request.setAttribute("cliente", DAO_CLIENTES.obtenerPorId(id));
 		
 		request.getRequestDispatcher(VISTAS + "/detalle.jsp").forward(request, response);
 	}

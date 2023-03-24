@@ -32,7 +32,7 @@ public class ClienteServlet extends HttpServlet {
 		if (paramBorrarId != null) {
 			Long id = Long.parseLong(paramBorrarId);
 
-			DAO.borrar(id);
+			DAO_CLIENTES.borrar(id);
 
 			response.sendRedirect(request.getContextPath() + "/admin/clientes");
 
@@ -42,7 +42,7 @@ public class ClienteServlet extends HttpServlet {
 		if (paramId != null) {
 			Long id = Long.parseLong(paramId);
 
-			request.setAttribute("cliente", DAO.obtenerPorId(id));
+			request.setAttribute("cliente", DAO_CLIENTES.obtenerPorId(id));
 		}
 
 		request.getRequestDispatcher(VISTAS + "/admin/cliente.jsp").forward(request, response);
@@ -83,10 +83,10 @@ public class ClienteServlet extends HttpServlet {
 		String estado;
 		
 		if (id != null) {
-			DAO.modificar(cliente);
+			DAO_CLIENTES.modificar(cliente);
 			estado = "modificado";
 		} else {
-			DAO.insertar(cliente);
+			DAO_CLIENTES.insertar(cliente);
 			estado = "añadido";
 		}
 
