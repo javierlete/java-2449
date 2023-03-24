@@ -3,15 +3,27 @@ package com.ipartek.formacion.clientes.modelos;
 import java.util.Objects;
 
 public class Usuario {
+	private Long id;
 	private String identificativo;
 	private String password;
 	private String nombre;
 
-	public Usuario(String identificativo, String password, String nombre) {
-		super();
-		this.identificativo = identificativo;
-		this.password = password;
-		this.nombre = nombre;
+	private Rol rol = new Rol(null, "USUARIO", null);
+	
+	public Usuario(Long id, String identificativo, String password, String nombre, Rol rol) {
+		setId(id);
+		setIdentificativo(identificativo);
+		setPassword(password);
+		setNombre(nombre);
+		setRol(rol);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getIdentificativo() {
@@ -38,9 +50,17 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(identificativo, nombre, password);
+		return Objects.hash(id, identificativo, nombre, password);
 	}
 
 	@Override
@@ -52,13 +72,14 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		return Objects.equals(identificativo, other.identificativo) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(password, other.password);
+		return Objects.equals(id, other.id) && Objects.equals(identificativo, other.identificativo)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(password, other.password);
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [identificativo=" + identificativo + ", password=" + password + ", nombre=" + nombre + "]";
+		return "Usuario [id=" + id + ", identificativo=" + identificativo + ", password=" + password + ", nombre="
+				+ nombre + "]";
 	}
 
 }
