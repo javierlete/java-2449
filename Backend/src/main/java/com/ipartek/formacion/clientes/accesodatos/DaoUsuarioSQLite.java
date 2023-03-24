@@ -37,9 +37,9 @@ public class DaoUsuarioSQLite implements DaoUsuario {
 			JOIN roles r ON u.rol_id = r.id
 			WHERE u.identificativo=?;
 			""";
-	private static final String SQL_INSERT = "INSERT INTO usuarios (identificativo, password, nombre) VALUES (?,?,?)";
+	private static final String SQL_INSERT = "INSERT INTO usuarios (identificativo, password, nombre, rol_id) VALUES (?,?,?,?)";
 
-	private static final String SQL_UPDATE = "UPDATE usuarios SET identificativo=?,password=?,nombre=? WHERE id=?";
+	private static final String SQL_UPDATE = "UPDATE usuarios SET identificativo=?,password=?,nombre=?,rol_id=? WHERE id=?";
 
 	private static final String SQL_DELETE = "DELETE FROM usuarios WHERE id=?";
 
@@ -126,6 +126,7 @@ public class DaoUsuarioSQLite implements DaoUsuario {
 			pst.setString(1, usuario.getIdentificativo());
 			pst.setString(2, usuario.getPassword());
 			pst.setString(3, usuario.getNombre());
+			pst.setLong(4, usuario.getRol().getId());
 
 			int modificados = pst.executeUpdate();
 
@@ -154,8 +155,9 @@ public class DaoUsuarioSQLite implements DaoUsuario {
 			pst.setString(1, usuario.getIdentificativo());
 			pst.setString(2, usuario.getPassword());
 			pst.setString(3, usuario.getNombre());
+			pst.setLong(4, usuario.getRol().getId());
 			
-			pst.setLong(4, usuario.getId());
+			pst.setLong(5, usuario.getId());
 
 			int modificados = pst.executeUpdate();
 

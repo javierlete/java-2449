@@ -2,6 +2,8 @@ package com.ipartek.formacion.clientes.controladores;
 
 import com.ipartek.formacion.clientes.accesodatos.DaoCliente;
 import com.ipartek.formacion.clientes.accesodatos.DaoClienteSQLite;
+import com.ipartek.formacion.clientes.accesodatos.DaoRol;
+import com.ipartek.formacion.clientes.accesodatos.DaoRolSQLite;
 import com.ipartek.formacion.clientes.accesodatos.DaoUsuario;
 import com.ipartek.formacion.clientes.accesodatos.DaoUsuarioSQLite;
 
@@ -11,4 +13,5 @@ public class Globales {
 	public static final String VISTAS = "/WEB-INF/vistas";
 	public static final DaoCliente DAO_CLIENTES = new DaoClienteSQLite(SQLITE_DB);
 	public static final DaoUsuario DAO_USUARIO = new DaoUsuarioSQLite(SQLITE_DB);
+	public static final DaoRol DAO_ROL = new DaoRolSQLite(SQLITE_DB);
 }

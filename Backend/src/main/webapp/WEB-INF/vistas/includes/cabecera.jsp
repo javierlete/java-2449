@@ -79,8 +79,13 @@
 						</c:when>
 						<c:otherwise>
 							<c:if test="${sessionScope.usuario.rol.nombre == 'ADMIN'}">
-								<li class="nav-item"><a class="nav-link"
-									href="admin/clientes">Administración</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> Administración </a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="admin/clientes">Clientes</a></li>
+									<li><a class="dropdown-item" href="admin/usuarios">Usuarios</a></li>
+								</ul></li>
 							</c:if>
 							<li class="nav-item navbar-text px-3">${sessionScope.usuario.nombre}</li>
 							<li class="nav-item navbar-text px-3">${sessionScope.usuario.rol.nombre}</li>
