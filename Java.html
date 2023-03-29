@@ -2207,8 +2207,15 @@
 	<li class="basic" id="FMID_437365776FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Data</div></li>
 	<li class="basic" id="FMID_1665269069FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Management</div></li>
 	<li class="basic" id="FMID_1181140761FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Language</div></li></ul></li>
+	<li class="col" id="FMID_411970588FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Comentarios</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_218321544FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">-- Comentario de línea</div></li>
+	<li class="basic" id="FMID_556892767FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">/* Comentario<br />Multilínea */</div></li></ul></li>
 	<li class="col" id="FMID_572926000FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">SELECT</div>
 		<ul class="subexp">
+	<li class="col" id="FMID_20791154FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Expresiones</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_835000951FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">CASE WHEN expresion1 THEN expresion2 WHEN expresion3 THEN expresion4 ELSE expresion5 END AS nombre</div></li></ul></li>
 	<li class="col" id="FMID_506235162FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Funciones</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_351801319FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Agregado</div>
@@ -2222,7 +2229,8 @@
 	<li class="basic" id="FMID_1468171056FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">MIN(campo)</div></li>
 	<li class="basic" id="FMID_1541234227FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">MAX(campo)</div></li>
 	<li class="basic" id="FMID_1477599492FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">AVG(campo)</div></li>
-	<li class="basic" id="FMID_225704207FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">SUM(campo)</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_225704207FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">SUM(campo)</div></li></ul></li>
+	<li class="basic" id="FMID_1107285959FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">COALESCE(campo, valorSiNulo)</div></li></ul></li>
 	<li class="col" id="FMID_979401497FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">DISTINCT</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_1020989718FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Registros diferentes</div></li>
@@ -2262,7 +2270,16 @@
 	<li class="basic" id="FMID_1919268203FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Un caracter cualquiera</div></li></ul></li></ul></li>
 	<li class="col" id="FMID_1229185582FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">campo IN ('ADMIN', 'USER')</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_509473094FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">campo = 'ADMIN' OR campo = 'USER'</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_509473094FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">campo = 'ADMIN' OR campo = 'USER'</div></li></ul></li>
+	<li class="basic" id="FMID_1736263386FM"><div class="nodecontent" style="color:#000000;font-size:83%;">EXISTS</div></li>
+	<li class="basic" id="FMID_1712641981FM"><div class="nodecontent" style="color:#000000;font-size:83%;">campo operador ANY</div></li>
+	<li class="basic" id="FMID_1812859280FM"><div class="nodecontent" style="color:#000000;font-size:83%;">campo operador ALL</div></li></ul></li>
+	<li class="col" id="FMID_1073158904FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">GROUP BY</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_463794792FM"><div class="nodecontent" style="color:#000000;font-size:83%;">campos</div></li></ul></li>
+	<li class="col" id="FMID_406293353FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">HAVING</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_296622112FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Como where, pero después de la agregación</div></li></ul></li>
 	<li class="col" id="FMID_917306320FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">ORDER BY</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1192155511FM"><div class="nodecontent" style="color:#000000;font-size:83%;">campo</div>
@@ -2272,7 +2289,10 @@
 	<li class="col" id="FMID_1429256360FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">LIMIT</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_1758938814FM"><div class="nodecontent" style="color:#000000;font-size:83%;">numero_registros</div></li>
-	<li class="basic" id="FMID_1648644367FM"><div class="nodecontent" style="color:#000000;font-size:83%;">registro_inicial, numero_registros</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_1648644367FM"><div class="nodecontent" style="color:#000000;font-size:83%;">registro_inicial, numero_registros</div></li></ul></li>
+	<li class="col" id="FMID_20714823FM"><div class="nodecontent" style="color:#000000;font-size:83%;">UNION</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1849008185FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Une filas con otra SELECT</div></li></ul></li></ul></li>
 	<li class="col" id="FMID_1479513865FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">INSERT</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1586061341FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">INTO</div>

@@ -40,3 +40,8 @@ Grid: https://css-tricks.com/snippets/css/complete-guide-grid/
 
 Video de programador ciego: https://www.youtube.com/watch?v=Iw4vXFDniZs
 
+# SQL
+
+Manual y ejercicios de SQL: http://biblioteca2.ucab.edu.ve/anexos/biblioteca/marc/texto/AAU4531.pdf
+Ejercicios SQL: https://asanzdiego.github.io/curso-nivelacion-bigdata-2017/ejercicios/ejercicios-SQL-definicion-datos-solucion.pdf
+
