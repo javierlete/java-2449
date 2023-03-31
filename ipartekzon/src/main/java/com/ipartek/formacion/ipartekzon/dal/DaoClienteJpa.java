@@ -17,7 +17,7 @@ public class DaoClienteJpa implements DaoCliente {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		
-		List<Cliente> clientes = em.createQuery("from Clientes", Cliente.class).getResultList();
+		List<Cliente> clientes = em.createQuery("from Cliente", Cliente.class).getResultList();
 		
 		em.getTransaction().commit();
 		em.close();
