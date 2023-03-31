@@ -8,6 +8,12 @@ public class ClienteNegocioImpl implements ClienteNegocio {
 
 	private DaoCliente dao = new DaoClienteJpa();
 	
+	public ClienteNegocioImpl() {
+		dao.insertar(Cliente.builder().nombre("Javier").nif("12345678Z").build());
+		dao.insertar(Cliente.builder().nombre("Pepe").nif("87654321A").build());
+		dao.insertar(Cliente.builder().nombre("Pedro").nif("14253647A").build());
+	}
+	
 	@Override
 	public Iterable<Cliente> listado() {
 		return dao.obtenerTodos();
