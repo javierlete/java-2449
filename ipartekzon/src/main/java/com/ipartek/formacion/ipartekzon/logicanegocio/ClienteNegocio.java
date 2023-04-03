@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ipartekzon.logicanegocio;
 
+import java.util.Map;
+
 import com.ipartek.formacion.ipartekzon.modelos.Cliente;
 
 public interface ClienteNegocio {
@@ -10,4 +12,6 @@ public interface ClienteNegocio {
 	Cliente nuevo(Cliente cliente);
 	Cliente cambiar(Cliente cliente);
 	void eliminar(Long id);
+	
+	Map<String, String> obtenerUltimosErrores();
 }
