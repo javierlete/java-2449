@@ -8,8 +8,8 @@
 	<thead class="table-dark">
 		<tr>
 			<th>Id</th>
-			<th>Nif</th>
 			<th>Nombre</th>
+			<th>Nif</th>
 			<th>OPCIONES</th>
 		</tr>
 	</thead>
