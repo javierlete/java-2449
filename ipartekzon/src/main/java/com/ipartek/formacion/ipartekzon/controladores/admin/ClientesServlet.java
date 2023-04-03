@@ -20,7 +20,12 @@ public class ClientesServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		String paramId = request.getParameter("id");
+		Long id = Long.parseLong(paramId);
+		
+		CLIENTE_NEGOCIO.eliminar(id);
+		
+		response.sendRedirect(request.getContextPath() + "/admin/clientes");
 	}
 
 }

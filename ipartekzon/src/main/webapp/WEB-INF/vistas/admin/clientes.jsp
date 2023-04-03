@@ -21,8 +21,11 @@
 				<td>${c.nombre}</td>
 				<td>${c.nif}</td>
 				<td>
-					<a class="btn btn-sm btn-primary" href="#">Editar</a>
-					<a class="btn btn-sm btn-danger" href="#">Borrar</a>
+					<form action="admin/clientes" method="post">
+						<a class="btn btn-sm btn-primary" href="#">Editar</a>
+						<input type="hidden" name="id" value="${c.id}">
+						<button class="btn btn-sm btn-danger">Borrar</button>
+					</form>
 				</td>
 			</tr>
 		</c:forEach>
