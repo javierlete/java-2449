@@ -29,7 +29,7 @@ public class Cliente {
 
 	@NotNull
 	@Column(columnDefinition = "CHAR(9)")
-	@Pattern(regexp = "[XYZ\\d]\\d{7}[A-Z]")
+	@Pattern(regexp = "^[XYZ\\d]\\d{7}[A-Z]$")
 	private String nif;
 
 	@NotNull
