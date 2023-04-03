@@ -13,11 +13,11 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-icons.css">
 
-<script src="js/bootstrap.bundle.min.css"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Ipartekzon</a>
 			<button class="navbar-toggler" type="button"
