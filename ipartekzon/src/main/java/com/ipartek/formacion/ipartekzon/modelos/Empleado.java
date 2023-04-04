@@ -18,7 +18,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "empleados")
@@ -47,6 +49,8 @@ public class Empleado {
 	@Min(0)
 	private BigDecimal sueldo;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "empleado")
 	private Set<Vacacion> vacaciones;
 }
