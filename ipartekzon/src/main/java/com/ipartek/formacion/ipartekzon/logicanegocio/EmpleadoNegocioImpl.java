@@ -1,10 +1,12 @@
 package com.ipartek.formacion.ipartekzon.logicanegocio;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.ipartek.formacion.ipartekzon.dal.DaoEmpleado;
 import com.ipartek.formacion.ipartekzon.dal.DaoEmpleadoJpa;
 import com.ipartek.formacion.ipartekzon.modelos.Empleado;
+import com.ipartek.formacion.ipartekzon.modelos.Vacacion;
 
 public class EmpleadoNegocioImpl implements EmpleadoNegocio {
 	private DaoEmpleado dao = new DaoEmpleadoJpa();
@@ -31,6 +33,13 @@ public class EmpleadoNegocioImpl implements EmpleadoNegocio {
 		e2.setJefe(e1);
 		e3.setJefe(e2);
 		e4.setJefe(e1);
+		
+		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 1)).empleado(e1).build());
+		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 2)).empleado(e1).build());
+		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 3)).empleado(e1).build());
+		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 4)).empleado(e1).build());
+		
+		dao.modificar(e1);
 		
 		dao.modificar(e2);
 		dao.modificar(e3);

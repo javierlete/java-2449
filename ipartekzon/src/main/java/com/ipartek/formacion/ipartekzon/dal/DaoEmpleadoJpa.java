@@ -1,6 +1,7 @@
 package com.ipartek.formacion.ipartekzon.dal;
 
 import com.ipartek.formacion.ipartekzon.modelos.Empleado;
+import com.ipartek.formacion.ipartekzon.modelos.Vacacion;
 
 public class DaoEmpleadoJpa implements DaoEmpleado, DaoJpa {
 	@Override
@@ -10,7 +11,9 @@ public class DaoEmpleadoJpa implements DaoEmpleado, DaoJpa {
 
 	@Override
 	public Empleado obtenerPorId(Long id) {
-		return llamarJpa(em -> em.find(Empleado.class, id));
+		// return llamarJpa(em -> em.find(Empleado.class, id));
+		return llamarJpa(
+				em -> em.createQuery("from Empleado e left join fetch e.vacaciones where e.id = " + id, Empleado.class).getSingleResult());
 	}
 
 	@Override
@@ -29,5 +32,10 @@ public class DaoEmpleadoJpa implements DaoEmpleado, DaoJpa {
 			em.remove(em.find(Empleado.class, id));
 			return null;
 		});
+	}
+
+	@Override
+	public void insertarVacacion(Vacacion vacacion) {
+		llamarJpa(em -> em.merge(vacacion));
 	}
 }
