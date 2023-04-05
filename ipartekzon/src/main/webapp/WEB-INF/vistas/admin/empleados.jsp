@@ -29,6 +29,17 @@
 			</tr>
 		</c:forEach>
 	</tbody>
+	<tfoot class="table-dark">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<a class="btn btn-sm btn-primary"
+					href="admin/empleado">Añadir</a>
+			</td>
 </table>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

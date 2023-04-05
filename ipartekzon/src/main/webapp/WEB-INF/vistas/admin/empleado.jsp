@@ -31,6 +31,15 @@
 		</div>
 	</div>
 	<div class="row mb-3">
+		<label for="sueldo" class="col-sm-2 col-form-label">Sueldo</label>
+		<div class="col-sm-10">
+			<input type="text"
+				class="form-control ${errores.sueldo != null ? 'is-invalid': ''}"
+				id="sueldo" name="sueldo" value="${empleado.sueldo}">
+			<div class="invalid-feedback">El sueldo es obligatorio debe ser 0 o más</div>
+		</div>
+	</div>
+	<div class="row mb-3">
 		<label for="jefe" class="col-sm-2 col-form-label">Jefe</label>
 		<div class="col-sm-10">
 			<select class="form-select" id="jefe" name="jefe">
@@ -44,7 +53,8 @@
 
 	<div class="row mb-3">
 		<div class="offset-sm-2 col-sm">
-			<button class="btn btn-primary">Aceptar</button>
+			<button class="btn btn-primary" name="aceptar">Aceptar</button>
+			<button class="btn btn-danger" name="borrar">Borrar</button>
 		</div>
 	</div>
 

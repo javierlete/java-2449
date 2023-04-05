@@ -2,14 +2,23 @@ package com.ipartek.formacion.ipartekzon.logicanegocio;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import com.ipartek.formacion.ipartekzon.dal.DaoEmpleado;
 import com.ipartek.formacion.ipartekzon.dal.DaoEmpleadoJpa;
 import com.ipartek.formacion.ipartekzon.modelos.Empleado;
 import com.ipartek.formacion.ipartekzon.modelos.Vacacion;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
 public class EmpleadoNegocioImpl implements EmpleadoNegocio {
 	private DaoEmpleado dao = new DaoEmpleadoJpa();
+	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	private Map<String, String> errores = new HashMap<>();
 	
 	public EmpleadoNegocioImpl() 
 	{
@@ -54,6 +63,46 @@ public class EmpleadoNegocioImpl implements EmpleadoNegocio {
 	@Override
 	public Empleado obtenerPorId(Long id) {
 		return dao.obtenerPorId(id);
+	}
+
+	@Override
+	public Empleado cambiar(Empleado empleado) {
+		if(validar(empleado).size() > 0) {
+			return null;
+		}
+
+		return dao.modificar(empleado);
+	}
+
+	@Override
+	public Empleado nuevo(Empleado empleado) {
+		if(validar(empleado).size() > 0) {
+			return null;
+		}
+		
+		return dao.insertar(empleado);
+	}
+
+	@Override
+	public Map<String, String> obtenerUltimosErrores() {
+		return errores;
+	}
+
+	@Override
+	public void eliminar(Long id) {
+		dao.borrar(id);
+	}
+	
+	private Set<ConstraintViolation<Empleado>> validar(Empleado empleado) {
+		Set<ConstraintViolation<Empleado>> validaciones = validator.validate(empleado);
+		
+		errores.clear();
+		
+		for(ConstraintViolation<Empleado> validacion: validaciones) {
+			errores.put(validacion.getPropertyPath().toString(), validacion.getMessage());
+		}
+		
+		return validaciones;
 	}
 	
 	

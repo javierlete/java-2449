@@ -3,6 +3,9 @@ package com.ipartek.formacion.ipartekzon.modelos;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,7 +54,9 @@ public class Empleado {
 	
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy = "empleado")
+	@OneToMany(mappedBy = "empleado", orphanRemoval = true)
+	// Esta característica es exclusiva de Hibernate y no existe en JPA
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Set<Vacacion> vacaciones;
 	
 	@ToString.Exclude
