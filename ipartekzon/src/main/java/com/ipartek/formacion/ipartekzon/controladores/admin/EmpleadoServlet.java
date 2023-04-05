@@ -5,6 +5,7 @@ import static com.ipartek.formacion.ipartekzon.controladores.configuraciones.Glo
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import com.ipartek.formacion.ipartekzon.modelos.Alerta;
 import com.ipartek.formacion.ipartekzon.modelos.Empleado;
 
 import jakarta.servlet.ServletException;
@@ -37,33 +38,42 @@ public class EmpleadoServlet extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String paramSueldo = request.getParameter("sueldo");
 		String paramJefe = request.getParameter("jefe");
-		
+
 		String borrar = request.getParameter("borrar");
 
 		Long id = null;
 
 		if (paramId.trim().length() > 0) {
 			id = Long.parseLong(paramId);
-			
-			if(borrar != null) {
-				EMPLEADO_NEGOCIO.eliminar(id);
-				
-				mostrarListado(request, response);
-				
-				return;
+
+			if (borrar != null) {
+				try {
+					EMPLEADO_NEGOCIO.eliminar(id);
+
+					mostrarListado(request, response);
+
+					return;
+				} catch (Exception e) {
+					request.setAttribute("alerta", new Alerta("danger", "No se ha podido borrar el empleado probablemente porque tiene empleados a su cargo"));
+					request.setAttribute("empleado", EMPLEADO_NEGOCIO.obtenerPorId(id));
+					
+					mostrarFormulario(request, response);
+					
+					return;
+				}
 			}
-		} else if(borrar != null) {
+		} else if (borrar != null) {
 			mostrarFormulario(request, response);
-			
+
 			return;
 		}
-		
+
 		BigDecimal sueldo = null;
-		
-		if(paramSueldo.trim().length() > 0) {
+
+		if (paramSueldo.trim().length() > 0) {
 			sueldo = new BigDecimal(paramSueldo);
 		}
-		
+
 		Empleado jefe = null;
 
 		if (paramJefe.trim().length() > 0) {
@@ -71,31 +81,31 @@ public class EmpleadoServlet extends HttpServlet {
 		}
 
 		Empleado empleado = Empleado.builder().id(id).nombre(nombre).nif(nif).sueldo(sueldo).jefe(jefe).build();
-		
+
 		Empleado empleadoResultado;
-		
-		if(id != null) {
+
+		if (id != null) {
 			empleadoResultado = EMPLEADO_NEGOCIO.cambiar(empleado);
 		} else {
 			empleadoResultado = EMPLEADO_NEGOCIO.nuevo(empleado);
 		}
-		
-		if(empleadoResultado == null) {
+
+		if (empleadoResultado == null) {
 			request.setAttribute("errores", EMPLEADO_NEGOCIO.obtenerUltimosErrores());
 			request.setAttribute("empleado", empleado);
 
 			mostrarFormulario(request, response);
-			
+
 			return;
 		}
-		
+
 		mostrarListado(request, response);
 	}
 
 	private void mostrarFormulario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("empleados", EMPLEADO_NEGOCIO.listado());
-		
+
 		request.getRequestDispatcher(VISTAS + "/admin/empleado.jsp").forward(request, response);
 	}
 
