@@ -36,3 +36,11 @@
 			</div>
 		</div>
 	</nav>
+	<c:if test="${alerta != null}">
+		<div class="alert alert-${alerta.nivel} alert-dismissible fade show"
+			role="alert">
+			${alerta.mensaje}
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
+		</div>
+	</c:if>
