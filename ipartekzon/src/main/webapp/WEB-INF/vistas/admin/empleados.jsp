@@ -25,7 +25,7 @@
 				<td>${e.sueldo}</td>
 				<td>${e.jefe.nombre}</td>
 				<td><a class="btn btn-sm btn-primary"
-					href="admin/empleado?id=${e.id}">Vacaciones</a>
+					href="admin/empleado?id=${e.id}">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

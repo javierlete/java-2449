@@ -13,7 +13,7 @@ public class DaoEmpleadoJpa implements DaoEmpleado, DaoJpa {
 	public Empleado obtenerPorId(Long id) {
 		// return llamarJpa(em -> em.find(Empleado.class, id));
 		return llamarJpa(
-				em -> em.createQuery("from Empleado e left join fetch e.vacaciones where e.id = " + id, Empleado.class).getSingleResult());
+				em -> em.createQuery("from Empleado e left join fetch e.vacaciones left join fetch e.empleados where e.id = " + id, Empleado.class).getSingleResult());
 	}
 
 	@Override

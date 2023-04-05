@@ -53,4 +53,10 @@ public class Empleado {
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "empleado")
 	private Set<Vacacion> vacaciones;
+	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	@OneToMany(mappedBy = "jefe")
+	private Set<Empleado> empleados;
+	
 }

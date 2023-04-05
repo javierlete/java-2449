@@ -37,26 +37,49 @@
 		</div>
 	</div>
 
-	<table class="table table-hover table-striped table-bordered">
-		<thead class="table-dark">
-			<tr>
-				<th>Id</th>
-				<th>Fecha</th>
-				<th>OPCIONES</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<c:forEach items="${empleado.vacaciones}" var="v">
+	<div class="row mb-3 align-items-start">
+		<table class="col-sm table table-hover table-striped table-bordered">
+			<caption>Vacaciones</caption>
+			<thead class="table-dark">
 				<tr>
-					<th>${v.id}</th>
-					<td>${v.fecha}</td>
-					<td><a class="btn btn-sm btn-danger"
-						href="#">Borrar</a>
+					<th>Id</th>
+					<th>Fecha</th>
+					<th>OPCIONES</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+
+			<tbody>
+				<c:forEach items="${empleado.vacaciones}" var="v">
+					<tr>
+						<th>${v.id}</th>
+						<td>${v.fecha}</td>
+						<td><a class="btn btn-sm btn-danger" href="#">Borrar</a>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		
+		<table class="col-sm table table-hover table-striped table-bordered">
+			<caption>Empleados a su cargo</caption>
+			<thead class="table-dark">
+				<tr>
+					<th>Id</th>
+					<th>Empleado</th>
+					<th>OPCIONES</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:forEach items="${empleado.empleados}" var="e">
+					<tr>
+						<th>${e.id}</th>
+						<td>${e.nombre}</td>
+						<td><a class="btn btn-sm btn-danger" href="#">Borrar</a>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </form>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
