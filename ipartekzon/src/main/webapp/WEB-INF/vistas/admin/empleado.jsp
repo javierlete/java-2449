@@ -36,7 +36,8 @@
 			<input type="text"
 				class="form-control ${errores.sueldo != null ? 'is-invalid': ''}"
 				id="sueldo" name="sueldo" value="${empleado.sueldo}">
-			<div class="invalid-feedback">El sueldo es obligatorio debe ser 0 o más</div>
+			<div class="invalid-feedback">El sueldo es obligatorio debe ser
+				0 o más</div>
 		</div>
 	</div>
 	<div class="row mb-3">
@@ -45,7 +46,8 @@
 			<select class="form-select" id="jefe" name="jefe">
 				<option value="0">NO TIENE JEFE</option>
 				<c:forEach items="${empleados}" var="e">
-					<option value="${e.id}" ${e.id == empleado.jefe.id ? 'selected' : ''}>${e.nombre}</option>
+					<option value="${e.id}"
+						${e.id == empleado.jefe.id ? 'selected' : ''}>${e.nombre}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -57,9 +59,11 @@
 			<button class="btn btn-danger" name="borrar">Borrar</button>
 		</div>
 	</div>
+</form>
 
-	<div class="row mb-3 align-items-start">
-		<table class="col-sm table table-hover table-striped table-bordered">
+<div class="row mb-3 align-items-start">
+	<form class="col-sm" action="admin/empleado/vacaciones" method="post">
+		<table class="table table-hover table-striped table-bordered">
 			<caption>Vacaciones</caption>
 			<thead class="table-dark">
 				<tr>
@@ -70,6 +74,14 @@
 			</thead>
 
 			<tbody>
+				<tr>
+					<th></th>
+					<td>
+						<input type="hidden" name="id-empleado" value="${empleado.id}">
+						<input class="form-control" type="date" name="fecha">
+					</td>
+					<td><button class="btn btn-sm btn-primary">Añadir</button>
+				</tr>
 				<c:forEach items="${empleado.vacaciones}" var="v">
 					<tr>
 						<th>${v.id}</th>
@@ -79,28 +91,29 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
-		<table class="col-sm table table-hover table-striped table-bordered">
-			<caption>Empleados a su cargo</caption>
-			<thead class="table-dark">
-				<tr>
-					<th>Id</th>
-					<th>Empleado</th>
-					<th>OPCIONES</th>
-				</tr>
-			</thead>
+	</form>
 
-			<tbody>
-				<c:forEach items="${empleado.empleados}" var="e">
-					<tr>
-						<th>${e.id}</th>
-						<td>${e.nombre}</td>
-						<td><a class="btn btn-sm btn-danger" href="#">Borrar</a>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-</form>
+	<table class="col-sm table table-hover table-striped table-bordered">
+		<caption>Empleados a su cargo</caption>
+		<thead class="table-dark">
+			<tr>
+				<th>Id</th>
+				<th>Empleado</th>
+				<th>OPCIONES</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<c:forEach items="${empleado.empleados}" var="e">
+				<tr>
+					<th>${e.id}</th>
+					<td>${e.nombre}</td>
+					<td><a class="btn btn-sm btn-danger" href="#">Borrar</a>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
