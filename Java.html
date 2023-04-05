@@ -1885,12 +1885,39 @@
 	<li class="basic" id="FMID_552593130FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Table(name = "nombre_tabla")</div></li>
 	<li class="basic" id="FMID_746286437FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Id</div></li>
 	<li class="basic" id="FMID_1134944779FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@GeneratedValue(strategy = GenerationType.IDENTITY)</div></li>
-	<li class="basic" id="FMID_1408940330FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Column(columnDefinition = "CHAR(9)")</div></li></ul></li>
+	<li class="basic" id="FMID_1408940330FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Column(columnDefinition = "CHAR(9)")</div></li>
+	<li class="basic" id="FMID_1207355447FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ManyToOne</div></li>
+	<li class="basic" id="FMID_523808565FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@OneToMany(mappedBy)</div></li></ul></li>
 	<li class="col" id="FMID_866639691FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Bean Validation</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_865646913FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@NotNull</div></li>
 	<li class="basic" id="FMID_1690706075FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Size(min = "", max = "")</div></li>
-	<li class="basic" id="FMID_363985222FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Pattern(regexp = "")</div></li></ul></li></ul></li></ul></li></ul></li></ul></li>
+	<li class="basic" id="FMID_363985222FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Pattern(regexp = "")</div></li>
+	<li class="basic" id="FMID_1262522558FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Min</div></li>
+	<li class="basic" id="FMID_251683438FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Past</div></li>
+	<li class="basic" id="FMID_895783796FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@PastOrPresent</div></li>
+	<li class="basic" id="FMID_1741391039FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@FutureOrPresent</div></li>
+	<li class="basic" id="FMID_1495574365FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Future</div></li></ul></li></ul></li>
+	<li class="col" id="FMID_235210950FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Empleado</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1566025626FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Empleado jefe</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_11405807FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ManyToOne</div></li></ul></li>
+	<li class="col" id="FMID_94343860FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Set&lt;Empleado&gt; empleados</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_199228677FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ToString.Exclude</div></li>
+	<li class="basic" id="FMID_261815869FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@EqualsAndHashCode.Exclude</div></li>
+	<li class="basic" id="FMID_195112516FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@OneToMany(mappedBy = "jefe")</div> <a onclick="getVisibleParents('FMID_1566025626FM')" href="#FMID_1566025626FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul></li>
+	<li class="col" id="FMID_245874838FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Set&lt;Vacacion&gt; vacaciones</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1447897876FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ToString.Exclude</div></li>
+	<li class="basic" id="FMID_592864988FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@EqualsAndHashCode.Exclude</div></li>
+	<li class="basic" id="FMID_1326779180FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@OneToMany(mappedBy = "empleado")</div> <a onclick="getVisibleParents('FMID_1244379755FM')" href="#FMID_1244379755FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul></li></ul></li>
+	<li class="col" id="FMID_1075873170FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Vacacion</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1244379755FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Empleado empleado</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1062700097FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ManyToOne</div></li></ul></li></ul></li></ul></li></ul></li></ul></li>
 	<li class="exp" id="FMID_1534443241FM"><div class="nodecontent" style="color:#000000;font-size:83%;">UML</div>
 		<ul class="sub">
 	<li class="exp" id="FMID_744818003FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Siglas</div>
