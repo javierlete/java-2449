@@ -24,6 +24,8 @@ public class EmpleadoServlet extends HttpServlet {
 			request.setAttribute("empleado", EMPLEADO_NEGOCIO.obtenerPorId(id));
 		}
 
+		request.setAttribute("empleados", EMPLEADO_NEGOCIO.listado());
+		
 		request.getRequestDispatcher(VISTAS + "/admin/empleado.jsp").forward(request, response);
 	}
 }

@@ -30,6 +30,17 @@
 				menos debe tener 2 caracteres</div>
 		</div>
 	</div>
+	<div class="row mb-3">
+		<label for="jefe" class="col-sm-2 col-form-label">Jefe</label>
+		<div class="col-sm-10">
+			<select class="form-select" id="jefe" name="jefe">
+				<option value="0">NO TIENE JEFE</option>
+				<c:forEach items="${empleados}" var="e">
+					<option value="${e.id}" ${e.id == empleado.jefe.id ? 'selected' : ''}>${e.nombre}</option>
+				</c:forEach>
+			</select>
+		</div>
+	</div>
 
 	<div class="row mb-3">
 		<div class="offset-sm-2 col-sm">
