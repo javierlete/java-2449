@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+</head>
+<body>
+
+	<ul>
+		<li th:each="c: ${clientes}" th:text="${c.nif + ' ' + c.nombre}">Datos de cliente</li>
+	</ul>
+
+</body>
+</html>
