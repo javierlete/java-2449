@@ -15,7 +15,9 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "clientes")
@@ -37,6 +39,8 @@ public class Cliente {
 	@Size(min = 2, max = 50)
 	private String nombre;
 
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "cliente")
 	private Set<Factura> facturas;
 }
