@@ -104,6 +104,14 @@ public class EmpleadoNegocioImpl implements EmpleadoNegocio {
 		
 		return validaciones;
 	}
+
+	@Override
+	public void agregarVacacion(Long idEmpleado, LocalDate fecha) {
+		Empleado empleado = Empleado.builder().id(idEmpleado).build();
+		Vacacion vacacion = Vacacion.builder().empleado(empleado).fecha(fecha).build();
+		
+		dao.insertarVacacion(vacacion);
+	}
 	
 	
 }
