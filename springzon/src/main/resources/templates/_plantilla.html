@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:fragment="plantilla(titulo, contenido)"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:replace="${titulo}">Springzon</title>
+</head>
+<body>
+	<header>
+		<h1>Springzon</h1>
+	</header>
+	<div th:replace="${contenido}">
+		<p>###CONTENIDO###</p>
+	</div>
+	<footer> &copy;2023 Javier Lete </footer>
+</body>
+</html>

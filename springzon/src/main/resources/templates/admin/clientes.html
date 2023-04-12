@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
 <title>Clientes</title>
 </head>
 <body>
+	<main>
+		<ul>
+			<li th:each="c: ${clientes}"><span
+				th:text="${c.nif + ' ' + c.nombre}">Datos de cliente</span> <a
+				th:href="@{/admin/clientes/editar/{id}(id=${c.id})}" href="#">Editar</a>
+				<a th:href="@{/admin/clientes/borrar/{id}(id=${c.id})}" href="#">Borrar</a>
+			</li>
+		</ul>
 
-	<ul>
-		<li th:each="c: ${clientes}">
-			<span th:text="${c.nif + ' ' + c.nombre}">Datos de cliente</span>
-			<a th:href="@{/admin/clientes/editar/{id}(id=${c.id})}" href="#">Editar</a>
-			<a th:href="@{/admin/clientes/borrar/{id}(id=${c.id})}" href="#">Borrar</a>
-		</li>
-	</ul>
-
-	<div>
-		<a th:href="@{/admin/clientes/anadir}" href="#">Añadir</a>
-	</div>
+		<div>
+			<a th:href="@{/admin/clientes/anadir}" href="#">Añadir</a>
+		</div>
+	</main>
 </body>
 </html>
