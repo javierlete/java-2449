@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cliente</title>
+</head>
+<body>
+
+	<h1>Cliente</h1>
+
+	<form th:action="@{/admin/clientes}" method="post" action="#"
+		th:object="${cliente}">
+		
+		<div>
+			<input placeholder="Id" th:field="*{id}">
+			<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error de id</span>
+		</div>
+		<div>
+			<input placeholder="NIF" th:field="*{nif}">
+			<span th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}">Error de NIF</span>
+		</div>
+		<div>
+			<input placeholder="Nombre" th:field="*{nombre}">
+			<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error de nombre</span>
+		</div>
+		<div>
+			<button>Guardar</button>
+		</div>
+	</form>
+</body>
+</html>
