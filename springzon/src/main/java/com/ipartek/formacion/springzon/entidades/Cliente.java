@@ -32,7 +32,7 @@ public class Cliente {
 
 	@NotNull
 	@Column(columnDefinition = "CHAR(9)")
-	@Pattern(regexp = "^[XYZ\\d]\\d{7}[A-Z]$")
+	@Pattern(regexp = "^[XYZ\\d]\\d{7}[A-Z]$", message = "debe tener el formato 11111111A")
 	private String nif;
 
 	@NotNull
