@@ -6,17 +6,37 @@
 </head>
 <body>
 	<main>
-		<ul>
-			<li th:each="c: ${clientes}"><span
-				th:text="${c.nif + ' ' + c.nombre}">Datos de cliente</span> <a
-				th:href="@{/admin/clientes/editar/{id}(id=${c.id})}" href="#">Editar</a>
-				<a th:href="@{/admin/clientes/borrar/{id}(id=${c.id})}" href="#">Borrar</a>
-			</li>
-		</ul>
-
-		<div>
-			<a th:href="@{/admin/clientes/anadir}" href="#">Añadir</a>
-		</div>
+		<table class="table table-hover table-bordered table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th>Id</th>
+					<th>NIF</th>
+					<th>Nombre</th>
+					<th>OPCIONES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente: ${clientes}" th:object="${cliente}">
+					<th th:text="*{id}">1</th>
+					<td th:text="*{nif}">12345678Z</td>
+					<td th:text="*{nombre}">El nombre</td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
+						<a class="btn btn-sm btn-danger"
+						th:href="@{/admin/clientes/borrar/{id}(id=*{id})}" href="#">Borrar</a>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot class="table-dark">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/admin/clientes/anadir}" href="#">Añadir</a></td>
+				</tr>
+			</tfoot>
+		</table>
 	</main>
 </body>
 </html>

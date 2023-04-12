@@ -11,23 +11,31 @@
 		<form th:action="@{/admin/clientes}" method="post" action="#"
 			th:object="${cliente}">
 
-			<div>
-				<input placeholder="Id" th:field="*{id}"> <span
-					th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error
-					de id</span>
+			<div class="row mb-3">
+				<label for="id" class="col-sm-2 col-form-label">Id</label>
+				<div class="col-sm">
+					<input type="number" readonly class="form-control" th:classappend="${#fields.hasErrors('id') ? 'is-invalid': ''}" th:field="*{id}">
+					<div class="invalid-feedback" th:errors="*{id}">Error de id</div>
+				</div>
 			</div>
-			<div>
-				<input placeholder="NIF" th:field="*{nif}"> <span
-					th:if="${#fields.hasErrors('nif')}" th:errors="*{nif}">Error
-					de NIF</span>
+			<div class="row mb-3">
+				<label for="nif" class="col-sm-2 col-form-label">NIF</label>
+				<div class="col-sm">
+					<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nif') ? 'is-invalid': ''}" th:field="*{nif}">
+					<div class="invalid-feedback" th:errors="*{nif}">Error de nif</div>
+				</div>
 			</div>
-			<div>
-				<input placeholder="Nombre" th:field="*{nombre}"> <span
-					th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
-					de nombre</span>
+			<div class="row mb-3">
+				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+				<div class="col-sm">
+					<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}" th:field="*{nombre}">
+					<div class="invalid-feedback" th:errors="*{nombre}">Error de nombre</div>
+				</div>
 			</div>
-			<div>
-				<button>Guardar</button>
+			<div class="row mb-3">
+				<div class="offset-sm-2 col-sm">
+					<button class="btn btn-primary">Guardar</button>
+				</div>
 			</div>
 		</form>
 	</main>
