@@ -5,6 +5,8 @@
 <head>
 <title th:replace="${titulo}">Springzon</title>
 <base th:href="@{/}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -35,10 +37,10 @@
 								th:href="@{/admin/clientes}">Clientes</a></li>
 							<li><a class="dropdown-item" href="#">Empleados</a></li>
 						</ul></li>
-					<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link" href="#"
-						th:href="@{/login}">Iniciar sesión</a></li>
-					<li sec:authorize="isAuthenticated()" class="navbar-text" sec:authentication="name">
-						###USUARIO###</li>
+					<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+						class="nav-link" href="#" th:href="@{/login}">Iniciar sesión</a></li>
+					<li sec:authorize="isAuthenticated()" class="navbar-text"
+						sec:authentication="name">###USUARIO###</li>
 					<li sec:authorize="isAuthenticated()" class="nav-item">
 						<form th:action="@{/logout}" method="post">
 							<button class="nav-link btn btn-link">Cerrar sesión</button>
