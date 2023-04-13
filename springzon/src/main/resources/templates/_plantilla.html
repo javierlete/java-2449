@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html th:fragment="plantilla(titulo, contenido)"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <title th:replace="${titulo}">Springzon</title>
 <base th:href="@{/}">
@@ -25,7 +26,7 @@
 						th:href="@{/}">Principal</a></li>
 				</ul>
 				<ul class="navbar-nav mb-lg-0">
-					<li class="nav-item dropdown"><a
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
 							Administración </a>
@@ -34,11 +35,13 @@
 								th:href="@{/admin/clientes}">Clientes</a></li>
 							<li><a class="dropdown-item" href="#">Empleados</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						th:href="@{/login}">Login</a></li>
-					<li class="nav-item">
+					<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link" href="#"
+						th:href="@{/login}">Iniciar sesión</a></li>
+					<li sec:authorize="isAuthenticated()" class="navbar-text" sec:authentication="name">
+						###USUARIO###</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item">
 						<form th:action="@{/logout}" method="post">
-							<button class="nav-link btn btn-link">Logout</button>
+							<button class="nav-link btn btn-link">Cerrar sesión</button>
 						</form>
 					</li>
 				</ul>
