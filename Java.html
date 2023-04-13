@@ -1267,7 +1267,10 @@
 		<ul class="subexp">
 	<li class="basic" id="FMID_1078244666FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Controller</div></li>
 	<li class="basic" id="FMID_240643880FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Service</div></li>
-	<li class="basic" id="FMID_133159509FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Repository</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_133159509FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Repository</div></li></ul></li>
+	<li class="col" id="FMID_411619876FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@Bean</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_411242764FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Ejecuta este método para obtener el objeto</div></li></ul></li></ul></li>
 	<li class="col" id="FMID_566750936FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Lo inyecta</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_435342485FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Parámetros de constructores</div></li>
@@ -1298,16 +1301,31 @@
 	<li class="basic" id="FMID_1604380318FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;"><a href="https://spring.io/guides/gs/accessing-data-mysql/">https://spring.io/guides/gs/accessing-data-mysql/</a> <a href="https://spring.io/guides/gs/accessing-data-mysql/"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="col" id="FMID_1859674440FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Thymeleaf</div>
 		<ul class="subexp">
+	<li class="basic" id="FMID_152140874FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;" /></li>
 	<li class="basic" id="FMID_741872248FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:each="dato: ${coleccion}"</div></li>
 	<li class="basic" id="FMID_1628024551FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:if="${booleano}"</div></li>
 	<li class="basic" id="FMID_1522588718FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:text="${dato}"</div></li>
 	<li class="basic" id="FMID_65383125FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:href="@{/ruta/de/controlador}</div></li>
 	<li class="basic" id="FMID_1461760279FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:object="${objeto}"</div></li>
 	<li class="basic" id="FMID_913106553FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">th:field="*{campo}"</div></li>
+	<li class="col" id="FMID_1384205195FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Seguridad</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_241225726FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">&lt;dependency&gt;<br />&lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;<br />&lt;artifactId&gt;thymeleaf-extras-springsecurity6&lt;/artifactId&gt;<br />&lt;/dependency&gt;</div></li>
+	<li class="basic" id="FMID_192143123FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;" /></li>
+	<li class="col" id="FMID_651150057FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">sec:authorize</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_121351954FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">isAuthenticated()</div></li>
+	<li class="basic" id="FMID_629745304FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">hasRole('ROLE_ADMIN')</div></li></ul></li>
+	<li class="col" id="FMID_466119872FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">sec:authentication</div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_805787390FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">name</div></li></ul></li>
+	<li class="basic" id="FMID_1131303592FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://www.thymeleaf.org/doc/articles/springsecurity.html"><a charset="utf-8" href="https://www.thymeleaf.org/doc/articles/springsecurity.html">Thymeleaf + Spring Security integration basics - Thymeleaf</a></a> <a href="https://www.thymeleaf.org/doc/articles/springsecurity.html"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="basic" id="FMID_1228311268FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;"><a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html">https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html</a> <a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="col" id="FMID_1262044411FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Security</div>
 		<ul class="subexp">
-	<li class="basic" id="FMID_478854176FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://spring.io/guides/gs/securing-web/">https://spring.io/guides/gs/securing-web/</a> <a href="https://spring.io/guides/gs/securing-web/"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
+	<li class="basic" id="FMID_367942233FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Reiniciar SpringBoot después de añadir dependencia</div></li>
+	<li class="basic" id="FMID_1738570583FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">user + Generated Password</div></li>
+	<li class="basic" id="FMID_478854176FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;"><a href="https://spring.io/guides/gs/securing-web/">https://spring.io/guides/gs/securing-web/</a> <a href="https://spring.io/guides/gs/securing-web/"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="basic" id="FMID_1205065207FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Lombok</div></li></ul></li>
 	<li class="basic" id="FMID_1969363177FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><a href="https://spring.io/guides">https://spring.io/guides</a> <a href="https://spring.io/guides"><img src="Java.html_files/ilink.png" alt="User Link" style="border-width:0" /></a></div></li></ul></li>
 	<li class="exp" id="FMID_266810709FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Editores</div>
