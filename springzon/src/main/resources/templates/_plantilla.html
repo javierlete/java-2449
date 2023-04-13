@@ -11,7 +11,8 @@
 	<nav
 		class="mb-3 navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Springzon <i class="bi bi-cart-fill"></i></a>
+			<a class="navbar-brand" href="#">Springzon <i
+				class="bi bi-cart-fill"></i></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -33,8 +34,13 @@
 								th:href="@{/admin/clientes}">Clientes</a></li>
 							<li><a class="dropdown-item" href="#">Empleados</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#" th:href="@{/login}">Login</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" th:href="@{/logout}">Logout</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						th:href="@{/login}">Login</a></li>
+					<li class="nav-item">
+						<form th:action="@{/logout}" method="post">
+							<button class="nav-link btn btn-link">Logout</button>
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>
