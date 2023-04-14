@@ -48,17 +48,15 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 //		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 3)).empleado(e1).build());
 //		dao.insertarVacacion(Vacacion.builder().fecha(LocalDate.of(2024, 1, 4)).empleado(e1).build());
 //		
-//		dao.modificar(e1);
-//		
-//		dao.modificar(e2);
-//		dao.modificar(e3);
-//		dao.modificar(e4);
-
+		repo.save(e1);
+		repo.save(e2);
+		repo.save(e3);
+		repo.save(e4);
 	}
 	
 	@Override
 	public Iterable<Empleado> listado() {
-		return repo.findAll();
+		return repo.obtenerEmpleadosConJefes();
 	}
 
 	@Override
@@ -92,6 +90,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		Vacacion vacacion = Vacacion.builder().empleado(empleado).fecha(fecha).build();
 		
 		repoVacacion.save(vacacion);
+	}
+
+	@Override
+	public Iterable<Empleado> recibirUltimos() {
+		return repo.obtenerUltimosEmpleados();
 	}
 	
 }

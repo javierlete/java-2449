@@ -13,4 +13,6 @@ public interface EmpleadoService {
 	Map<String, String> obtenerUltimosErrores();
 	void eliminar(Long id);
 	void agregarVacacion(Long idEmpleado, LocalDate fecha);
+	
+	Iterable<Empleado> recibirUltimos();
 }

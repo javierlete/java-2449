@@ -23,7 +23,7 @@
 					<td th:text="*{nif}">12345678Z</td>
 					<td th:text="*{nombre}">El nombre</td>
 					<td th:text="*{sueldo}">12345€</td>
-					<td>El JEFE</td>
+					<td th:text="*{jefe?.nombre}">El JEFE</td>
 					<td><a class="btn btn-sm btn-primary"
 						th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
 						<a class="btn btn-sm btn-danger"
