@@ -35,7 +35,8 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="#"
 								th:href="@{/admin/clientes}">Clientes</a></li>
-							<li><a class="dropdown-item" href="#">Empleados</a></li>
+							<li><a class="dropdown-item" href="#"
+								th:href="@{/admin/empleados}">Empleados</a></li>
 						</ul></li>
 					<li sec:authorize="!isAuthenticated()" class="nav-item"><a
 						class="nav-link" href="#" th:href="@{/login}">Iniciar sesión</a></li>
