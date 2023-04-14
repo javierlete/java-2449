@@ -13,7 +13,9 @@ CREATE TABLE authorities (
 
 CREATE UNIQUE INDEX ix_auth_username
   on authorities (username,authority);
-  
+
+-- https://bcrypt-generator.com/
+
 -- User user/pass
 INSERT INTO users (username, password, enabled)
   values ('javier',
