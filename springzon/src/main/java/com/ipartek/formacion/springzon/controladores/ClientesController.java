@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ipartek.formacion.springzon.entidades.Cliente;
 import com.ipartek.formacion.springzon.servicios.ClienteService;
 
+import jakarta.annotation.security.RolesAllowed;
+
 @Controller
+@RolesAllowed({"ADMIN"})
 @RequestMapping("/admin/clientes")
 public class ClientesController {
 	@Autowired
