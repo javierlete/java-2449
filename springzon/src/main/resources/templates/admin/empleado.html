@@ -2,34 +2,65 @@
 <html th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Cliente</title>
+<title>Empleado</title>
 </head>
 <body>
 	<main>
-		<h1>Cliente</h1>
+		<h1>Empleado</h1>
 
-		<form th:action="@{/admin/clientes}" method="post" action="#"
-			th:object="${cliente}">
+		<form th:action="@{/admin/empleados}" method="post" action="#"
+			th:object="${empleado}">
 
 			<div class="row mb-3">
 				<label for="id" class="col-sm-2 col-form-label">Id</label>
 				<div class="col-sm">
-					<input type="number" readonly class="form-control" th:classappend="${#fields.hasErrors('id') ? 'is-invalid': ''}" th:field="*{id}">
+					<input type="number" readonly class="form-control"
+						th:classappend="${#fields.hasErrors('id') ? 'is-invalid': ''}"
+						th:field="*{id}">
 					<div class="invalid-feedback" th:errors="*{id}">Error de id</div>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="nif" class="col-sm-2 col-form-label">NIF</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nif') ? 'is-invalid': ''}" th:field="*{nif}">
+					<input type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('nif') ? 'is-invalid': ''}"
+						th:field="*{nif}">
 					<div class="invalid-feedback" th:errors="*{nif}">Error de nif</div>
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
 				<div class="col-sm">
-					<input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}" th:field="*{nombre}">
-					<div class="invalid-feedback" th:errors="*{nombre}">Error de nombre</div>
+					<input type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}"
+						th:field="*{nombre}">
+					<div class="invalid-feedback" th:errors="*{nombre}">Error de
+						nombre</div>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label for="nombre" class="col-sm-2 col-form-label">Sueldo</label>
+				<div class="col-sm">
+					<input type="text" class="form-control"
+						th:classappend="${#fields.hasErrors('sueldo') ? 'is-invalid': ''}"
+						th:field="*{sueldo}">
+					<div class="invalid-feedback" th:errors="*{sueldo}">Error de
+						sueldo</div>
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<label for="jefe" class="col-sm-2 col-form-label">Jefe</label>
+				<div class="col-sm">
+					<select class="form-select"
+						th:classappend="${#fields.hasErrors('jefe') ? 'is-invalid': ''}"
+						th:field="*{jefe.id}">
+						<option th:each="jefe: ${jefes}" th:if="${empleado.id != jefe.id}"
+							th:value="${jefe.id}" th:text="${jefe.nombre}" value="1">###JEFAZO###</option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{sueldo}">Error de
+						sueldo</div>
 				</div>
 			</div>
 			<div class="row mb-3">

@@ -37,6 +37,8 @@ public class Empleado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Empleado jefe;
 	

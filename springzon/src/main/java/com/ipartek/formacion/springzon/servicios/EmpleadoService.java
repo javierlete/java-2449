@@ -7,6 +7,7 @@ import com.ipartek.formacion.springzon.entidades.Empleado;
 
 public interface EmpleadoService {
 	Iterable<Empleado> listado();
+	Iterable<Empleado> listadoConJefes();
 	Empleado obtenerPorId(Long id);
 	Empleado cambiar(Empleado empleado);
 	Empleado nuevo(Empleado empleado);

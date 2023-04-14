@@ -56,12 +56,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	
 	@Override
 	public Iterable<Empleado> listado() {
+		return repo.findAll();
+	}
+	
+	@Override
+	public Iterable<Empleado> listadoConJefes() {
 		return repo.obtenerEmpleadosConJefes();
 	}
 
 	@Override
 	public Empleado obtenerPorId(Long id) {
-		return repo.findById(id).orElse(null);
+		return repo.obtenerEmpleadoConJefePorId(id);
 	}
 
 	@Override

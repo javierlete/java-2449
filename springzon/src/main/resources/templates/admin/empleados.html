@@ -25,9 +25,9 @@
 					<td th:text="*{sueldo}">12345€</td>
 					<td th:text="*{jefe?.nombre}">El JEFE</td>
 					<td><a class="btn btn-sm btn-primary"
-						th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
+						th:href="@{/admin/empleados/editar/{id}(id=*{id})}" href="#">Editar</a>
 						<a class="btn btn-sm btn-danger"
-						th:href="@{/admin/clientes/borrar/{id}(id=*{id})}" href="#">Borrar</a>
+						th:href="@{/admin/empleados/borrar/{id}(id=*{id})}" href="#">Borrar</a>
 					</td>
 				</tr>
 			</tbody>
@@ -39,7 +39,7 @@
 					<td></td>
 					<td></td>
 					<td><a class="btn btn-sm btn-primary"
-						th:href="@{/admin/clientes/anadir}" href="#">Añadir</a></td>
+						th:href="@{/admin/empleados/anadir}" href="#">Añadir</a></td>
 				</tr>
 			</tfoot>
 		</table>
