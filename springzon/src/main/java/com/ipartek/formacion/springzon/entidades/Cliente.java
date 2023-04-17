@@ -2,6 +2,8 @@ package com.ipartek.formacion.springzon.entidades;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +41,7 @@ public class Cliente {
 	@Size(min = 2, max = 50)
 	private String nombre;
 
+	@JsonIgnore
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "cliente")
