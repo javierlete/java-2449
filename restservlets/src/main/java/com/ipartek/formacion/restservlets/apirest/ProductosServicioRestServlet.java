@@ -32,38 +32,51 @@ public class ProductosServicioRestServlet extends HttpServlet {
 
 			mapper.writeValue(response.getWriter(), productos);
 		} else {
-			Producto producto  = servicio.obtenerPorId(id);
-			
-			mapper.writeValue(response.getWriter(), producto);
+			Producto producto = servicio.obtenerPorId(id);
+
+			if (producto == null) {
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			} else {
+				mapper.writeValue(response.getWriter(), producto);
+			}
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Producto producto = mapper.readValue(request.getInputStream(), Producto.class);
-		
+
 		servicio.insertar(producto);
-		
+
+		response.setStatus(HttpServletResponse.SC_CREATED);
+
 		mapper.writeValue(response.getWriter(), producto);
 	}
-	
+
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Producto producto = mapper.readValue(request.getInputStream(), Producto.class);
-		
+
 		servicio.modificar(producto);
-		
+
 		mapper.writeValue(response.getWriter(), producto);
 	}
-	
+
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Long id = obtenerId(request);
+
+		if(id == null) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return;
+		}
 		
 		servicio.borrar(id);
+
+		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 
 	private Long obtenerId(HttpServletRequest request) {
