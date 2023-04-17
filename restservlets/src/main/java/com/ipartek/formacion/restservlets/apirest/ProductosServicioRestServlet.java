@@ -22,13 +22,58 @@ public class ProductosServicioRestServlet extends HttpServlet {
 	private ProductoServicio servicio = new ProductoServicioImpl();
 	private ObjectMapper mapper = JsonMapper.builder().findAndAddModules().build();
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Iterable<Producto> productos = servicio.obtenerTodos();
+		Long id = obtenerId(request);
 
-		mapper.writeValue(response.getWriter(), productos);
+		if (id == null) {
+			Iterable<Producto> productos = servicio.obtenerTodos();
 
-		response.getWriter().flush();
+			mapper.writeValue(response.getWriter(), productos);
+		} else {
+			Producto producto  = servicio.obtenerPorId(id);
+			
+			mapper.writeValue(response.getWriter(), producto);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Producto producto = mapper.readValue(request.getInputStream(), Producto.class);
+		
+		servicio.insertar(producto);
+		
+		mapper.writeValue(response.getWriter(), producto);
+	}
+	
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Producto producto = mapper.readValue(request.getInputStream(), Producto.class);
+		
+		servicio.modificar(producto);
+		
+		mapper.writeValue(response.getWriter(), producto);
+	}
+	
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = obtenerId(request);
+		
+		servicio.borrar(id);
+	}
+
+	private Long obtenerId(HttpServletRequest request) {
+		String path = request.getPathInfo();
+
+		if (path == null || path.trim().length() < 2) {
+			return null;
+		}
+
+		return Long.parseLong(path.substring(1));
 	}
 
 }
