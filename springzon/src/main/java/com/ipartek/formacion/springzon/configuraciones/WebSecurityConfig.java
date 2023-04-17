@@ -1,5 +1,7 @@
 package com.ipartek.formacion.springzon.configuraciones;
 
+import static org.springframework.security.config.Customizer.*;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,17 @@ public class WebSecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest().permitAll()
-			)
-			.formLogin((form) -> form
-				.loginPage("/login")
-				.permitAll()
-			)
-			.logout((logout) -> logout.permitAll());
+        http.cors(withDefaults())
+        		.csrf((csrf) -> csrf.ignoringRequestMatchers("/api/**"))
+                .authorizeHttpRequests((requests) -> requests
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .anyRequest().permitAll()
+                )
+                .formLogin((form) -> form
+                                .loginPage("/login")
+                                .permitAll()
+                )
+                .logout((logout) -> logout.permitAll());
 
 		return http.build();
 	}
