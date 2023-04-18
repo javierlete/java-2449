@@ -1,8 +1,38 @@
 const URL = 'http://localhost:8080/api/v1/clientes';
 
-window.addEventListener('DOMContentLoaded', async function() {
+let tabla;
+let formulario;
+
+window.addEventListener('DOMContentLoaded', function() {
 	refrescarTabla();
+	
+	tabla = document.querySelector('table');
+	formulario = document.querySelector('#formulario');
+	
+	mostrarTabla();
+
+	const anadir = document.querySelector('#anadir');
+	
+	anadir.addEventListener('click', mostrarFormulario);
+	
+	const guardar = document.querySelector('#guardar');
+	
+	guardar.addEventListener('click', function(e) {
+		e.preventDefault();
+		mostrarTabla();
+	});
+	
 });
+
+function mostrarTabla() {
+	tabla.style.display = 'table';
+	formulario.style.display = 'none';
+}
+
+function mostrarFormulario() {
+	tabla.style.display = 'none';
+	formulario.style.display = 'block';	
+}
 
 async function refrescarTabla() {
 	const respuesta = await fetch(URL);

@@ -53,38 +53,81 @@
 	</nav>
 	<div class="container">
 		<main>
-		<table class="table table-hover table-bordered table-striped">
-			<thead class="table-dark">
-				<tr>
-					<th>Id</th>
-					<th>NIF</th>
-					<th>Nombre</th>
-					<th>OPCIONES</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="cliente: ${clientes}" th:object="${cliente}">
-					<th th:text="*{id}">1</th>
-					<td th:text="*{nif}">12345678Z</td>
-					<td th:text="*{nombre}">El nombre</td>
-					<td><a class="btn btn-sm btn-primary"
-						th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
-						<a class="btn btn-sm btn-danger"
-						th:href="@{/admin/clientes/borrar/{id}(id=*{id})}" href="#">Borrar</a>
-					</td>
-				</tr>
-			</tbody>
-			<tfoot class="table-dark">
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td><a class="btn btn-sm btn-primary"
-						th:href="@{/admin/clientes/anadir}" href="#">Añadir</a></td>
-				</tr>
-			</tfoot>
-		</table>
-	</main>
+			<table class="table table-hover table-bordered table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>Id</th>
+						<th>NIF</th>
+						<th>Nombre</th>
+						<th>OPCIONES</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cliente: ${clientes}" th:object="${cliente}">
+						<th th:text="*{id}">1</th>
+						<td th:text="*{nif}">12345678Z</td>
+						<td th:text="*{nombre}">El nombre</td>
+						<td><a class="btn btn-sm btn-primary"
+							th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
+							<a class="btn btn-sm btn-danger"
+							th:href="@{/admin/clientes/borrar/{id}(id=*{id})}" href="#">Borrar</a>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot class="table-dark">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a class="btn btn-sm btn-primary" id="anadir"
+							th:href="@{/admin/clientes/anadir}" href="#">Añadir</a></td>
+					</tr>
+				</tfoot>
+			</table>
+
+			<div id="formulario">
+				<h1>Cliente</h1>
+
+				<form th:action="@{/admin/clientes}" method="post" action="#"
+					th:object="${cliente}">
+
+					<div class="row mb-3">
+						<label for="id" class="col-sm-2 col-form-label">Id</label>
+						<div class="col-sm">
+							<input type="number" readonly class="form-control"
+								th:classappend="${#fields.hasErrors('id') ? 'is-invalid': ''}"
+								th:field="*{id}">
+							<div class="invalid-feedback" th:errors="*{id}">Error de id</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="nif" class="col-sm-2 col-form-label">NIF</label>
+						<div class="col-sm">
+							<input type="text" class="form-control"
+								th:classappend="${#fields.hasErrors('nif') ? 'is-invalid': ''}"
+								th:field="*{nif}">
+							<div class="invalid-feedback" th:errors="*{nif}">Error de
+								nif</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+						<div class="col-sm">
+							<input type="text" class="form-control"
+								th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}"
+								th:field="*{nombre}">
+							<div class="invalid-feedback" th:errors="*{nombre}">Error
+								de nombre</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="offset-sm-2 col-sm">
+							<button class="btn btn-primary" id="guardar">Guardar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
 	</div>
 	<footer class="bg-dark p-3 text-light"> &copy;2023 Javier Lete
 	</footer>
