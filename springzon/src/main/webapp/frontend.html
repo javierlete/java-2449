@@ -96,7 +96,7 @@
 						<div class="col-sm">
 							<input type="number" readonly class="form-control"
 								th:classappend="${#fields.hasErrors('id') ? 'is-invalid': ''}"
-								th:field="*{id}">
+								th:field="*{id}" id="id">
 							<div class="invalid-feedback" th:errors="*{id}">Error de id</div>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 						<div class="col-sm">
 							<input type="text" class="form-control"
 								th:classappend="${#fields.hasErrors('nif') ? 'is-invalid': ''}"
-								th:field="*{nif}">
+								th:field="*{nif}" id="nif">
 							<div class="invalid-feedback" th:errors="*{nif}">Error de
 								nif</div>
 						</div>
@@ -115,7 +115,7 @@
 						<div class="col-sm">
 							<input type="text" class="form-control"
 								th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}"
-								th:field="*{nombre}">
+								th:field="*{nombre}" id="nombre">
 							<div class="invalid-feedback" th:errors="*{nombre}">Error
 								de nombre</div>
 						</div>

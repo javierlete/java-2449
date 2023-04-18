@@ -2,12 +2,19 @@ const URL = 'http://localhost:8080/api/v1/clientes';
 
 let tabla;
 let formulario;
+let inputId;
+let inputNombre;
+let inputNif;
 
 window.addEventListener('DOMContentLoaded', function() {
 	refrescarTabla();
 
 	tabla = document.querySelector('table');
 	formulario = document.querySelector('#formulario');
+	
+	inputId = document.querySelector('#id');
+	inputNombre = document.querySelector('#nombre');
+	inputNif = document.querySelector('#nif');
 
 	mostrarTabla();
 
@@ -58,8 +65,15 @@ async function refrescarTabla() {
 	});
 }
 
-function editar(id) {
+async function editar(id) {
+	const respuesta = await fetch(`${URL}/${id}`);
+	const cliente = await respuesta.json();
 	
+	inputId.value = cliente.id;
+	inputNif.value = cliente.nif;
+	inputNombre.value = cliente.nombre;
+	
+	mostrarFormulario();
 }
 
 async function borrar(id) {
