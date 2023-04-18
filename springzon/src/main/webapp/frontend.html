@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html th:fragment="plantilla(titulo, contenido)"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<title th:replace="${titulo}">Springzon</title>
+<base th:href="@{/}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+	<nav
+		class="mb-3 navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Springzon <i
+				class="bi bi-cart-fill"></i></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#"
+						th:href="@{/}">Principal</a></li>
+				</ul>
+				<ul class="navbar-nav mb-lg-0">
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">
+							Administración </a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#"
+								th:href="@{/admin/clientes}">Clientes</a></li>
+							<li><a class="dropdown-item" href="#"
+								th:href="@{/admin/empleados}">Empleados</a></li>
+						</ul></li>
+					<li sec:authorize="!isAuthenticated()" class="nav-item"><a
+						class="nav-link" href="#" th:href="@{/login}">Iniciar sesión</a></li>
+					<li sec:authorize="isAuthenticated()" class="navbar-text"
+						sec:authentication="name">###USUARIO###</li>
+					<li sec:authorize="isAuthenticated()" class="nav-item">
+						<form th:action="@{/logout}" method="post">
+							<button class="nav-link btn btn-link">Cerrar sesión</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<main>
+		<table class="table table-hover table-bordered table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th>Id</th>
+					<th>NIF</th>
+					<th>Nombre</th>
+					<th>OPCIONES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente: ${clientes}" th:object="${cliente}">
+					<th th:text="*{id}">1</th>
+					<td th:text="*{nif}">12345678Z</td>
+					<td th:text="*{nombre}">El nombre</td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/admin/clientes/editar/{id}(id=*{id})}" href="#">Editar</a>
+						<a class="btn btn-sm btn-danger"
+						th:href="@{/admin/clientes/borrar/{id}(id=*{id})}" href="#">Borrar</a>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot class="table-dark">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/admin/clientes/anadir}" href="#">Añadir</a></td>
+				</tr>
+			</tfoot>
+		</table>
+	</main>
+	</div>
+	<footer class="bg-dark p-3 text-light"> &copy;2023 Javier Lete
+	</footer>
+
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/springzon.js"></script>
+</body>
+</html>
