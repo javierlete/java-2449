@@ -11,25 +11,45 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	tabla = document.querySelector('table');
 	formulario = document.querySelector('#formulario');
-	
+
 	inputId = document.querySelector('#id');
 	inputNombre = document.querySelector('#nombre');
 	inputNif = document.querySelector('#nif');
 
 	mostrarTabla();
 
-	const anadir = document.querySelector('#anadir');
-
-	anadir.addEventListener('click', mostrarFormulario);
-
-	const guardar = document.querySelector('#guardar');
-
-	guardar.addEventListener('click', function(e) {
-		e.preventDefault();
-		mostrarTabla();
-	});
+	document.querySelector('#anadir').addEventListener('click', mostrarFormulario);
+	document.querySelector('#guardar').addEventListener('click', guardar);
 
 });
+
+async function guardar(e) {
+	e.preventDefault();
+	
+	const cliente = { nif: inputNif.value, nombre: inputNombre.value };
+	
+	let metodo = 'POST';
+	let url = URL;
+	
+	if(inputId.value) {
+		metodo = 'PUT';
+		url += '/' + cliente.id;
+		cliente.id = inputId.value;
+	}
+	
+	const respuesta = await fetch(url, {
+		method: metodo,
+		body: JSON.stringify(cliente),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+	
+	console.log(respuesta);
+	
+	refrescarTabla();
+	mostrarTabla();
+}
 
 function mostrarTabla() {
 	tabla.style.display = 'table';
@@ -68,19 +88,19 @@ async function refrescarTabla() {
 async function editar(id) {
 	const respuesta = await fetch(`${URL}/${id}`);
 	const cliente = await respuesta.json();
-	
+
 	inputId.value = cliente.id;
 	inputNif.value = cliente.nif;
 	inputNombre.value = cliente.nombre;
-	
+
 	mostrarFormulario();
 }
 
 async function borrar(id) {
 	const respuesta = await fetch(`${URL}/${id}`, { method: 'DELETE' });
-	
+
 	console.log(respuesta);
-	
+
 	refrescarTabla();
 	mostrarTabla();
 }
