@@ -3249,13 +3249,13 @@
 	<li class="basic" id="FMID_1459719638FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@Table(name)</div></li>
 	<li class="basic" id="FMID_940337093FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@Id</div></li>
 	<li class="basic" id="FMID_380317227FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@GeneratedValue(strategy = IDENTITY)</div></li>
-	<li class="col" id="FMID_615855086FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@OneToMany</div>
+	<li class="col" id="FMID_615855086FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@OneToMany</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1820586009FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-style:italic;">Lombok</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_1920566508FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@ToString.Exclude</div></li>
 	<li class="basic" id="FMID_297586596FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@EqualsAndHashCode.Exclude</div></li></ul></li></ul></li>
-	<li class="basic" id="FMID_453985968FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@ManyToOne(mappedBy)</div></li></ul></li></ul></li>
+	<li class="basic" id="FMID_453985968FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">@ManyToOne</div></li></ul></li></ul></li>
 	<li class="col" id="FMID_825414198FM"><div class="nodecontent" style="color:#000000;font-size:83%;">repositorios</div>
 		<ul class="subexp">
 	<li class="col" id="FMID_1296329848FM"><div class="nodecontent" style="color:#000000;font-size:83%;">interfaces</div>
@@ -3363,4 +3363,31 @@
 	<li class="col" id="FMID_1880069673FM"><div class="nodecontent" style="color:#000000;font-size:83%;">ddl-auto</div>
 		<ul class="subexp">
 	<li class="basic" id="FMID_1922828129FM"><div class="nodecontent" style="color:#000000;font-size:83%;">update</div></li></ul></li></ul></li>
-	<li class="basic" id="FMID_1346753896FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Entrega del war</div></li></ul></li></ul></li></ul></li></ul></li></ul></div></body></html>
+	<li class="basic" id="FMID_1346753896FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Entrega del war</div></li></ul></li>
+	<li class="col" id="FMID_140397338FM"><div class="nodecontent" style="color:#000000;font-size:83%;">Ejemplo OneToMany&lt;-&gt;ManyToOne</div>
+		<ul class="subexp">
+	<li class="col" id="FMID_1527900593FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      class <b>Inmueble</b></p></div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1000123079FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      @OneToMany(mappedBy = "<b>inmueble</b>")
+    </p></div></li>
+	<li class="basic" id="FMID_1089004599FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      Set&lt;<b>InmuebleServicios</b>&gt; inmuebleServicios;
+    </p></div> <a onclick="getVisibleParents('FMID_360585802FM')" href="#FMID_360585802FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul></li>
+	<li class="col" id="FMID_360585802FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      class <b>InmuebleServicios</b></p></div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_1499878034FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@ManyToOne</div></li>
+	<li class="basic" id="FMID_42071122FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Inmueble inmueble;</div> <a onclick="getVisibleParents('FMID_1000123079FM')" href="#FMID_1000123079FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li>
+	<li class="basic" id="FMID_139504867FM"><div class="nodecontent" style="color:#000000;font-size:83%;">@ManyToOne</div></li>
+	<li class="basic" id="FMID_1739100776FM"><div class="nodecontent" style="color:#000000;font-size:83%;font-weight:bold;">Servicio servicio;</div> <a onclick="getVisibleParents('FMID_296004926FM')" href="#FMID_296004926FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul></li>
+	<li class="col" id="FMID_33160212FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      class <b>Servicio</b></p></div>
+		<ul class="subexp">
+	<li class="basic" id="FMID_296004926FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      @OneToMany(mappedBy = "<b>servicio</b>")
+    </p></div></li>
+	<li class="basic" id="FMID_314629446FM"><div class="nodecontent" style="color:#000000;font-size:83%;"><p>
+      Set&lt;<b>InmuebleServicios</b>&gt; inmuebleServicios;
+    </p></div> <a onclick="getVisibleParents('FMID_360585802FM')" href="#FMID_360585802FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul> <a onclick="getVisibleParents('FMID_1739100776FM')" href="#FMID_1739100776FM"><img src="Java.html_files/ilink.png" class="ilink" alt="Connector" /></a></li></ul></li></ul></li></ul></li></ul></li></ul></div></body></html>
