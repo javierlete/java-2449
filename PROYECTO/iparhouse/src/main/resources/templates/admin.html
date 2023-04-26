@@ -20,34 +20,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Departamento 1</td>
-                    <td>Calle Falsa 123</td>
-                    <td>Alquiler</td>
-                    <td>850,00 €/mes</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Casa 1</td>
-                    <td>Avenida Siempreviva 456</td>
-                    <td>Venta</td>
-                    <td>420.000,00 €</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                        <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Local comercial</td>
-                    <td>Plaza Principal</td>
-                    <td>Alquiler</td>
-                    <td>1.700,00 €/mes</td>
+                <tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
+                    <td th:text="*{id}">1</td>
+                    <td th:text="*{nombre}">Departamento 1</td>
+                    <td th:text="*{direccion}">Calle Falsa 123</td>
+                    <td th:text="*{tipo}">Alquiler</td>
+                    <td th:text="*{precio}">850,00 €/mes</td>
                     <td>
                         <a href="#" class="btn btn-primary btn-sm">Editar</a>
                         <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
@@ -56,20 +34,20 @@
             </tbody>
         </table>
 
-        <form novalidate>
+        <form novalidate th:object="${inmueble}">
             <div class="row mb-2">
-                <label for="inputId" class="col-sm-2 control-label">Id</label>
+                <label for="id" class="col-sm-2 control-label">Id</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputId" name="id" placeholder="Id..." required>
+                    <input type="text" class="form-control" th:field="*{id}" placeholder="Id..." required>
                     <div class="invalid-feedback">
                         Por favor, introduce un Id.
                     </div>
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
+                <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="Nombre..."
+                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre..."
                         required>
                     <div class="invalid-feedback">
                         Por favor, introduce un Nombre.
@@ -77,9 +55,9 @@
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
+                <label for="direccion" class="col-sm-2 control-label">Direccion</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputDireccion" name="direccion"
+                    <input type="text" class="form-control" th:field="*{direccion}"
                         placeholder="Direccion..." required>
                     <div class="invalid-feedback">
                         Por favor, introduce una Direccion.
@@ -87,12 +65,12 @@
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="inputTipo" class="col-sm-2 control-label">Alquiler / Venta</label>
+                <label for="tipo" class="col-sm-2 control-label">Alquiler / Venta</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="inputTipo" name="tipo" required>
+                    <select class="form-control" th:field="*{tipo}" required>
                         <option value="">Seleciona una opción</option>
-                        <option value="alquiler">Alquiler</option>
-                        <option value="venta">Venta</option>
+                        <option value="Alquiler">Alquiler</option>
+                        <option value="Venta">Venta</option>
                     </select>
                     <div class="invalid-feedback">
                         Por favor, seleciona una opción.
@@ -100,9 +78,9 @@
                 </div>
             </div>
             <div class="row mb-2">
-                <label for="inputPrecio" class="col-sm-2 control-label">Precio</label>
+                <label for="precio" class="col-sm-2 control-label">Precio</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputPrecio" name="precio" placeholder="Precio..."
+                    <input type="text" class="form-control" th:field="*{precio}" placeholder="Precio..."
                         required>
                     <div class="invalid-feedback">
                         Por favor, introduce un Precio.

@@ -1,83 +1,69 @@
 <!doctype html>
-<html lang="es" th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+<html lang="es"
+	th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Resumen</title>
+<title>Resumen</title>
 </head>
 
 <body>
-    <main class="container-fluid">
-        <div class="row row-cols-2">
-            <section id="inmuebles" class="col">
-                <h2>Inmuebles</h2>
+	<main class="container-fluid">
+		<div class="row row-cols-2">
+			<section id="inmuebles" class="col">
+				<h2>Inmuebles</h2>
 
-                <table class="table table-hover table-bordered table-striped">
-                    <thead class="table-primary">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Departamento 1</td>
-                            <td>850,00 €/mes</td>
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                                <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Casa 1</td>
-                            <td>420.000,00 €</td>
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                                <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Local comercial</td>
-                            <td>1.700,00 €/mes</td>
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                                <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+				<table class="table table-hover table-bordered table-striped">
+					<thead class="table-primary">
+						<tr>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
+							<td th:text="*{nombre}">Departamento 1</td>
+							<td th:text="*{precio}">850,00 €/mes</td>
+							<td><a href="#" class="btn btn-primary btn-sm">Editar</a> <a
+								href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+			<section id="cocina" class="col" th:object="${inmueble}"
+				th:if="${inmueble != null}">
+				<h2>Cocina</h2>
+				<div class="card">
+					<img src="https://placeimg.com/480/240/arch?2" class="card-img-top"
+						alt="...">
+					<div class="card-body">
+						<h5 class="card-title fs-6" th:text="*{nombre}">Estudio en
+							Bilbao</h5>
+						<p class="card-text">
+							<span th:text="*{tipo}">Compra</span>: <span th:text="*{precio}">2.000.000,00€</span>
+						</p>
+						<p class="position-absolute m-4 top-0 end-0">
+							<i class="bi bi-bag-fill rounded-circle p-2"
+								th:classappend="${inmueble.tipo == 'Alquiler'} ? text-bg-success : text-bg-danger"></i>
+						</p>
+					</div>
+				</div>
+			</section>
+			<section id="total" class="col">
+				<h2>Total</h2>
 
-            </section>
-            <section id="cocina" class="col">
-                <h2>Cocina</h2>
-                <div class="card">
-                    <img src="https://placeimg.com/480/240/arch?2" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">Estudio en Bilbao</h5>
-                        <p class="card-text">Compra: 2.000.000,00€</p>
-                        <p class="position-absolute m-4 top-0 end-0">
-                            <i class="bi bi-bag-fill text-bg-danger rounded-circle p-2"></i>
-                        </p>
-                    </div>
-                </div>
-            </section>
-            <section id="total" class="col">
-                <h2>Total</h2>
+				<p class="display-1" th:text="${total}">1.234.567€</p>
+			</section>
+			<section id="servicios" class="col">
+				<h2>Servicios</h2>
 
-                <p class="display-1">1.234.567€</p>
-            </section>
-            <section id="servicios" class="col">
-                <h2>Servicios</h2>
-
-                <ul>
-                    <li>Servicio 1</li>
-                    <li>Servicio 2</li>
-                    <li>Servicio 3</li>
-                </ul>
-            </section>
-        </div>
-    </main>
+				<ul th:each="servicio: ${servicios}">
+					<li th:text="${servicio}">Servicio 1</li>
+				</ul>
+			</section>
+		</div>
+	</main>
 
 </body>
 

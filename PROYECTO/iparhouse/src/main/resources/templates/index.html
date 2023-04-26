@@ -1,91 +1,97 @@
 <!doctype html>
-<html lang="es" th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+<html lang="es"
+	th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>IparHouse</title>
+<title>IparHouse</title>
 </head>
 
 <body>
-    <main class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <section id="seccion-listado" class="col">
-                <h2 class="visually-hidden bg-secondary">Listado</h2>
+	<main class="container-fluid">
+		<div class="row row-cols-1" th:classappend="${inmueble != null} ? row-cols-sm-2 : ''">
+			<section id="seccion-listado" class="col">
+				<h2 class="visually-hidden bg-secondary">Listado</h2>
 
-                <form class="mb-3">
-                    <input type="text" class="form-control mb-2" placeholder="Busca vivienda por nombre o dirección">
+				<form class="mb-3">
+					<input type="text" class="form-control mb-2"
+						placeholder="Busca vivienda por nombre o dirección">
 
-                    <div class="btn-group mb-2 w-100">
-                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="option1">Todas</label>
+					<div class="btn-group mb-2 w-100">
+						<input type="radio" class="btn-check" name="options" id="option1"
+							autocomplete="off" checked> <label
+							class="btn btn-primary" for="option1">Todas</label> <input
+							type="radio" class="btn-check" name="options" id="option2"
+							autocomplete="off"> <label class="btn btn-primary"
+							for="option2">Alquiler</label> <input type="radio"
+							class="btn-check" name="options" id="option3" autocomplete="off">
+						<label class="btn btn-primary" for="option3">Venta</label>
+					</div>
 
-                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                        <label class="btn btn-primary" for="option2">Alquiler</label>
+					<p class="mb-2">
+						<strong>Rango de precio:</strong>
+					</p>
 
-                        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                        <label class="btn btn-primary" for="option3">Venta</label>
-                    </div>
+					<div class="row">
+						<label class="col-2 form-label" for="min">Min</label>
+						<div class="col-4">
+							<input class="form-control" type="number" id="min">
+						</div>
+						<label class="col-2 form-label" for="max">Max</label>
+						<div class="col-4">
+							<input class="form-control" type="number" id="max">
+						</div>
+					</div>
+				</form>
 
-                    <p class="mb-2"><strong>Rango de precio:</strong></p>
+				<div id="listado" class="border rounded">
+					<h3 class="text-bg-primary p-2 fs-6 ps-3 rounded-top">Lista de
+						viviendas</h3>
 
-                    <div class="row">
-                        <label class="col-2 form-label" for="min">Min</label>
-                        <div class="col-4">
-                            <input class="form-control" type="number" id="min">
-                        </div>
-                        <label class="col-2 form-label" for="max">Max</label>
-                        <div class="col-4">
-                            <input class="form-control" type="number" id="max">
-                        </div>
-                    </div>
-                </form>
-
-                <div id="listado" class="border rounded">
-                    <h3 class="text-bg-primary p-2 fs-6 ps-3 rounded-top">Lista de viviendas</h3>
-
-                    <div class="row row-cols-2 g-4">
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://placeimg.com/480/640/arch?1" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title fs-6">Ático junto a la ría</h5>
-                                    <p class="card-text">Alquiler: 2.500,00€</p>
-                                    <p class="position-absolute m-4 top-0 end-0">
-                                        <i class="bi bi-bag-fill text-bg-success rounded-circle p-2"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://placeimg.com/480/640/arch?2" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title fs-6">Estudio en Bilbao</h5>
-                                    <p class="card-text">Compra: 2.000.000,00€</p>
-                                    <p class="position-absolute m-4 top-0 end-0">
-                                        <i class="bi bi-bag-fill text-bg-danger rounded-circle p-2"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="detalle" class="col">
-                <h2 class="visually-hidden bg-danger">Detalle</h2>
-                <div class="card">
-                    <img src="https://placeimg.com/480/320/arch?2" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title fs-6">Estudio en Bilbao</h5>
-                        <p class="card-text">Compra: 2.000.000,00€</p>
-                        <p class="position-absolute m-4 top-0 end-0">
-                            <i class="bi bi-bag-fill text-bg-danger rounded-circle p-2"></i>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
+					<div class="row row-cols-2 g-4">
+						<div class="col" th:each="inmueble: ${inmuebles}"
+							th:object="${inmueble}">
+							<div class="card h-100">
+								<img src="https://placeimg.com/480/640/arch?1"
+									class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title fs-6" th:text="*{nombre}">Ático
+										junto a la ría</h5>
+									<p class="card-text">
+										<span th:text="*{tipo}">Alquiler</span>: <span
+											th:text="*{precio}">2.500,00€</span>
+									</p>
+									<p class="position-absolute m-4 top-0 end-0">
+										<i class="bi bi-bag-fill rounded-circle p-2"
+											th:classappend="${inmueble.tipo == 'Alquiler'} ? text-bg-success : text-bg-danger"></i>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="detalle" class="col" th:object="${inmueble}" th:if="${inmueble != null}">
+				<h2 class="visually-hidden bg-danger">Detalle</h2>
+				<div class="card">
+					<img src="https://placeimg.com/480/320/arch?2" class="card-img-top"
+						alt="...">
+					<div class="card-body">
+						<h5 class="card-title fs-6" th:text="*{nombre}">Estudio en
+							Bilbao</h5>
+						<p class="card-text">
+							<span th:text="*{tipo}">Alquiler</span>: <span
+								th:text="*{precio}">2.500,00€</span>
+						</p>
+						<p class="position-absolute m-4 top-0 end-0">
+							<i class="bi bi-bag-fill rounded-circle p-2"
+								th:classappend="${inmueble.tipo == 'Alquiler'} ? text-bg-success : text-bg-danger"></i>
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
 
 </body>
 
