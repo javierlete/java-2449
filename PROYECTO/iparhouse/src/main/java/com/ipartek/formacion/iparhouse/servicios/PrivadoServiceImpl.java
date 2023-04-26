@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.iparhouse.entidades.Inmueble;
 import com.ipartek.formacion.iparhouse.repositorios.InmuebleRepository;
+import com.ipartek.formacion.iparhouse.repositorios.ServicioRepository;
 
 @Service
 public class PrivadoServiceImpl implements PrivadoService{
 	@Autowired
 	private InmuebleRepository repo;
+	@Autowired
+	private ServicioRepository repoServicio;
 	
 	@Override
 	public Inmueble insertar(Inmueble inmueble) {
@@ -27,6 +30,8 @@ public class PrivadoServiceImpl implements PrivadoService{
 
 	@Override
 	public void borrar(Long id) {
+		repoServicio.deleteByInmuebleId(id);
+		
 		repo.deleteById(id);
 	}
 
