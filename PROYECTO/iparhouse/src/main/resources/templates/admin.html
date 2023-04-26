@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Administración</h1>
+
+    <main class="container-fluid">
+        <table class="table table-hover table-bordered table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Alquiler / Venta</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Departamento 1</td>
+                    <td>Calle Falsa 123</td>
+                    <td>Alquiler</td>
+                    <td>850,00 €/mes</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Casa 1</td>
+                    <td>Avenida Siempreviva 456</td>
+                    <td>Venta</td>
+                    <td>420.000,00 €</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Local comercial</td>
+                    <td>Plaza Principal</td>
+                    <td>Alquiler</td>
+                    <td>1.700,00 €/mes</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form novalidate>
+            <div class="row mb-2">
+                <label for="inputId" class="col-sm-2 control-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputId" name="id" placeholder="Id..." required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un Id.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="Nombre..."
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un Nombre.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputDireccion" name="direccion"
+                        placeholder="Direccion..." required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce una Direccion.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputTipo" class="col-sm-2 control-label">Alquiler / Venta</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="inputTipo" name="tipo" required>
+                        <option value="">Seleciona una opción</option>
+                        <option value="alquiler">Alquiler</option>
+                        <option value="venta">Venta</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor, seleciona una opción.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label for="inputPrecio" class="col-sm-2 control-label">Precio</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPrecio" name="precio" placeholder="Precio..."
+                        required>
+                    <div class="invalid-feedback">
+                        Por favor, introduce un Precio.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="offset-sm-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
