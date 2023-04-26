@@ -31,7 +31,7 @@ public class PublicoServiceImpl implements PublicoService {
 		
 		Servicio servicio1 = Servicio.builder().nombre("Habitaciones").cantidad(3).inmueble(inmueble1).build();
 		Servicio servicio2 = Servicio.builder().nombre("Baños").cantidad(2).inmueble(inmueble1).build();
-		Servicio servicio3 = Servicio.builder().nombre("Habitaciones").cantidad(2).inmueble(inmueble2).build();
+		Servicio servicio3 = Servicio.builder().nombre("Cocinas").cantidad(2).inmueble(inmueble2).build();
 
 		repoServicio.save(servicio1);
 		repoServicio.save(servicio2);

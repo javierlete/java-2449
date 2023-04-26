@@ -1,8 +1,6 @@
 package com.ipartek.formacion.iparhouse.servicios;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,10 +40,7 @@ public class PrivadoServiceImpl implements PrivadoService{
 
 	@Override
 	public Inmueble primeroConCocina() {
-		// TODO: Primero con cocina 
-		Inmueble inmueble1 = Inmueble.builder().id(1L).nombre("Casa en la playa superchula").direccion("Calle 123")
-				.tipo("Alquiler").precio(new BigDecimal("1500.00")).build();
-		return inmueble1;
+		return repo.primeroConCocina();
 	}
 
 	@Override
@@ -56,14 +51,7 @@ public class PrivadoServiceImpl implements PrivadoService{
 
 	@Override
 	public Iterable<String> listadoServicios() {
-		// TODO: listado servicios
-		List<String> servicios = new ArrayList<>();
-		
-		servicios.add("Uno");
-		servicios.add("Dos");
-		servicios.add("Tres");
-		
-		return servicios;
+		return repoServicio.listadoNombreServicios();
 	}
 	
 }

@@ -11,9 +11,12 @@ import com.ipartek.formacion.iparhouse.entidades.Inmueble;
 @RepositoryRestResource(path = "inmuebles", collectionResourceRel = "inmuebles")
 public interface InmuebleRepository extends CrudRepository<Inmueble, Long> {
 	Iterable<Inmueble> getByOrderByNombre();
+	
 	@Query("from Inmueble i where i.nombre like ?1 and (?2 = 'Todas' or i.tipo = ?2) and (?4 = null or (i.precio between ?3 and ?4))")
 	Iterable<Inmueble> buscar(String nombreODireccion, String tipo, BigDecimal minimo, BigDecimal maximo);
-	// Inmueble primeroConCocina();
+	
+	@Query(value = "SELECT i.id, i.nombre, i.direccion, i.tipo, i.precio FROM inmuebles i JOIN servicios s ON i.id = s.inmueble_id WHERE s.nombre = 'Cocinas' LIMIT 1", nativeQuery = true) //"from Inmueble i join Servicio s where s.nombre = 'Habitaciones'")
+	Inmueble primeroConCocina();
+	
 	// BigDecimal precioTotalAlquiler3Habitaciones();
-	// Iterable<String> listadoServicios();
 }
