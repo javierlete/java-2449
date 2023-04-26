@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ipartek.formacion.iparhouse.modelos.Busqueda;
 import com.ipartek.formacion.iparhouse.servicios.PublicoService;
 
+import lombok.extern.java.Log;
+
+@Log
 @Controller
 @RequestMapping("/")
 public class IndexController {
@@ -17,7 +20,7 @@ public class IndexController {
 	private PublicoService servicio;
 	
 	@GetMapping
-	public String index(Model modelo) {
+	public String index(Model modelo, Busqueda busqueda) {
 		modelo.addAttribute("inmuebles", servicio.listado());
 		modelo.addAttribute("inmueble", servicio.detalle(1L));
 		
@@ -26,6 +29,8 @@ public class IndexController {
 	
 	@PostMapping
 	public String busqueda(Model modelo, Busqueda busqueda) {
+		log.info(busqueda.toString());
+		
 		modelo.addAttribute("inmuebles", servicio.listado(busqueda));
 		
 		return "index";

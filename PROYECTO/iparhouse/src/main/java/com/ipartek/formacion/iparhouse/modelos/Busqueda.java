@@ -13,7 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Busqueda {
 	private String nombreODireccion;
-	private String tipo;
-	private BigDecimal minimo;
+	
+	@Builder.Default
+	private String tipo = "Todas";
+	
+	@Builder.Default
+	private BigDecimal minimo = BigDecimal.ZERO;
+	
 	private BigDecimal maximo;
 }

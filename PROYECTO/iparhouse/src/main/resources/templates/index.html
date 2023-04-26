@@ -14,19 +14,20 @@
 			<section id="seccion-listado" class="col">
 				<h2 class="visually-hidden bg-secondary">Listado</h2>
 
-				<form class="mb-3" th:action="@{/}" method="post">
+				<form class="mb-3" th:action="@{/}" method="post" th:object="${busqueda}">
 					<input type="text" class="form-control mb-2"
-						placeholder="Busca vivienda por nombre o dirección">
+						placeholder="Busca vivienda por nombre o dirección"
+						th:field="*{nombreODireccion}">
 
 					<div class="btn-group mb-2 w-100">
-						<input type="radio" class="btn-check" name="options" id="option1"
-							autocomplete="off" checked> <label
-							class="btn btn-primary" for="option1">Todas</label> <input
-							type="radio" class="btn-check" name="options" id="option2"
-							autocomplete="off"> <label class="btn btn-primary"
-							for="option2">Alquiler</label> <input type="radio"
-							class="btn-check" name="options" id="option3" autocomplete="off">
-						<label class="btn btn-primary" for="option3">Venta</label>
+						<input type="radio" class="btn-check" 
+							autocomplete="off" id="todas" th:checked="${busqueda.tipo == 'Todas'}" name="tipo" value="Todas"> <label
+							class="btn btn-primary" for="todas">Todas</label> <input
+							type="radio" class="btn-check" th:checked="${busqueda.tipo == 'Alquiler'}" id="alquiler" name="tipo"
+							autocomplete="off" value="Alquiler"> <label class="btn btn-primary"
+							for="alquiler">Alquiler</label> <input type="radio"
+							class="btn-check" th:checked="${busqueda.tipo == 'Venta'}" id="venta" name="tipo" value="Venta" autocomplete="off">
+						<label class="btn btn-primary" for="venta">Venta</label>
 					</div>
 
 					<p class="mb-2">
@@ -34,13 +35,13 @@
 					</p>
 
 					<div class="row mb-3">
-						<label class="col-2 form-label" for="min">Min</label>
+						<label class="col-2 form-label" for="minimo">Min</label>
 						<div class="col-4">
-							<input class="form-control" type="number" id="min">
+							<input class="form-control" type="number" th:field="*{minimo}">
 						</div>
-						<label class="col-2 form-label" for="max">Max</label>
+						<label class="col-2 form-label" for="maximo">Max</label>
 						<div class="col-4">
-							<input class="form-control" type="number" id="max">
+							<input class="form-control" type="number" th:field="*{maximo}">
 						</div>
 					</div>
 

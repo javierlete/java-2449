@@ -46,8 +46,7 @@ public class PublicoServiceImpl implements PublicoService {
 
 	@Override
 	public Iterable<Inmueble> listado(Busqueda busqueda) {
-		// TODO Sustituir por el de búsqueda real
-		return repo.findAll();
+		return repo.buscar("%" + busqueda.getNombreODireccion() + "%", busqueda.getTipo(), busqueda.getMinimo(), busqueda.getMaximo());
 	}
 
 	@Override
