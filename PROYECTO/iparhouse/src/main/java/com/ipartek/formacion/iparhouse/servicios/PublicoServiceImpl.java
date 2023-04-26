@@ -5,26 +5,39 @@ import java.math.BigDecimal;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.iparhouse.entidades.Inmueble;
+import com.ipartek.formacion.iparhouse.entidades.Servicio;
 import com.ipartek.formacion.iparhouse.modelos.Busqueda;
 import com.ipartek.formacion.iparhouse.repositorios.InmuebleRepository;
+import com.ipartek.formacion.iparhouse.repositorios.ServicioRepository;
 
 @Service
 public class PublicoServiceImpl implements PublicoService {
 
-	public PublicoServiceImpl(InmuebleRepository repo) {
+	private InmuebleRepository repo;
+	private ServicioRepository repoServicio;
+
+	public PublicoServiceImpl(InmuebleRepository repo, ServicioRepository repoServicio) {
 		this.repo = repo;
+		this.repoServicio = repoServicio;
 		
-		Inmueble inmueble1 = Inmueble.builder().id(1L).nombre("Casa en la playa superchula").direccion("Calle 123")
+		Inmueble inmueble1 = Inmueble.builder().nombre("Casa en la playa superchula").direccion("Calle 123")
 				.tipo("Alquiler").precio(new BigDecimal("1500.00")).build();
 
-		Inmueble inmueble2 = Inmueble.builder().id(2L).nombre("Apartamento en la ciudad").direccion("Avenida 456")
+		Inmueble inmueble2 = Inmueble.builder().nombre("Apartamento en la ciudad").direccion("Avenida 456")
 				.tipo("Venta").precio(new BigDecimal("200000.00")).build();
-
+		
 		repo.save(inmueble1);
 		repo.save(inmueble2);
+		
+		Servicio servicio1 = Servicio.builder().nombre("Habitaciones").cantidad(3).inmueble(inmueble1).build();
+		Servicio servicio2 = Servicio.builder().nombre("Baños").cantidad(2).inmueble(inmueble1).build();
+		Servicio servicio3 = Servicio.builder().nombre("Habitaciones").cantidad(2).inmueble(inmueble2).build();
+
+		repoServicio.save(servicio1);
+		repoServicio.save(servicio2);
+		repoServicio.save(servicio3);
 	}
 	
-	private InmuebleRepository repo;
 	
 	@Override
 	public Iterable<Inmueble> listado() {
