@@ -9,11 +9,12 @@
 
 <body>
 	<main class="container-fluid">
-		<div class="row row-cols-1" th:classappend="${inmueble != null} ? row-cols-sm-2 : ''">
+		<div class="row row-cols-1"
+			th:classappend="${inmueble != null} ? row-cols-sm-2 : ''">
 			<section id="seccion-listado" class="col">
 				<h2 class="visually-hidden bg-secondary">Listado</h2>
 
-				<form class="mb-3">
+				<form class="mb-3" th:action="@{/}" method="post">
 					<input type="text" class="form-control mb-2"
 						placeholder="Busca vivienda por nombre o dirección">
 
@@ -32,7 +33,7 @@
 						<strong>Rango de precio:</strong>
 					</p>
 
-					<div class="row">
+					<div class="row mb-3">
 						<label class="col-2 form-label" for="min">Min</label>
 						<div class="col-4">
 							<input class="form-control" type="number" id="min">
@@ -40,6 +41,12 @@
 						<label class="col-2 form-label" for="max">Max</label>
 						<div class="col-4">
 							<input class="form-control" type="number" id="max">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-primary w-100">Buscar</button>
 						</div>
 					</div>
 				</form>
@@ -71,7 +78,8 @@
 					</div>
 				</div>
 			</section>
-			<section id="detalle" class="col" th:object="${inmueble}" th:if="${inmueble != null}">
+			<section id="detalle" class="col" th:object="${inmueble}"
+				th:if="${inmueble != null}">
 				<h2 class="visually-hidden bg-danger">Detalle</h2>
 				<div class="card">
 					<img src="https://placeimg.com/480/320/arch?2" class="card-img-top"
