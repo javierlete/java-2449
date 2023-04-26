@@ -69,6 +69,9 @@
 										<span th:text="*{tipo}">Alquiler</span>: <span
 											th:text="*{precio}">2.500,00€</span>
 									</p>
+									<p>
+										<a class="btn btn-primary stretched-link" th:href="@{/detalle/{id}(id=*{id})}">Ver detalle</a>
+									</p>
 									<p class="position-absolute m-4 top-0 end-0">
 										<i class="bi bi-bag-fill rounded-circle p-2"
 											th:classappend="${inmueble.tipo == 'Alquiler'} ? text-bg-success : text-bg-danger"></i>
