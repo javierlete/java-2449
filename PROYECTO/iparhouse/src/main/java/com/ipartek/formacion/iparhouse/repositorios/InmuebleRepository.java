@@ -18,5 +18,6 @@ public interface InmuebleRepository extends CrudRepository<Inmueble, Long> {
 	@Query(value = "SELECT i.id, i.nombre, i.direccion, i.tipo, i.precio FROM inmuebles i JOIN servicios s ON i.id = s.inmueble_id WHERE s.nombre = 'Cocinas' LIMIT 1", nativeQuery = true) //"from Inmueble i join Servicio s where s.nombre = 'Habitaciones'")
 	Inmueble primeroConCocina();
 	
-	// BigDecimal precioTotalAlquiler3Habitaciones();
+	@Query("select sum(i.precio) from Inmueble i join i.servicios s where i.tipo = 'Alquiler' and s.nombre = 'Habitaciones' and s.cantidad = 3")
+	BigDecimal precioTotalAlquiler3Habitaciones();
 }

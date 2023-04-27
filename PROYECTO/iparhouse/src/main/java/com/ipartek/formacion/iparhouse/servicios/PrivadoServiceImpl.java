@@ -45,8 +45,7 @@ public class PrivadoServiceImpl implements PrivadoService{
 
 	@Override
 	public BigDecimal precioTotalAlquiler3Habitaciones() {
-		// TODO: Precio total
-		return new BigDecimal(12345678);
+		return repo.precioTotalAlquiler3Habitaciones();
 	}
 
 	@Override

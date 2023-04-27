@@ -14,11 +14,9 @@ import com.ipartek.formacion.iparhouse.repositorios.ServicioRepository;
 public class PublicoServiceImpl implements PublicoService {
 
 	private InmuebleRepository repo;
-	private ServicioRepository repoServicio;
 
 	public PublicoServiceImpl(InmuebleRepository repo, ServicioRepository repoServicio) {
 		this.repo = repo;
-		this.repoServicio = repoServicio;
 		
 		Inmueble inmueble1 = Inmueble.builder().nombre("Casa en la playa superchula").direccion("Calle 123")
 				.tipo("Alquiler").precio(new BigDecimal("1500.00")).build();
@@ -26,16 +24,23 @@ public class PublicoServiceImpl implements PublicoService {
 		Inmueble inmueble2 = Inmueble.builder().nombre("Apartamento en la ciudad").direccion("Avenida 456")
 				.tipo("Venta").precio(new BigDecimal("200000.00")).build();
 		
+		Inmueble inmueble3 = Inmueble.builder().nombre("Casa en la ciudad superchula").direccion("Calle 123")
+				.tipo("Alquiler").precio(new BigDecimal("2000.00")).build();
+		
 		repo.save(inmueble1);
 		repo.save(inmueble2);
+		repo.save(inmueble3);
 		
 		Servicio servicio1 = Servicio.builder().nombre("Habitaciones").cantidad(3).inmueble(inmueble1).build();
 		Servicio servicio2 = Servicio.builder().nombre("Baños").cantidad(2).inmueble(inmueble1).build();
 		Servicio servicio3 = Servicio.builder().nombre("Cocinas").cantidad(2).inmueble(inmueble2).build();
-
+		Servicio servicio4 = Servicio.builder().nombre("Habitaciones").cantidad(3).inmueble(inmueble3).build();
+		
+		
 		repoServicio.save(servicio1);
 		repoServicio.save(servicio2);
 		repoServicio.save(servicio3);
+		repoServicio.save(servicio4);
 	}
 	
 	

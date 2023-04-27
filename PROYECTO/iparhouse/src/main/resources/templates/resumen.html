@@ -13,23 +13,27 @@
 			<section id="inmuebles" class="col">
 				<h2>Inmuebles</h2>
 
-				<table class="table table-hover table-bordered table-striped">
-					<thead class="table-primary">
-						<tr>
-							<th>Nombre</th>
-							<th>Precio</th>
-							<th>Acciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
-							<td th:text="*{nombre}">Departamento 1</td>
-							<td th:text="*{precio}">850,00 €/mes</td>
-							<td><a href="#" class="btn btn-primary btn-sm">Editar</a> <a
-								href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-hover table-bordered table-striped">
+							<thead class="table-primary">
+								<tr>
+									<th>Nombre</th>
+									<th>Precio</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
+									<td th:text="*{nombre}">Departamento 1</td>
+									<td th:text="*{precio}">850,00 €/mes</td>
+									<td><a href="#" class="btn btn-primary btn-sm">Editar</a>
+										<a href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</section>
 			<section id="cocina" class="col" th:object="${inmueble}"
 				th:if="${inmueble != null}">
@@ -53,14 +57,21 @@
 			<section id="total" class="col">
 				<h2>Total</h2>
 
-				<p class="display-1" th:text="${total}">1.234.567€</p>
+				<div class="card">
+					<div class="card-body">
+						<p class="display-1" th:text="${total}">1.234.567€</p>
+					</div>
+				</div>
 			</section>
 			<section id="servicios" class="col">
 				<h2>Servicios</h2>
-
-				<ul th:each="servicio: ${servicios}">
-					<li th:text="${servicio}">Servicio 1</li>
-				</ul>
+				<div class="card">
+					<div class="card-body">
+						<ul class="list-group" th:each="servicio: ${servicios}">
+							<li class="list-group-item" th:text="${servicio}">Servicio 1</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 		</div>
 	</main>
