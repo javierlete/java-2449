@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ipartek.formacion.iparhouse.entidades.Inmueble;
+import com.ipartek.formacion.iparhouse.entidades.Servicio;
 import com.ipartek.formacion.iparhouse.servicios.PrivadoService;
 import com.ipartek.formacion.iparhouse.servicios.PublicoService;
 
@@ -19,10 +20,10 @@ public class AdminController {
 	private PublicoService servicioPublico;
 	
 	@Autowired
-	private PrivadoService servicio;
+	private PrivadoService servicioPrivado;
 	
 	@GetMapping("/inmuebles")
-	public String inmuebles(Model modelo, Inmueble inmueble) {
+	public String inmuebles(Model modelo, Inmueble inmueble, Servicio servicio) {
 		modelo.addAttribute("inmuebles", servicioPublico.listado());
 		
 		return "admin";
@@ -30,17 +31,18 @@ public class AdminController {
 	
 	@GetMapping("/resumen")
 	public String resumen(Model modelo) {
-		modelo.addAttribute("inmuebles", servicio.listadoOrdenado());
-		modelo.addAttribute("inmueble", servicio.primeroConCocina());
-		modelo.addAttribute("total", servicio.precioTotalAlquiler3Habitaciones());
-		modelo.addAttribute("servicios", servicio.listadoServicios());
+		modelo.addAttribute("inmuebles", servicioPrivado.listadoOrdenado());
+		modelo.addAttribute("inmueble", servicioPrivado.primeroConCocina());
+		modelo.addAttribute("total", servicioPrivado.precioTotalAlquiler3Habitaciones());
+		modelo.addAttribute("servicios", servicioPrivado.listadoServicios());
 		
 		return "resumen";
 	}
 	
 	@GetMapping("/inmuebles/editar/{id}") 
-	public String editar(@PathVariable Long id, Model modelo) {
+	public String editar(@PathVariable Long id, Model modelo, Servicio servicio) {
 		modelo.addAttribute("inmueble", servicioPublico.detalle(id));
+		modelo.addAttribute("servicios", servicioPublico.serviciosDeInmueble(id));
 		modelo.addAttribute("inmuebles", servicioPublico.listado());
 		
 		return "admin";
@@ -49,9 +51,9 @@ public class AdminController {
 	@PostMapping("/inmuebles")
 	public String guardar(Inmueble inmueble) {
 		if(inmueble.getId() == null) {
-			servicio.insertar(inmueble);
+			servicioPrivado.insertar(inmueble);
 		} else {
-			servicio.modificar(inmueble);
+			servicioPrivado.modificar(inmueble);
 		}
 		
 		return "redirect:/admin/inmuebles";
@@ -59,7 +61,16 @@ public class AdminController {
 	
 	@GetMapping("/inmuebles/borrar/{id}")
 	public String eliminar(@PathVariable Long id) {
-		servicio.borrar(id);
+		servicioPrivado.borrar(id);
+		
+		return "redirect:/admin/inmuebles";
+	}
+	
+	@PostMapping("/inmuebles/servicios/guardar")
+	public String guardarServicio(Servicio servicio, Long idInmueble) {
+		Inmueble inmueble = servicioPublico.detalle(idInmueble);
+		servicio.setInmueble(inmueble);
+		servicioPrivado.insertarServicio(servicio);
 		
 		return "redirect:/admin/inmuebles";
 	}

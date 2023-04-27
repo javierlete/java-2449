@@ -1,100 +1,131 @@
 <!doctype html>
-<html lang="es" th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
+<html lang="es"
+	th:replace="~{_plantilla :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Administración</title>
+<title>Administración</title>
 </head>
 
 <body>
-    <main class="container-fluid">
-        <table class="table table-hover table-bordered table-striped">
-            <thead class="table-primary">
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Direccion</th>
-                    <th>Alquiler / Venta</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
-                    <td th:text="*{id}">1</td>
-                    <td th:text="*{nombre}">Departamento 1</td>
-                    <td th:text="*{direccion}">Calle Falsa 123</td>
-                    <td th:text="*{tipo}">Alquiler</td>
-                    <td th:text="*{precio}">850,00 €/mes</td>
-                    <td>
-                        <a th:href="@{/admin/inmuebles/editar/{id}(id=${inmueble.id})}" href="#" class="btn btn-primary btn-sm">Editar</a>
-                        <a th:href="@{/admin/inmuebles/borrar/{id}(id=${inmueble.id})}" href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+	<main class="container-fluid">
+		<table class="table table-hover table-bordered table-striped">
+			<thead class="table-primary">
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Direccion</th>
+					<th>Alquiler / Venta</th>
+					<th>Precio</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="inmueble: ${inmuebles}" th:object="${inmueble}">
+					<td th:text="*{id}">1</td>
+					<td th:text="*{nombre}">Departamento 1</td>
+					<td th:text="*{direccion}">Calle Falsa 123</td>
+					<td th:text="*{tipo}">Alquiler</td>
+					<td th:text="*{precio}">850,00 €/mes</td>
+					<td><a
+						th:href="@{/admin/inmuebles/editar/{id}(id=${inmueble.id})}"
+						href="#" class="btn btn-primary btn-sm">Editar</a> <a
+						th:href="@{/admin/inmuebles/borrar/{id}(id=${inmueble.id})}"
+						href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
 
-        <form novalidate th:object="${inmueble}" th:action="@{/admin/inmuebles}" method="post">
-            <div class="row mb-2">
-                <label for="id" class="col-sm-2 control-label">Id</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{id}" placeholder="Id..." required>
-                    <div class="invalid-feedback">
-                        Por favor, introduce un Id.
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <label for="nombre" class="col-sm-2 control-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{nombre}" placeholder="Nombre..."
-                        required>
-                    <div class="invalid-feedback">
-                        Por favor, introduce un Nombre.
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <label for="direccion" class="col-sm-2 control-label">Direccion</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{direccion}"
-                        placeholder="Direccion..." required>
-                    <div class="invalid-feedback">
-                        Por favor, introduce una Direccion.
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <label for="tipo" class="col-sm-2 control-label">Alquiler / Venta</label>
-                <div class="col-sm-10">
-                    <select class="form-control" th:field="*{tipo}" required>
-                        <option value="">Seleciona una opción</option>
-                        <option value="Alquiler">Alquiler</option>
-                        <option value="Venta">Venta</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Por favor, seleciona una opción.
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <label for="precio" class="col-sm-2 control-label">Precio</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{precio}" placeholder="Precio..."
-                        required>
-                    <div class="invalid-feedback">
-                        Por favor, introduce un Precio.
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-            </div>
-        </form>
+		<form novalidate th:object="${inmueble}"
+			th:action="@{/admin/inmuebles}" method="post">
+			<div class="row mb-2">
+				<label for="id" class="col-sm-2 control-label">Id</label>
+				<div class="col-sm-10">
+					<input readonly type="number" class="form-control" th:field="*{id}"
+						placeholder="Id..." required>
+					<div class="invalid-feedback">Por favor, introduce un Id.</div>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" th:field="*{nombre}"
+						placeholder="Nombre..." required>
+					<div class="invalid-feedback">Por favor, introduce un Nombre.
+					</div>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<label for="direccion" class="col-sm-2 control-label">Direccion</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" th:field="*{direccion}"
+						placeholder="Direccion..." required>
+					<div class="invalid-feedback">Por favor, introduce una
+						Direccion.</div>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<label for="tipo" class="col-sm-2 control-label">Alquiler /
+					Venta</label>
+				<div class="col-sm-10">
+					<select class="form-control" th:field="*{tipo}" required>
+						<option value="">Seleciona una opción</option>
+						<option value="Alquiler">Alquiler</option>
+						<option value="Venta">Venta</option>
+					</select>
+					<div class="invalid-feedback">Por favor, seleciona una
+						opción.</div>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<label for="precio" class="col-sm-2 control-label">Precio</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" th:field="*{precio}"
+						placeholder="Precio..." required>
+					<div class="invalid-feedback">Por favor, introduce un Precio.
+					</div>
+				</div>
+			</div>
+			<div class="row mb-2">
+				<div class="offset-sm-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Agregar</button>
+				</div>
+			</div>
+		</form>
 
-    </main>
+		<form th:action="@{/admin/inmuebles/servicios/guardar}" method="post">
+			<table class="table table-hover table-bordered table-striped">
+				<thead class="table-primary">
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Cantidad</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="table-secondary">
+						<td><input type="hidden" name="idInmueble" readonly th:value="${inmueble.id}"></td>
+						<td><input name="nombre"></td>
+						<td><input type="number" name="cantidad"></td>
+						<td>
+							<button class="btn btn-primary">Añadir servicio</button>
+						</td>
+					</tr>
+					<tr th:each="s: ${servicios}">
+						<td th:text="${s.id}">1</td>
+						<td th:text="${s.nombre}">Cuchitriles</td>
+						<td th:text="${s.cantidad}">123</td>
+						<td><a
+							th:href="@{/admin/inmuebles/servicios/editar/{id}(id=${s.id})}"
+							href="#" class="btn btn-primary btn-sm">Editar</a> <a
+							th:href="@{/admin/inmuebles/servicios/borrar/{id}(id=${s.id})}"
+							href="#" class="btn btn-danger btn-sm">Eliminar</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</main>
 </body>
 
 </html>

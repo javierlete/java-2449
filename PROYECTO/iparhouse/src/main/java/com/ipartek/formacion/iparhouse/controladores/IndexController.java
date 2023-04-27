@@ -39,6 +39,7 @@ public class IndexController {
 	@GetMapping("/detalle/{id}")
 	public String detalle(@PathVariable Long id, Model modelo, Busqueda busqueda) {
 		modelo.addAttribute("inmueble", servicio.detalle(id));
+		modelo.addAttribute("servicios", servicio.serviciosDeInmueble(id));
 		modelo.addAttribute("inmuebles", servicio.listado());
 
 		return "index";

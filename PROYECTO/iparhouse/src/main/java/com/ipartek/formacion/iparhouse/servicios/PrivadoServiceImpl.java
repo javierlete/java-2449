@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.iparhouse.entidades.Inmueble;
+import com.ipartek.formacion.iparhouse.entidades.Servicio;
 import com.ipartek.formacion.iparhouse.repositorios.InmuebleRepository;
 import com.ipartek.formacion.iparhouse.repositorios.ServicioRepository;
 
@@ -51,6 +52,11 @@ public class PrivadoServiceImpl implements PrivadoService{
 	@Override
 	public Iterable<String> listadoServicios() {
 		return repoServicio.listadoNombreServicios();
+	}
+
+	@Override
+	public Servicio insertarServicio(Servicio servicio) {
+		return repoServicio.save(servicio);
 	}
 	
 }

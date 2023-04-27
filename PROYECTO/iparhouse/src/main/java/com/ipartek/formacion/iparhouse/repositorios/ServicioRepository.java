@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ipartek.formacion.iparhouse.entidades.Servicio;
 
 public interface ServicioRepository extends CrudRepository<Servicio, Long> {
+	Iterable<Servicio> findByInmuebleId(Long id);
+	
 	@Transactional
 	void deleteByInmuebleId(Long idInmueble);
 	@Query("select distinct s.nombre from Servicio s")
